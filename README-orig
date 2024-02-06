@@ -1,0 +1,12 @@
+This is the formalization accompanying the paper:
+
+  Cezary Kaliszyk and Karol Pąk
+  "Semantics of Mizar as an Isabelle Object Logic"
+
+Submitted to J. Automated Reasoning.
+
+The formalization is compatible with Isabelle 2017.
+
+To switch between the dependency on Isabelle/FOL and
+Isabelle/HOL, change the first line of 'mizar/mizar.thy'
+to mention 'mizar_FOL' or 'mizar_HOL'.
