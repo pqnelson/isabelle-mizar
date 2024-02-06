@@ -194,9 +194,10 @@ thm means_property
 (section 6.2). There is unhappiness in matching the equality literal, however, and I am
 currently having difficulty appeasing Isabelle. *)
 ML \<open>
-val eq = @{term "op ="} (* \<^term>\<open>op =\<close>  *)
+val eq = @{term"equal"} (* @{term "op ="} \<^term>\<open>op =\<close>  *)
             (*Tp =   lhs t dt *)
-(* is_as_eq only used in fnctr *)
+(* Alex annotation: @{term is_as_eq} refers to "is assume_equals", meaning the functor
+is defined with an assumption AND set equal to some term. *)
 fun is_as_eq (_ $ (_ $ _ $ (_ $ (_ $ _ $ C $ D)))) =
   (tracing (@{make_string} C);
   tracing (@{make_string} D);
@@ -238,7 +239,8 @@ fun functr ((decl, lt), defn) lthy =
      let
        val thm = the_single thms
        val thm_ty = @{thm conjunct1} OF [thm]
-       val lthy'' = Local_Theory.declaration {syntax = false, pervasive = false}
+      (* XXX: I have no clue what to give for "pos", so \<^here> it is... *)
+       val lthy'' = Local_Theory.declaration {syntax = false, pervasive = false, pos = \<^here>}
           (fn phi => ty_func_add_thm (Morphism.thm phi thm_ty)) lthy'
        val lthy''' = note_suffix fname "_ty" thm_ty lthy''
        val thm = @{thm conjunct2} OF [thm];

@@ -5,7 +5,7 @@ begin
 section "TARSKI_0"
 reserve x for object
 text_raw \<open>\DefineSnippet{tarski-axiom1}{\<close>
---"Set axiom"
+\<comment> \<open>"Set axiom"\<close>
 theorem tarski_0_1:
   "\<forall>x. x be set" using SET_def by simp
 (*axiomatization where tarski_0_1:
@@ -23,7 +23,7 @@ reserve M,N,X,Y,Z for set
 text_raw \<open>}%EndSnippet\<close>
 
 text_raw \<open>\DefineSnippet{tarski-axiom2}{\<close>
---"Extensionality axiom"
+\<comment> \<open>"Extensionality axiom"\<close>
 axiomatization where tarski_0_2:
   "\<forall>X. \<forall>Y. (\<forall>x. x in X \<longleftrightarrow> x in Y)
     \<longrightarrow> X = Y"
@@ -31,7 +31,7 @@ text_raw \<open>}%EndSnippet\<close>
   lemmas tarski_0_2a = tarski_0_2[THEN bspec,THEN bspec,rule_format,OF _ _ _ _ ballI,simplified]
 
 text_raw \<open>\DefineSnippet{tarski-axiom3}{\<close>
---"Axiom of pair"
+\<comment> \<open>"Axiom of pair"\<close>
 axiomatization where tarski_0_3:
   "\<forall>x. \<forall>y. \<exists>Z. \<forall>a.
       a in Z \<longleftrightarrow> a = x \<or> a = y"
@@ -39,21 +39,21 @@ text_raw \<open>}%EndSnippet\<close>
 
 thm tarski_0_3
 text_raw \<open>\DefineSnippet{tarski-axiom4}{\<close>
---"Axiom of union"
+\<comment> \<open>"Axiom of union"\<close>
 axiomatization where tarski_0_4:
   "\<forall>X. \<exists>Z. \<forall>x.
      x in Z \<longleftrightarrow> (\<exists>Y. x in Y \<and> Y in X)"
 text_raw \<open>}%EndSnippet\<close>
 
 text_raw \<open>\DefineSnippet{tarski-axiom5}{\<close>
---"Axiom of regularity"
+\<comment> \<open>"Axiom of regularity"\<close>
 axiomatization where tarski_0_5:
   "\<forall>x. \<forall>X. x in X \<longrightarrow> (\<exists>Y. Y in X \<and>
      \<not>(\<exists>z. z in X \<and> z in Y))"
 text_raw \<open>}%EndSnippet\<close>
 
 text_raw \<open>\DefineSnippet{tarski-axiom6}{\<close>
---"Fraenkel's scheme"
+\<comment> \<open>"Fraenkel's scheme"\<close>
 axiomatization where tarski_0_sch_1:
   "A be set \<Longrightarrow>
      \<forall>x,y,z. P(x,y) \<and> P(x,z) \<longrightarrow> y = z \<Longrightarrow>
@@ -214,6 +214,7 @@ proof (intro ballI notI impI)
   then show False using A1 A4 tarski_def_1 by auto
 qed simp_all
 
+(* BUG: fails to prove "{{x,y},{x}} be object" *)
 text_raw \<open>\DefineSnippet{tarski-def5}{\<close>
 func tarski_def_5    ("[_ , _]") where
   mlet "x be object", "y be object"
