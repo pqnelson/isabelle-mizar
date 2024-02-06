@@ -6,11 +6,11 @@ keywords "reserve" :: thy_decl
      and "func" :: thy_goal and "attr" :: thy_decl
 begin
 
-ML {*
+ML \<open>
 fun dest_be (Const (@{const_name ty_membership}, _) $ l $ r) = (l, r)
   | dest_be x = raise TERM ("dest_be", [x])
-*}
-ML {*
+\<close>
+ML \<open>
 structure Miz_Reserve_Data = Theory_Data
 (
   type T = term Symtab.table;
@@ -32,8 +32,8 @@ fun do_var (v as (n, _)) lthy =
     in
       ((assm :: flat assms), Context.proof_map (ty_add_thm assm) lthy3)
     end
-*}
-ML {*
+\<close>
+ML \<open>
 fun reserve_cmd (vs, tm) lthy =
   let
     val tm = (Syntax.read_term lthy tm)
@@ -52,9 +52,9 @@ fun reserve_cmd (vs, tm) lthy =
 val () =
   Outer_Syntax.local_theory @{command_keyword reserve}
     "reserve variable names with types"
-    ((Parse.list1 Parse.text -- (Parse.$$$ "for" |-- Parse.term)) >> reserve_cmd);
-*}
-ML {*
+    ((Parse.list1 Parse.embedded -- (Parse.$$$ "for" |-- Parse.term)) >> reserve_cmd);
+\<close>
+ML \<open>
 fun do_lt tm lthya =
    case dest_Trueprop tm of
      (Const (@{const_name ty_membership}, _) $ Free (n, _) $ _) =>
@@ -73,9 +73,9 @@ fun do_lt tm lthya =
          (assm, lthya2 addsimps [assm])
 (*         (assm, lthya2)*)
        end;
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun normalize_thm ctxt th =
   let
     val th2 = Object_Logic.rulify ctxt th
@@ -89,9 +89,9 @@ fun normalize_thm ctxt th =
   in
     if Thm.prop_of th = Thm.prop_of th5 then th else normalize_thm ctxt th5
   end
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun setup_proof (((name, attr), lt), str) lthy =
   let
     val prop = Syntax.read_prop lthy str;
@@ -116,25 +116,26 @@ fun setup_proof (((name, attr), lt), str) lthy =
   in
     Proof.theorem NONE after_qed [[(prop, [])]] lthy4
   end;
-*}
-ML {*
+\<close>
+ML \<open>
 Outer_Syntax.local_theory_to_proof @{command_keyword mtheorem} "Mizar theorem"
   ((Parse_Spec.opt_thm_name ":" -- (Scan.option ((@{keyword "mlet"} || @{keyword "assumes"}) |-- Parse.list1 Parse.prop))
    -- Parse.prop) >> setup_proof);
 Outer_Syntax.local_theory_to_proof @{command_keyword mlemma} "Mizar lemma"
   ((Parse_Spec.opt_thm_name ":" -- (Scan.option ((@{keyword "mlet"} || @{keyword "assumes"}) |-- Parse.list1 Parse.prop))
    -- Parse.prop) >> setup_proof);
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun mdecl decl lt defn getth afterqed lthy =
   let
    val lt2 = map (Syntax.read_prop lthy) (flat (the_list lt))
    val ((tm, (_, th)), lthy2) = Specification.definition_cmd decl [] [] (Binding.empty_atts, defn) false lthy
    val vs = Term.add_vars (Thm.prop_of th) [];
    val fs = map (fn (v as ((n, _), t)) => (v, Thm.cterm_of lthy2 (Free (n, t)))) vs;
-   val th2 = Thm.instantiate ([], fs) th
+   val th2 = Thm.instantiate (TVars.empty, Vars.make fs) th
    val (fname, _) = dest_Free tm
+   (* where getth is used *)
    val thr2 = (getth (Thm.prop_of th2)) OF [th2]
 
    val as_fs = map_filter (fn th => SOME ((dest_Free o fst o dest_be o dest_Trueprop) th) handle TERM _ => NONE) lt2
@@ -151,9 +152,9 @@ fun mdecl decl lt defn getth afterqed lthy =
     Proof.theorem NONE after_qed [[(Thm.concl_of thr2, [])]]
  |> Proof.refine_singleton (Method.Basic (fn ctxt => Method.SIMPLE_METHOD (resolve_tac ctxt [thr2] 1)))
   end;
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun mdefinition ((decl, lt), (defn, thref)) lthy =
   let
     fun afterqed fname thms _ lthy' =
@@ -171,8 +172,8 @@ val parser = (Scan.option Parse_Spec.constdecl --
     (Scan.option ((@{keyword "mlet"} || @{keyword "assumes"}) |-- Parse.list1 Parse.prop)) --
     (Parse.prop -- (@{keyword ":"} |-- Parse.thm))) >> mdefinition;
 Outer_Syntax.local_theory_to_proof @{command_keyword mdefinition} "Mizar constant" parser
-*}
-ML {*
+\<close>
+ML \<open>
 fun yxml_insert i s =
   case YXML.parse s of
     XML.Elem (a, [XML.Text c]) =>
@@ -184,14 +185,18 @@ fun yxml_insert i s =
         YXML.string_of (XML.Elem (a, [XML.Text (s1 ^ i ^ s2)]))
       end
   | _ => raise ERROR "yxml_insert"
- *}
+ \<close>
 thm assume_equals_property
 thm assume_means_property
 thm equals_property
 thm means_property
-ML {*
-val eq = @{term "op ="}
+(* Alex annotation: I believe this code related to defining functors, as discussed on page 573
+(section 6.2). There is unhappiness in matching the equality literal, however, and I am
+currently having difficulty appeasing Isabelle. *)
+ML \<open>
+val eq = @{term "op ="} (* \<^term>\<open>op =\<close>  *)
             (*Tp =   lhs t dt *)
+(* is_as_eq only used in fnctr *)
 fun is_as_eq (_ $ (_ $ _ $ (_ $ (_ $ _ $ C $ D)))) =
   (tracing (@{make_string} C);
   tracing (@{make_string} D);
@@ -206,6 +211,7 @@ fun is_as_eq (_ $ (_ $ _ $ (_ $ (_ $ _ $ C $ D)))) =
       | _ => false
   in (assum, eq) end)
   | is_as_eq _ = raise Fail "invalid func definition";
+
 fun note_suffix fname sffx thm lthy =
   let
     val bind = ((Binding.map_name (suffix sffx) (Binding.make (fname, Position.none))), [])
@@ -213,6 +219,7 @@ fun note_suffix fname sffx thm lthy =
   in
     Local_Theory.notes a lthy |> snd
   end;
+
 fun functr ((decl, lt), defn) lthy =
   let
     fun getth prop =
@@ -244,13 +251,14 @@ fun functr ((decl, lt), defn) lthy =
   in
     mdecl decl lt defn getth afterqed lthy
   end;
+
 val parser = (Scan.option Parse_Spec.constdecl --
     (Scan.option ((@{keyword "mlet"} || @{keyword "assumes"}) |-- Parse.list1 Parse.prop)) --
     Parse.prop) >> functr;
 Outer_Syntax.local_theory_to_proof @{command_keyword func} "Mizar constant" parser
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun attr ((bind, mixf), str) int lthy =
   let
     val bind2 = Binding.map_name (suffix "_orig") bind
@@ -267,9 +275,9 @@ fun attr ((bind, mixf), str) int lthy =
 val _ =
   Outer_Syntax.local_theory' @{command_keyword attr} "attr definition"
     (((Parse.binding -- Parse.opt_mixfix') -- Parse.prop) >> attr);
-*}
+\<close>
 
-parse_translation {* [(@{syntax_const "_BallML2"},
+parse_translation \<open> [(@{syntax_const "_BallML2"},
   let fun tr ctxt [((Const (@{syntax_const "_vs"}, _)) $ (v as (_ $ (vv as Free (n, _)) $ _)) $ vs), P] =
           (case Symtab.lookup (Miz_Reserve_Data.get (Proof_Context.theory_of ctxt)) n of
             NONE => raise Fail ("BallML2a: Variable " ^ n ^ " \<not> reserved and 'being' \<not> given!")
@@ -278,9 +286,9 @@ parse_translation {* [(@{syntax_const "_BallML2"},
           (case Symtab.lookup (Miz_Reserve_Data.get (Proof_Context.theory_of ctxt)) n of
             NONE => raise Fail ("BallML2b: Variable " ^ n ^ " \<not> reserved and 'being' \<not> given!")
           | SOME D => Syntax.const @{const_syntax Ball} $ D $ (Syntax_Trans.abs_tr [v, P]))
-  in tr end)] *}
+  in tr end)] \<close>
 
-parse_translation {* [(@{syntax_const "_BexML2"},
+parse_translation \<open> [(@{syntax_const "_BexML2"},
   let fun tr ctxt [((Const (@{syntax_const "_vs"}, _)) $ (v as (_ $ (vv as Free (n, _)) $ _)) $ vs), P] =
           (case Symtab.lookup (Miz_Reserve_Data.get (Proof_Context.theory_of ctxt)) n of
             NONE => raise Fail ("BexML2a: Variable " ^ n ^ " \<not> reserved and 'being' \<not> given!")
@@ -289,6 +297,6 @@ parse_translation {* [(@{syntax_const "_BexML2"},
           (case Symtab.lookup (Miz_Reserve_Data.get (Proof_Context.theory_of ctxt)) n of
             NONE => raise Fail ("BexML2b: Variable " ^ n ^ " \<not> reserved and 'being' \<not> given!")
           | SOME D => Syntax.const @{const_syntax Bex} $ D $ (Syntax_Trans.abs_tr [v, P]))
-  in tr end)] *}
+  in tr end)] \<close>
 
 end

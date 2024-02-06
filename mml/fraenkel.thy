@@ -196,7 +196,7 @@ proof(intro ballI impI)
   finally show "F. x = G. x" by simp
 qed simp_all
 
-text_raw {*\DefineSnippet{fraenkelsch9}{*}
+text_raw \<open>\DefineSnippet{fraenkelsch9}{\<close>
 theorem Fraenkel_sch_9:
   assumes [ty]: "A be set" "B be set" "X be set"
           "f be Function-of A,B" "g be Function-of A,B" and
@@ -204,7 +204,7 @@ theorem Fraenkel_sch_9:
         "for u being Element-of A st u in X holds P(u) \<longleftrightarrow> Q(u)"
   shows "{ f. u where u be Element-of A : P(u) \<and> u in X } =
          { g. v where v be Element-of A : Q(v) \<and> v in X }"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   let ?F = "\<lambda>x1. f. x1"
   let ?G = "\<lambda>x1. g. x1"
@@ -282,7 +282,7 @@ proof(rule ballI,rule impI)
   thus "Q(st1)" using A1 by auto
 qed simp_all
 
-text_raw {*\DefineSnippet{fraenkelsch13}{*}
+text_raw \<open>\DefineSnippet{fraenkelsch13}{\<close>
 theorem fraenkel_sch_13:
   assumes [ty]: "A be set" "B be set" "C be set"
   and T0: "\<forall>x1:object,x2:object. F(x1,x2) be Element-of C"
@@ -291,7 +291,7 @@ theorem fraenkel_sch_13:
                t1 be Element-of B: P(s1,t1) } \<and> Q(st1)} =
          { F(s2,t2) where s2 be Element-of A,t2 be Element-of B:
              P(s2,t2) \<and> Q(F(s2,t2))}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(unfold xboole_0_def_10[OF all_set all_set],rule conjI)
   let ?T = "{F(s1,t1) where s1 be Element-of A,t1 be Element-of B:P(s1,t1)}"
   let ?X = "{st1 where st1 be Element-of C: st1 in ?T \<and> Q(st1)}"

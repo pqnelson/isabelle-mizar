@@ -1,9 +1,11 @@
-theory mizar_FOL imports "~~/src/FOL/FOL" "~~/src/HOL/Eisbach/Eisbach_Old_Appl_Syntax" begin
+theory mizar_FOL 
+  imports FOL "~~/src/HOL/Eisbach/Eisbach_Old_Appl_Syntax"
+begin
 
-text_raw {*\DefineSnippet{mizar-typedecl}{*}
+text_raw \<open>\DefineSnippet{mizar-typedecl}{\<close>
 typedecl Set
 typedecl Ty
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 instance Set :: "term" ..
 instance Ty :: "term" ..
 
@@ -29,13 +31,13 @@ notation (ASCII)
   disj (infixl "or" 30) and
   Not ("not _" [40] 40)
 
-ML {*
+ML \<open>
 val basic_ss = FOL_basic_ss;
 val main_ss = FOL_ss;
-val mk_Trueprop = FOLogic.mk_Trueprop;
-val dest_Trueprop = FOLogic.dest_Trueprop;
+val mk_Trueprop = \<^make_judgment>;
+val dest_Trueprop = \<^dest_judgment>;
 val eq_const = @{const_name IFOL.eq}
-*}
+\<close>
 
 lemmas Eq_TrueI = iff_reflection_T
 lemmas Eq_FalseI = iff_reflection_F

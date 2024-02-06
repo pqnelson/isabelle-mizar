@@ -2,11 +2,11 @@ theory mizar_fraenkel_2
 imports mizar_fraenkel "../mml/zfmisc_1"
 begin
 
-text_raw {*\DefineSnippet{fraenkel_a2}{*}
+text_raw \<open>\DefineSnippet{fraenkel_a2}{\<close>
 definition Fraenkel2 where
    "func Fraenkel2 (P, L1, L2, Q) \<rightarrow> set means
       \<lambda> it. (for x being object holds (x in it \<longleftrightarrow> (ex y1 being L1, y2 being L2 st x = P(y1,y2) \<and> Q (y1,y2))))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 syntax
   "_Fraenkel2" :: "Set \<Rightarrow> vs \<Rightarrow> Ty \<Rightarrow> vs \<Rightarrow> Ty \<Rightarrow> o \<Rightarrow> Set" ("{ _ where _ be _, _ be _ : _ }")

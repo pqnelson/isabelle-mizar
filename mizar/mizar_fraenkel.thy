@@ -2,11 +2,11 @@ theory mizar_fraenkel
 imports "../mml/tarski"
 begin
 
-text_raw {*\DefineSnippet{fraenkel_a1}{*}
+text_raw \<open>*\DefineSnippet{fraenkel_a1}{\<close>
 definition Fraenkel1 where
    "func Fraenkel1 (F, D, P) \<rightarrow> set means \<lambda>it.
       \<forall>x : object. x in it \<longleftrightarrow> (\<exists>y : D. x = F(y) \<and> P(y))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 syntax
   "_Fraenkel1" :: "Set \<Rightarrow> vs \<Rightarrow> Ty \<Rightarrow> o \<Rightarrow> Set" ("{ _ where _ be _ : _ }")
@@ -14,7 +14,7 @@ translations
  "{ f where x be D : P }" \<rightharpoonup> "CONST mizar_fraenkel.Fraenkel1((%x. f), D, (%x. P))"
  "mizar_fraenkel.Fraenkel1((%x. f), D, (%y. P))" \<rightharpoonup> "{ (%x. f)(y) where y be D : P }"
 
-text_raw {*\DefineSnippet{fraenkel_a1s}{*}
+text_raw \<open>*\DefineSnippet{fraenkel_a1s}{\<close>
 lemma Fraenkel_A1:
   fixes F :: "Set \<Rightarrow> Set" and P :: "Set \<Rightarrow> o"
   assumes [ex]:"inhabited(L)" "sethood(L)"
@@ -22,11 +22,11 @@ lemma Fraenkel_A1:
     (\<forall>x : object. x in Fraenkel1(F, L, P) \<longleftrightarrow> (\<exists>y : L. x = F(y) \<and> P(y))) \<and>
     (x be set \<and> (\<forall>xa : object. xa in x \<longleftrightarrow> (\<exists>y : L. xa = F(y) \<and> P(y)))
                                 \<longrightarrow> x = Fraenkel1(F, L, P))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof (rule means_property[OF Fraenkel1_def])
-text_raw {*\DefineSnippet{fraenkel_a1p}{*}
+text_raw \<open>*\DefineSnippet{fraenkel_a1p}{\<close>
   show "\<exists>x : set. \<forall>xa : object. xa in x \<longleftrightarrow> (\<exists>y : L. xa = F(y) \<and> P(y))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   proof -
     obtain Seth where SetH[ty]: "Seth be set" and
       Prop: "\<forall>x:object. x be L \<longleftrightarrow> x in Seth"

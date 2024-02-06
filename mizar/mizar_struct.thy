@@ -45,18 +45,18 @@ lemma Aggr3:"[a,b] in [# a\<mapsto>b #]"
 
 lemmas Aggr =Aggr1 Aggr2 Aggr3
 
-text_raw {*\DefineSnippet{theselectorof}{*}
+text_raw \<open>\DefineSnippet{theselectorof}{\<close>
 definition TheSelectorOf   ("the _ of _" [100,100] 190) where
    "func the selector of Str \<rightarrow> object means \<lambda>it.
       \<forall>T : object. [selector,T] in Str \<longrightarrow> it = T"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
-text {*
+text \<open>
 \DefineSnippet{theselectorofdisplay}{
    @{thm [display] TheSelectorOf_def[no_vars]}
 }%EndSnippet
-*}
+\<close>
 
 definition Struct where
   "Struct \<equiv> Function"
@@ -79,11 +79,11 @@ proof (induct rule: means_property[OF TheSelectorOf_def,of selector Str, case_na
            "for T be object st [selector,T] in Str holds x2 = T"
     thus "x1=x2" using A1 by simp+
 qed simp
-text {*
+text \<open>
 \DefineSnippet{the_selector_of_prop}{
    @{thm [display] the_selector_of[no_vars]}
 }%EndSnippet
-*}
+\<close>
 
 lemma the_selector_of_1:
   assumes[ty]: "Str be Struct" and
@@ -110,11 +110,11 @@ proof-
 qed
 
 
-text_raw {*\DefineSnippet{structfield}{*}
+text_raw \<open>\DefineSnippet{structfield}{\<close>
 definition field (infix "\<rightarrow>" 9) where
    "selector \<rightarrow> spec \<equiv> define_ty(object, \<lambda>_. True,\<lambda>it.
       the selector of it be spec(it) \<and> selector in dom it)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 
@@ -124,33 +124,33 @@ theorem field: "x is (selector \<rightarrow> spec) \<longleftrightarrow>  ((the 
 lemmas field_E = field[THEN iffD1,THEN conjunct1]
 
 
-text_raw {*\DefineSnippet{TheS}{*}
+text_raw \<open>\DefineSnippet{TheS}{\<close>
 abbreviation TheS   ("the'' _") where
    "TheS \<equiv> \<lambda>selector Str. the selector of Str"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{domainof}{*}
+text_raw \<open>\DefineSnippet{domainof}{\<close>
 definition domain_of   ("domain'_of _" [100] 100) where
   "func domain_of M \<rightarrow> set means (\<lambda>it.
       (\<exists>X:M. it = dom X) \<and> (\<forall>X : M.  it \<subseteq> dom X))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 (*  :: "Ty \<Rightarrow> Ty"  *)
-text_raw {*\DefineSnippet{truct_strict}{*}
+text_raw \<open>\DefineSnippet{truct_strict}{\<close>
 definition strict where
    "strict(M) \<equiv> define_ty(object,\<lambda>_.True, \<lambda>X. X be M \<and> dom X = domain_of M)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 lemmas strict = strict_def[THEN def_ty_property,simplified]
 
 theorem [ty_parent]:
   "X be strict(M) \<Longrightarrow> X be M" using strict[THEN conjunct1] by auto  
   
 (*  :: "Set \<Rightarrow> Ty \<Rightarrow> Set" *)
-text_raw {*\DefineSnippet{struct_restriction}{*}
+text_raw \<open>\DefineSnippet{struct_restriction}{\<close>
 definition the_restriction_of   ("the'_restriction'_of _ to _" [95,95] 95) where
    "func the_restriction_of X to Str \<rightarrow> strict(Str) 
       equals X\<restriction>\<^bsub>domain_of Str\<^esub>"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 
@@ -250,7 +250,7 @@ proof-
 qed
 
 (*  :: "Ty \<Rightarrow> Set \<Rightarrow> o" *)
-text_raw {*\DefineSnippet{welldefined}{*}
+text_raw \<open>\DefineSnippet{welldefined}{\<close>
 definition well_defined_prefix (infix "well defined on" 50)
 where
   "Fields well defined on D \<equiv>
@@ -258,7 +258,7 @@ where
     (\<forall>\<^sub>L X1. X1 be Fields\<bar>Struct \<longrightarrow> D \<subseteq> dom X1 \<and> X1\<restriction>\<^bsub>D\<^esub> be Fields) \<and>
     (\<forall>\<^sub>L X1 X2. X1 be Fields\<bar>Struct \<and>
                        X2 be Struct \<and> D \<subseteq> dom X1 \<and> X1 \<subseteq> X2 \<longrightarrow> X2 be Fields)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem First_0_arg_Mode:
   assumes [ex]:"inhabited(M)"
@@ -300,13 +300,13 @@ proof(unfold well_defined_prefix_def, intro conjI)
   qed
 qed
 
-text_raw {*\DefineSnippet{WellAddM0}{*}
+text_raw \<open>\DefineSnippet{WellAddM0}{\<close>
 theorem Fields_add_0_arg_Mode:
   assumes "Fields well defined on D"
           "not (selector in D)"
           "inhabited(M)"
   shows "Fields\<bar> (selector \<rightarrow> (\<lambda>S . M)) well defined on D\<union>{selector}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(unfold well_defined_prefix_def,intro conjI)
   have
    I0:"\<exists>\<^sub>L X . X be Fields\<bar>Struct \<and> dom X=D" and
@@ -377,7 +377,7 @@ proof(unfold well_defined_prefix_def,intro conjI)
 
 qed
 
-text_raw {*\DefineSnippet{WellAddM1}{*}
+text_raw \<open>\DefineSnippet{WellAddM1}{\<close>
 theorem Fields_add_argM1:
 assumes "Fields well defined on D"
  and "selector_1 in D"
@@ -387,7 +387,7 @@ assumes "Fields well defined on D"
 shows
  "Fields \<bar> (selector \<rightarrow> (\<lambda>S. M1 (the selector_1 of S)))
          well defined on D \<union> {selector}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(unfold well_defined_prefix_def,intro conjI)
   have
    I0:"\<exists>\<^sub>L X . X be Fields\<bar>Struct \<and> dom X=D" and
@@ -472,7 +472,7 @@ proof(unfold well_defined_prefix_def,intro conjI)
   qed
 qed
 
-text_raw {*\DefineSnippet{WellAddM2}{*}
+text_raw \<open>\DefineSnippet{WellAddM2}{\<close>
 theorem Fields_add_2_arg_Mode:
   assumes "Fields well defined on D"
           "selector_1 in D"
@@ -481,7 +481,7 @@ theorem Fields_add_2_arg_Mode:
            and "\<And> X1 . X1 be Fields\<bar>Struct \<Longrightarrow>
            inhabited (M1(the selector_1 of X1,the selector_2 of X1))"
   shows "Fields\<bar> (selector \<rightarrow> (\<lambda>S . M1 (the selector_1 of S,the selector_2 of S))) well defined on D\<union>{selector}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(unfold well_defined_prefix_def,intro conjI)
   have
    I0:"\<exists>\<^sub>L X . X be Fields\<bar>Struct \<and> dom X=D" and
@@ -572,7 +572,7 @@ proof(unfold well_defined_prefix_def,intro conjI)
     thus "X1| (D\<union>{selector}) is Fields\<bar>(#selector \<rightarrow>?Spec#)" using C6 by simp
   qed
 qed
-text_raw {*\DefineSnippet{WellAddM3}{*}
+text_raw \<open>\DefineSnippet{WellAddM3}{\<close>
 theorem Fields_add_3_arg_Mode:
   assumes "Fields well defined on D"
         "sel_1 in D"    "sel_2 in D"    "sel_3 in D"    "\<not> sel in D"
@@ -580,7 +580,7 @@ theorem Fields_add_3_arg_Mode:
         inhabited (M1(the sel_1 of X1, the sel_2 of X1, the sel_3 of X1))"
   shows "Fields \<bar> (sel \<rightarrow> (\<lambda>S. M1 (the sel_1 of S, the sel_2 of S, the sel_3 of S)))
         well defined on D \<union> {sel}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(unfold well_defined_prefix_def,intro conjI)
   have
    I0:"\<exists>\<^sub>L X . X be Fields\<bar>Struct \<and> dom X=D" and
@@ -702,12 +702,12 @@ proof(unfold well_defined_prefix_def,intro conjI)
 
   qed
 
-text_raw {*\DefineSnippet{WellOrder}{*}
+text_raw \<open>\DefineSnippet{WellOrder}{\<close>
 theorem well_defined_order:
   assumes "\<And>X. X is Fields1 \<longleftrightarrow> X is Fields2"
      and "Fields1 well defined on D1"
   shows "Fields2 well defined on D1"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(unfold well_defined_prefix_def,intro conjI)
    have
    I0:"\<exists>\<^sub>L X . X be Fields1\<bar>Struct \<and> dom X=D1" and
@@ -730,13 +730,13 @@ proof(unfold well_defined_prefix_def,intro conjI)
 
 
 
-text_raw {*\DefineSnippet{struct}{*}
+text_raw \<open>\DefineSnippet{struct}{\<close>
 abbreviation(input) struct ("struct _ _" [10,10] 10)
   where "struct Name Fields \<equiv>
      (Name \<equiv> define_ty(object,\<lambda>_.True,\<lambda>it. it be Struct \<and> it be Fields))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{structScheme}{*}
+text_raw \<open>\DefineSnippet{structScheme}{\<close>
 lemma struct_scheme:
   assumes df: "struct S Fields"
     and exist: "\<exists>\<^sub>L X . X be Fields\<bar>Struct \<and> dom X = D"
@@ -746,7 +746,7 @@ lemma struct_scheme:
        inhabited(S) \<and> inhabited(strict(S)) \<and>
        domain_of S = D \<and>
        (E be S \<longrightarrow> the_restriction_of E to S be strict(S))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro conjI)
    show "x be S \<longleftrightarrow> x be Fields\<bar>Struct" using def_ty_property_true df by auto
    obtain X where
@@ -855,7 +855,7 @@ proof(intro xboole_0_def_10a conjI)
 qed
 
 
-text_raw {*\DefineSnippet{structSchemeWell}{*}
+text_raw \<open>\DefineSnippet{structSchemeWell}{\<close>
 lemma well_defined_property:
   assumes df: "struct S Fields"
     and well: "Fields well defined on D"
@@ -864,7 +864,7 @@ lemma well_defined_property:
        domain_of S = D \<and>
        (E be S \<longrightarrow> the_restriction_of E to S be strict(S)) \<and>
        (Fields well defined on D)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   have A0: "\<exists>\<^sub>L X . X be Fields\<bar>Struct \<and> dom X=D"
   "\<forall>\<^sub>L X1. X1 be Fields\<bar>Struct \<longrightarrow> D \<subseteq> dom X1 \<and> X1|D is Fields"

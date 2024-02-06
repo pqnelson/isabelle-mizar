@@ -19,16 +19,16 @@ theorem axiom:
 
 
 
-text_raw {*\DefineSnippet{mizar-consts1}{*}
+text_raw \<open>\DefineSnippet{mizar-consts1}{\<close>
 consts
   ty_membership :: "Set \<Rightarrow> Ty \<Rightarrow> o" (infix "be" 90)
   define_ty :: "Ty \<Rightarrow> (Set \<Rightarrow> o) \<Rightarrow> (Set \<Rightarrow> o) \<Rightarrow>Ty"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{mizar-consts2}{*}
+text_raw \<open>\DefineSnippet{mizar-consts2}{\<close>
 consts
   choice :: "Ty \<Rightarrow> Set"     ("the _" [79] 80)
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 notation (input) ty_membership (infix "is" 90)
 
@@ -37,21 +37,21 @@ definition inhabited :: "Ty \<Rightarrow> o" where
 
 lemma inhabitedI[intro?]: "x be D \<Longrightarrow> inhabited(D)"
   unfolding inhabited_def by auto
-text_raw {*\DefineSnippet{axioms-def}{*}
+text_raw \<open>\DefineSnippet{axioms-def}{\<close>
 term "\<lambda>it. it be parent \<and> (cond(it) \<longrightarrow> property(it))"    
-text_raw {*}%EndSnippet*}
-text_raw {*\DefineSnippet{mizar-axioms1}{*}
+text_raw \<open>}%EndSnippet\<close>
+text_raw \<open>\DefineSnippet{mizar-axioms1}{\<close>
 axiomatization where
   def_ty_property: "T \<equiv> define_ty(parent, cond, property) \<Longrightarrow>
          (x be T \<longrightarrow> x be parent \<and> (cond(x) \<longrightarrow> property(x))) \<and>
          (x be parent \<and> cond(x) \<and> property(x) \<longrightarrow> x be T) \<and>
          (x be parent \<and> \<not>cond(x) \<longrightarrow> inhabited(T)) "
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{mizar-axioms2}{*}
+text_raw \<open>\DefineSnippet{mizar-axioms2}{\<close>
 axiomatization where
   choice_ax: "inhabited(M) \<Longrightarrow> (the M) be M"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 lemma def_ty_property_true:
   "x be define_ty(Radix, \<lambda>_.True ,Cond) \<longleftrightarrow> x be Radix \<and> Cond(x)"
@@ -61,25 +61,25 @@ proof
   show "x is Radix \<and> Cond(x) \<Longrightarrow> x is define_ty(Radix, \<lambda>_. True, Cond)" using
     def_ty_property[THEN conjunct2] by simp
 qed
-text {*
+text \<open>
 \DefineSnippet{inhabited-def}{
    @{thm [display] inhabited_def[no_vars]}
 }%EndSnippet
-*}
+\<close>
 
 definition Ball :: "Ty \<Rightarrow> (Set \<Rightarrow> o) \<Rightarrow> o" where
   [simp]: "inhabited(D) \<Longrightarrow> Ball(D, P) \<longleftrightarrow> (\<forall>\<^sub>Lx. x be D \<longrightarrow> P(x))"
 definition Bex :: "Ty \<Rightarrow> (Set \<Rightarrow> o) \<Rightarrow> o" where
   [simp]: "inhabited(D) \<Longrightarrow> Bex(D, P) \<longleftrightarrow> (\<exists>\<^sub>Lx. x be D \<and> P(x))"
 
-text {*
+text \<open>
 \DefineSnippet{ball-def}{
    @{thm [display] Ball_def[no_vars]}
 }%EndSnippet
 \DefineSnippet{bex-def}{
    @{thm [display] Bex_def[no_vars]}
 }%EndSnippet
-*}
+\<close>
 
 nonterminal vgs and bg and vs
 syntax
@@ -155,7 +155,7 @@ lemma iffI2: "A \<longrightarrow> B \<Longrightarrow> B \<longrightarrow> A \<Lo
 lemma iffI3: "A \<longrightarrow> B \<Longrightarrow> (B \<Longrightarrow> A) \<Longrightarrow> A \<longleftrightarrow> B" by iprover
 lemma disjCI2: "(\<not> P \<Longrightarrow> Q) \<Longrightarrow> P \<or> Q" by auto
 
-ML {*
+ML \<open>
 fun conj_elims th =
   (case dest_Trueprop (Thm.concl_of th) of
     (Const (@{const_name conj}, _) $ _ $ _) =>
@@ -163,13 +163,13 @@ fun conj_elims th =
       conj_elims (th RS @{thm conjunct2})
   | _ => [th])
   handle TERM _ => [th]
-*}
+\<close>
 
-section {* Mizar article "HIDDEN" *}
+section \<open> Mizar article "HIDDEN" \<close>
 
 (* object is the root of type hierarchy *)
 
-text_raw {*\DefineSnippet{hidden-axioms}{*}
+text_raw \<open>\DefineSnippet{hidden-axioms}{\<close>
 axiomatization
   object and (*set :: Ty and*)
   prefix_in :: "Set \<Rightarrow> Set \<Rightarrow> o" (infixl "in" 50)
@@ -177,7 +177,7 @@ where
   object_root: "x be object" and
   object_exists: "inhabited(object)" (*and
   hidden_mode: "x be set \<Longrightarrow> x be object"*)
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 declare object_root[simp]
 
@@ -193,25 +193,25 @@ next
       using def_ty_property[THEN conjunct2, of _ object "\<lambda>it .it be D" cond] by simp
 qed
 
-text_raw {*\DefineSnippet{set-def}{*}
+text_raw \<open>\DefineSnippet{set-def}{\<close>
 definition SET("set") where
   "set\<equiv>object"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 (*define_ty(Radix, assms,Cond)  *)
 
 
-text_raw {*\DefineSnippet{set-axioms}{*}
+text_raw \<open>\DefineSnippet{set-axioms}{\<close>
 lemma hidden_mode: "x be set \<Longrightarrow> x be object" 
   using SET_def by auto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
-text_raw {*\DefineSnippet{theProp}{*}
+text_raw \<open>\DefineSnippet{theProp}{\<close>
 abbreviation (input) theProp
   where "theProp(ty, prop) \<equiv> the define_ty(ty, \<lambda>_. True, prop)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 definition NON ("non _" [102] 101)
   where "non A \<equiv> define_ty(object, \<lambda>_. True,\<lambda> x . \<not> x be A)"
@@ -219,17 +219,17 @@ definition NON ("non _" [102] 101)
 lemma non_property: "x be non A \<longleftrightarrow> \<not> x be A"
   using def_ty_property_true NON_def by simp
 
-text {*
+text \<open>
 \DefineSnippet{non-def-a}{
    @{thm [display] NON_def[no_vars]}
 }%EndSnippet
-*}
+\<close>
 
-text {*
+text \<open>
 \DefineSnippet{non-def-b}{
    @{thm [display] non_property[no_vars]}
 }%EndSnippet
-*}
+\<close>
 
 definition ty_intersection (infixl "\<bar>" 100) where
   "t1 \<bar> t2 \<equiv> define_ty(object,\<lambda>_.True, \<lambda>x. x be t1 \<and> x be t2)"
@@ -237,11 +237,11 @@ definition ty_intersection (infixl "\<bar>" 100) where
 lemma ty_intersection: "x be t1 \<bar> t2 \<longleftrightarrow> x be t1 \<and> x be t2"
   using def_ty_property_true ty_intersection_def by simp
 
-text {*
+text \<open>
 \DefineSnippet{tyintersection}{
    @{thm [display] ty_intersection[no_vars]}
 }%EndSnippet
-*}
+\<close>
 
 lemmas [simp] = ty_intersection non_property
 

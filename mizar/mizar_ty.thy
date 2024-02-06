@@ -5,32 +5,32 @@ begin
 named_theorems ex
 declare object_exists[ex]
 
-ML {*
+ML \<open>
 structure Miz_Ty_Data = Generic_Data
 ( type T = thm Item_Net.T;
-  val empty = Thm.full_rules;
+  val empty = Thm.item_net;
   val extend = I;
   val merge = Item_Net.merge);
 structure Miz_Ty_Func_Data = Generic_Data
 ( type T = thm Item_Net.T;
-  val empty = Thm.full_rules;
+  val empty = Thm.item_net;
   val extend = I;
   val merge = Item_Net.merge);
 structure Miz_Ty_Clus_Data = Generic_Data
 ( type T = thm Item_Net.T;
-  val empty = Thm.full_rules;
+  val empty = Thm.item_net;
   val extend = I;
   val merge = Item_Net.merge);
 structure Miz_Ty_Fwd_Data = Generic_Data
 ( type T = thm Item_Net.T;
-  val empty = Thm.full_rules;
+  val empty = Thm.item_net;
   val extend = I;
   val merge = Item_Net.merge);
-*}
+\<close>
 
 (* premises are filled with "ty" and singletons from "ty_func"
    We return theorems with missing premises*)
-ML {*
+ML \<open>
 fun fast_prove_prems_fromr ctxt th =
   let
 (*    val _ = tracing ("fpp:" ^ Thm.string_of_thm ctxt th)*)
@@ -42,9 +42,9 @@ fun fast_prove_prems_fromr ctxt th =
         let val rlres = ((ty @ ty_func) RLN (Thm.nprems_of (hd ths), ths))
         in case rlres of [] => hd ths | _ => dorl rlres end
   in dorl [th] end;
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun is_in_ty thm ctxt =
   let
     val there = Item_Net.retrieve (Miz_Ty_Data.get (Context.Proof ctxt)) (Thm.concl_of thm)
@@ -52,9 +52,9 @@ fun is_in_ty thm ctxt =
   in
     filter (fn p => p aconv (Thm.concl_of thm)) (map Thm.concl_of there) <> []
   end
-*}
+\<close>
 (* Derive all 'is' and 'not is' types of 'tm' by matching with conclusion of theorem ith *)
-ML {*
+ML \<open>
 fun mty_tm_thm tm ith ctxt =
   let
     val itm =
@@ -83,12 +83,12 @@ fun mty_tm_thm tm ith ctxt =
      end)
      handle Pattern.MATCH => []
    end
-*}
+\<close>
 
 (* When adding a theorem th1 to "ty" we use theorems from "ty_fwd".
    Last premise is instantiated with th1.
  *)
-ML {*
+ML \<open>
 fun ty_compute_fwd ctxt thm =
   let
     fun tryt th =
@@ -104,9 +104,9 @@ fun ty_compute_fwd ctxt thm =
   in
     flat (map tryt ty_fwd)
   end
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun fold_sets f (t as Const (_, @{typ Set})) = f t
   | fold_sets f (t as Free (_, @{typ Set})) = f t
   | fold_sets f (tm as t $ u) =
@@ -119,10 +119,10 @@ fun fold_sets f (t as Const (_, @{typ Set})) = f t
 and fold_sel f ((Const ("mizar_struct.sel_t", _) $ _ $ t)) = fold_sets f t
   | fold_sel f (t $ u) = fold_sel f t #> fold_sel f u
   | fold_sel _ _ = I
-*}
+\<close>
 
 
-ML {*
+ML \<open>
 fun conj_elims th =
   (case dest_Trueprop (Thm.concl_of th) of
     (Const (@{const_name conj}, _) $ _ $ _) =>
@@ -130,9 +130,9 @@ fun conj_elims th =
       conj_elims (th RS @{thm conjunct2})
   | _ => [th])
   handle TERM _ => [th]
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun mty_tms ty_add_thm tms ctxt =
   let
 (*    val _ = tracing ("mty:" ^ space_implode " " (map (Pretty.string_of o Syntax.pretty_term ctxt) tms))*)
@@ -157,8 +157,8 @@ fun mty_tms ty_add_thm tms ctxt =
   in
     fst (fold do_subtms tms (ctxt, Termtab.empty))
   end
-*}
-ML {*
+\<close>
+ML \<open>
 fun simp_thm thm ctxt =
   let
     val pctxt = Context.proof_of ctxt
@@ -166,8 +166,8 @@ fun simp_thm thm ctxt =
   in
     filter (fn th => not (Term.is_Const (dest_Trueprop (Thm.concl_of th)))) ths
   end
-*}
-ML {*
+\<close>
+ML \<open>
 fun ty_func_add_thm thm ctxt =
   fold (fn th => Miz_Ty_Func_Data.map (Item_Net.update th)) (simp_thm thm ctxt) ctxt
 fun ty_clus_add_thm thm ctxt =
@@ -230,10 +230,10 @@ fun ty_add_thm thm ctxt =
 fun ty_del_thm thm ctxt = Miz_Ty_Data.map (Item_Net.remove thm) ctxt;
 fun add_or_del aod_fn = Thm.declaration_attribute (fn thm => fn ctxt => aod_fn thm ctxt);
 val ty_attrib = Attrib.add_del (add_or_del ty_add_thm) (add_or_del ty_del_thm)
-*}
-setup {* Attrib.setup @{binding "ty"} ty_attrib "Declare as Mizar type local type" *}
-setup {* Global_Theory.add_thms_dynamic (@{binding "ty"}, (Item_Net.content o Miz_Ty_Data.get)) *}
-ML {*
+\<close>
+setup \<open> Attrib.setup @{binding "ty"} ty_attrib "Declare as Mizar type local type" \<close>
+setup \<open> Global_Theory.add_thms_dynamic (@{binding "ty"}, (Item_Net.content o Miz_Ty_Data.get)) \<close>
+ML \<open>
 fun ty_func_del_thm thm ctxt = Miz_Ty_Func_Data.map (Item_Net.remove thm) ctxt;
 fun ty_clus_del_thm thm ctxt = Miz_Ty_Clus_Data.map (Item_Net.remove thm) ctxt;
 fun ty_fwd_del_thm thm ctxt = Miz_Ty_Clus_Data.map (Item_Net.remove thm) ctxt;
@@ -241,15 +241,15 @@ fun add_or_del aod_fn = Thm.declaration_attribute (fn thm => fn ctxt => aod_fn t
 val ty_func_attrib = Attrib.add_del (add_or_del ty_func_add_thm) (add_or_del ty_func_del_thm);
 val ty_clus_attrib = Attrib.add_del (add_or_del ty_clus_add_thm) (add_or_del ty_clus_del_thm)
 val ty_fwd_attrib = Attrib.add_del (add_or_del ty_fwd_add_thm) (add_or_del ty_fwd_del_thm)
-*}
-setup {* Attrib.setup @{binding "ty_func"} ty_func_attrib "Declare as Mizar functor rule" *}
-setup {* Global_Theory.add_thms_dynamic (@{binding "ty_func"}, (Item_Net.content o Miz_Ty_Func_Data.get)) *}
-setup {* Attrib.setup @{binding "ty_func_cluster"} ty_clus_attrib "Declare as Mizar cluster rule" *}
-setup {* Attrib.setup @{binding "ty_parent"} ty_fwd_attrib "Declare as Mizar cluster rule" *}
-setup {* Global_Theory.add_thms_dynamic (@{binding "ty_func_cluster"}, (Item_Net.content o Miz_Ty_Clus_Data.get)) *}
-setup {* Global_Theory.add_thms_dynamic (@{binding "ty_parent"}, (Item_Net.content o Miz_Ty_Fwd_Data.get)) *}
-setup {* Attrib.setup @{binding "ty_cond_cluster"} ty_fwd_attrib "Declare as Mizar fwd rule" *}
-setup {* Global_Theory.add_thms_dynamic (@{binding "ty_cond_cluster"}, (Item_Net.content o Miz_Ty_Fwd_Data.get)) *}
+\<close>
+setup \<open> Attrib.setup @{binding "ty_func"} ty_func_attrib "Declare as Mizar functor rule" \<close>
+setup \<open> Global_Theory.add_thms_dynamic (@{binding "ty_func"}, (Item_Net.content o Miz_Ty_Func_Data.get)) \<close>
+setup \<open> Attrib.setup @{binding "ty_func_cluster"} ty_clus_attrib "Declare as Mizar cluster rule" \<close>
+setup \<open> Attrib.setup @{binding "ty_parent"} ty_fwd_attrib "Declare as Mizar cluster rule" \<close>
+setup \<open> Global_Theory.add_thms_dynamic (@{binding "ty_func_cluster"}, (Item_Net.content o Miz_Ty_Clus_Data.get)) \<close>
+setup \<open> Global_Theory.add_thms_dynamic (@{binding "ty_parent"}, (Item_Net.content o Miz_Ty_Fwd_Data.get)) \<close>
+setup \<open> Attrib.setup @{binding "ty_cond_cluster"} ty_fwd_attrib "Declare as Mizar fwd rule" \<close>
+setup \<open> Global_Theory.add_thms_dynamic (@{binding "ty_cond_cluster"}, (Item_Net.content o Miz_Ty_Fwd_Data.get)) \<close>
 
 (*
 consts empty :: Ty
@@ -263,7 +263,7 @@ lemma
   shows "x"
 *)
 
-ML {*
+ML \<open>
 fun get_ty_prems ctxt =
   let fun ffun th =
     (case dest_Trueprop (Thm.prop_of th) of
@@ -273,9 +273,9 @@ fun get_ty_prems ctxt =
   handle TERM _ => false
 (*  val _ = tracing (string_of_int (length (Simplifier.prems_of ctxt)))*)
   in filter ffun (Simplifier.prems_of ctxt) end
-*}
+\<close>
 
-simproc_setup ex_simp ("inhabited(x)") = {*
+simproc_setup ex_simp ("inhabited(x)") = \<open>
   fn _ => fn ctxt => fn ct =>
     let
 (*      val _ = tracing "in_simproc"*)
@@ -290,9 +290,9 @@ simproc_setup ex_simp ("inhabited(x)") = {*
     in
       if r = @{term True} orelse r = @{term False} then SOME th else NONE
     end
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun mby_tac ths ctxt facts i th =
   let
     val ty = Proof_Context.get_thms ctxt "ty";
@@ -316,9 +316,9 @@ fun mby_tac ths ctxt facts i th =
    in
      Method.insert_tac ctxt ((*ths @ facts @ *) ths2) i th
   end
-*}
+\<close>
 
-ML {*
+ML \<open>
 fun mty ths facts ctxt th =
   mty_tms fast_ty_add (map Thm.prop_of (th :: facts @ ths)) ctxt;
 fun mty_tac ths ctxt facts = Method.insert_tac ctxt (ths @ facts);
@@ -329,16 +329,16 @@ fun mty_method ths _ facts (ctxt, th) =
   in
     (METHOD oo (ALLGOALS ooo mty_tac)) ths ctxt facts (ctxt, th)
   end
-*}
+\<close>
 
-ML {*
+ML \<open>
 val _ =
   Theory.setup
     (Method.setup @{binding mty}
       (Attrib.thms >> (mty_method))
       "Mty")
-*}
-ML {*
+\<close>
+ML \<open>
 fun mby_method ths _ facts (ctxt, th) =
   let val ctxt = mty ths facts ctxt th
   in (METHOD oo (ALLGOALS ooo mby_tac)) ths ctxt facts (ctxt, th)
@@ -367,7 +367,7 @@ val _ =
     (Method.setup @{binding mauto}
       (Attrib.thms >> mauto_method)
       "Mauto")*)
-*}
+\<close>
 
 method ty = (simp only: ty ty_func)
 

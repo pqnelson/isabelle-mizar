@@ -1,13 +1,15 @@
-theory mizar_HOL imports Sledgehammer Nitpick "~~/src/HOL/Eisbach/Eisbach" begin
+theory mizar_HOL 
+  imports "~~/src/HOL/Sledgehammer" "~~/src/HOL/Nitpick" "~~/src/HOL/Eisbach/Eisbach" 
+begin
 
 sledgehammer_params[prover=e vampire cvc4 z3]
 
 setup Pure_Thy.old_appl_syntax_setup
 
-text_raw {*\DefineSnippet{mizar-typedecl}{*}
+text_raw \<open>\DefineSnippet{mizar-typedecl}{\<close>
 typedecl Set
 typedecl Ty
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 no_notation
   HOL.eq (infixl "=" 50) and
@@ -67,12 +69,12 @@ notation (ASCII)
 
 syntax (output) "HOL.eq" :: "o \<Rightarrow> o \<Rightarrow> o" (infixl "\<longleftrightarrow>" 25)
 
-ML {*
+ML \<open>
 val basic_ss = HOL_basic_ss;
 val main_ss = HOL_ss;
 val mk_Trueprop = HOLogic.mk_Trueprop;
 val dest_Trueprop = HOLogic.dest_Trueprop;
 val eq_const = @{const_name HOL.eq}
-*}
+\<close>
 
 end

@@ -4,62 +4,62 @@ begin
 
 section "TARSKI_0"
 reserve x for object
-text_raw {*\DefineSnippet{tarski-axiom1}{*}
+text_raw \<open>\DefineSnippet{tarski-axiom1}{\<close>
 --"Set axiom"
 theorem tarski_0_1:
   "\<forall>x. x be set" using SET_def by simp
 (*axiomatization where tarski_0_1:
   "\<forall>x. x be set"*)
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{tarski-set-exists}{*}
+text_raw \<open>\DefineSnippet{tarski-set-exists}{\<close>
 theorem set_exists[ex]: "inhabited(set)"
   using tarski_0_1 inhabited_def by auto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{tarski-reserve}{*}
+text_raw \<open>\DefineSnippet{tarski-reserve}{\<close>
 reserve x,y,z,u,a for object
 reserve M,N,X,Y,Z for set
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{tarski-axiom2}{*}
+text_raw \<open>\DefineSnippet{tarski-axiom2}{\<close>
 --"Extensionality axiom"
 axiomatization where tarski_0_2:
   "\<forall>X. \<forall>Y. (\<forall>x. x in X \<longleftrightarrow> x in Y)
     \<longrightarrow> X = Y"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   lemmas tarski_0_2a = tarski_0_2[THEN bspec,THEN bspec,rule_format,OF _ _ _ _ ballI,simplified]
 
-text_raw {*\DefineSnippet{tarski-axiom3}{*}
+text_raw \<open>\DefineSnippet{tarski-axiom3}{\<close>
 --"Axiom of pair"
 axiomatization where tarski_0_3:
   "\<forall>x. \<forall>y. \<exists>Z. \<forall>a.
       a in Z \<longleftrightarrow> a = x \<or> a = y"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 thm tarski_0_3
-text_raw {*\DefineSnippet{tarski-axiom4}{*}
+text_raw \<open>\DefineSnippet{tarski-axiom4}{\<close>
 --"Axiom of union"
 axiomatization where tarski_0_4:
   "\<forall>X. \<exists>Z. \<forall>x.
      x in Z \<longleftrightarrow> (\<exists>Y. x in Y \<and> Y in X)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{tarski-axiom5}{*}
+text_raw \<open>\DefineSnippet{tarski-axiom5}{\<close>
 --"Axiom of regularity"
 axiomatization where tarski_0_5:
   "\<forall>x. \<forall>X. x in X \<longrightarrow> (\<exists>Y. Y in X \<and>
      \<not>(\<exists>z. z in X \<and> z in Y))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{tarski-axiom6}{*}
+text_raw \<open>\DefineSnippet{tarski-axiom6}{\<close>
 --"Fraenkel's scheme"
 axiomatization where tarski_0_sch_1:
   "A be set \<Longrightarrow>
      \<forall>x,y,z. P(x,y) \<and> P(x,z) \<longrightarrow> y = z \<Longrightarrow>
        \<exists>X. \<forall>x.
    x in X \<longleftrightarrow> (\<exists>y. y in A \<and> P(y,x))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 section "TARSKI"
 
@@ -71,12 +71,12 @@ lemmas tarski_th_2 = tarski_0_2a[intro?]
 
 (*lemmas tarski_th_2 = tarski_0_2[rule_format,OF _ _ ballI,simplified,intro?]*)
 
-text_raw {*\DefineSnippet{tarski-def1}{*}
+text_raw \<open>\DefineSnippet{tarski-def1}{\<close>
 func tarski_def_1    ("{_}") where
   mlet "y be object"
   "func {y} \<rightarrow> set means \<lambda>it.
      \<forall>x. x in it \<longleftrightarrow> x = y"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
   fix X1 X2
   assume [ty]: "X1 be set" "X2 be set" and
@@ -100,12 +100,12 @@ proof -
         qed simp_all
 qed simp
 
-text_raw {*\DefineSnippet{tarski-def2}{*}
+text_raw \<open>\DefineSnippet{tarski-def2}{\<close>
 func tarski_def_2    ("{_ , _}") where
   mlet "y be object", "z be object"
   "func {y, z} \<rightarrow> set means \<lambda>it.
      \<forall>x. x in it \<longleftrightarrow> (x = y \<or> x = z)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   obtain X where
       "X be set" and A1: "(\<forall>x:object. (x in X \<longleftrightarrow> (x = y \<or> x = z)))"
@@ -147,10 +147,10 @@ definition tarski_def_3_pre:: "Set \<Rightarrow> Set \<Rightarrow> o" (infixl "c
 
 lemmas tarski_def_3a = tarski_def_3[THEN iffD1,THEN bspec,simplified,rule_format]
 lemmas tarski_def_3b[intro?] = tarski_def_3[THEN iffD2, rule_format,OF _ _ ballI, simplified,rule_format]
-text_raw {*\DefineSnippet{tarski_def_3_reflexivity}{*}
+text_raw \<open>\DefineSnippet{tarski_def_3_reflexivity}{\<close>
 theorem tarski_def_3_reflexive:
   "reflexive set tarski_def_3_pre" using tarski_def_3 by simp
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 
@@ -160,12 +160,12 @@ abbreviation tarski_def_3_notation (infixl "\<subseteq>" 50) where
 
 lemmas tarski_def_3c = tarski_def_3_reflexive[THEN bspec,simplified]
 
-text_raw {*\DefineSnippet{tarski-def4}{*}
+text_raw \<open>\DefineSnippet{tarski-def4}{\<close>
 func tarski_def_4    ("union _" [90] 90) where
    mlet "X be set"
    "func union X \<rightarrow> set means \<lambda>it.
       \<forall>x. x in it \<longleftrightarrow> (\<exists>Y. x in Y \<and> Y in X)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   show "\<exists>IT:set. \<forall>x:object. x in IT \<longleftrightarrow> (\<exists>Y:set. x in Y \<and> Y in X)" using tarski_0_4 by auto
 next
@@ -214,12 +214,12 @@ proof (intro ballI notI impI)
   then show False using A1 A4 tarski_def_1 by auto
 qed simp_all
 
-text_raw {*\DefineSnippet{tarski-def5}{*}
+text_raw \<open>\DefineSnippet{tarski-def5}{\<close>
 func tarski_def_5    ("[_ , _]") where
   mlet "x be object", "y be object"
   "func [x,y] \<rightarrow> object equals
      {{x, y} , {x}}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   show "{{x, y}, {x}} be object" by auto
 qed
@@ -248,14 +248,14 @@ tarski_a_th_1:
      (\<forall>X.  X c= M \<longrightarrow> X,M areequipotent \<or> X in M)"
 
 
- text_raw {*\DefineSnippet{redefine_func_mode_property}{*}
+ text_raw \<open>\DefineSnippet{redefine_func_mode_property}{\<close>
 lemma redefine_func_mode_property:
 assumes lt: "lt" and
   coherence: "\<forall>x : M.  x be M1" and
   mode_ex: "inhabited(M)" and
   compatibility: "\<And> it. it be set \<Longrightarrow> ((it be M) \<longleftrightarrow> newCondition(it))"
 shows "x be M \<Longrightarrow> (x be M1 \<and> newCondition (x))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof
   assume T0[ty]: "x be M"
   thus "x be M1" using coherence mode_ex by simp
@@ -264,14 +264,14 @@ qed
 
 (* :: "Ty \<Rightarrow> o" *)
   
-text_raw {*\DefineSnippet{sethood_def}{*}  
+text_raw \<open>\DefineSnippet{sethood_def}{\<close>
 definition "sethood(M) \<equiv> \<exists>X:set. \<forall>x:object. x be M \<longrightarrow> x in X"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   
-text_raw {*\DefineSnippet{sethood}{*}  
+text_raw \<open>\DefineSnippet{sethood}{\<close>
 theorem sethood:
   "sethood(M) \<longleftrightarrow> (\<exists>X:set. \<forall>x:object. x be M \<longleftrightarrow> x in X)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(rule iffI3)
   show "sethood(M) \<longrightarrow> (\<exists>X:set. \<forall>x:object. x be M \<longleftrightarrow> x in X)"
   proof

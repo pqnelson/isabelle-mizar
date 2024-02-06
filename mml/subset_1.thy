@@ -23,12 +23,12 @@ theorem empty2:
   "x is non empty \<Longrightarrow> x\<noteq>{} " using empty1 by mauto
 
 (*  :: "Set \<Rightarrow> Ty" *)
-text_raw {*\DefineSnippet{subset_1_def_1}{*}
+text_raw \<open>\DefineSnippet{subset_1_def_1}{\<close>
 mdefinition subset_1_def_1      ("Element-of _" [105] 105) where
   mlet "X be set"
   "mode Element-of X \<rightarrow> set means
    (\<lambda>it. (it in X if X be non empty otherwise it be empty))" : mode_property
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(simp,cases "X={}")
   assume A1: "X={}"
   hence A2: "X is empty" by mty auto
@@ -48,10 +48,10 @@ lemmas subset_1_def_1a[ty_parent] = subset_1_def_1(1)[THEN iffD1,THEN conjunct1]
 lemmas subset_1_def_1b = subset_1_def_1(1)
 lemmas subset_1_def_1c[ex] = subset_1_def_1(2)
 
-text_raw {*\DefineSnippet{ElementofP}{*}
+text_raw \<open>\DefineSnippet{ElementofP}{\<close>
 abbreviation (input) ElementofS :: "(Set \<Rightarrow> Set) \<Rightarrow> (Set \<Rightarrow> Ty)" ("Element-of'' _") where
   "Element-of' F \<equiv> \<lambda>it. Element-of F(it)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 
@@ -144,12 +144,12 @@ lemma Subset_in_rule:
   "X be Subset-of A \<Longrightarrow> X \<subseteq> A"
   using zfmisc_1_def_1 all_set subset_1_cl_1[of A] Element_of[of "bool A" X] by auto
 
-text_raw{*\DefineSnippet{subset_0_def_4}{*}
+text_raw \<open>\DefineSnippet{subset_0_def_4}{\<close>
 func subset_0_def_4("'(_,_')`") where
     mlet "E be set","A be Subset-of E"
   "func (E,A)` \<rightarrow> Subset-of E equals
      E \\ A"
-  text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
    have "E\\A c= E" using xboole_0_def_5 tarski_def_3 by auto
     hence "E\\A in bool E" using zfmisc_1_def_1 by auto
