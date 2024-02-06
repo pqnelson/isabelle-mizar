@@ -1,3 +1,7 @@
+# Change log
+
+Bugs encountered due to upgrading Isabelle.
+
 - [ML antiquotations for object-logic](https://isabelle.systems/zulip-archive/stream/247542-Mirror:-Isabelle-Development-Mailing-List/topic/.5Bisabelle-dev.5D.20NEWS.3A.20ML.20antiquotations.20for.20object-logic.20j.2E.2E.2E.html)
   since 2021, `\<^make_judgment>` replaced `mk_Trueprop`,
   and `\<^dest_judgment>` replaced `dest_Trueprop`
@@ -14,3 +18,16 @@
 - `Thm.instantiate` changed (in commit
   `5df2c0c275bfdd2a251822e4d20c55215253a5f2`)
   to use tables instead of lists
+- Apparently there was a time when you could use `--"this is a comment"`
+  for single-line comments. But those days are long gone now
+  (evidently).
+  You instead need to use `\<comment>\<open>this is a comment\<close>`,
+  which I've done in the formalization of Tarski, but I bet you need to
+  fix a lot more places.
+  
+# TODO List
+
+- Apparently, `Local_Theory.declaration` required a `pos` field, and I
+  have no clue what to give it in the local function `afterqed` (for
+  `mdecl` in [`mizar_reserve.thy`](./mizar/mizar_reserve.th)). I assume 
+  `\<^here>` is fine, but maybe it isn't?
