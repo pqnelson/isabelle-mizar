@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory funct_2
-imports partfun_1 funcop_1
+  imports partfun_1 funcop_1
 begin
 
 reserve x,y,z,x1,x2,y1,y2 for object

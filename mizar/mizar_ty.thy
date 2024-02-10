@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_ty
-imports mizar
+  imports mizar
 begin
 
 named_theorems ex

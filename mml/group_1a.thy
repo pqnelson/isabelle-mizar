@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory group_1a
-imports algstr_0 pre_topc
+  imports algstr_0 pre_topc
 begin
 
 

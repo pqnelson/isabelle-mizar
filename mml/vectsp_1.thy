@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory vectsp_1
 imports z2 rlvect_1 group_1
 begin

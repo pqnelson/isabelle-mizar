@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory binop_1
-imports funct_2
+  imports funct_2
 begin
 
 func binop_0_def_1 (" _ . \<lparr> _ , _ \<rparr>"[90,90,90]) where

@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory extpro_1
   imports compos_1 memstr_0 funcop_1
 begin

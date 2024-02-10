@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory polyalg1
-imports vectsp_2
+  imports vectsp_2
 begin
 
 abbreviation AlgebraStr_fields_prefix ("AlgebraStr'_fields _" [110] 110) where "AlgebraStr_fields F \<equiv> (#

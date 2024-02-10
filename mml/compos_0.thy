@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory compos_0
   imports finseq_1
 

@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory enumset_1
-imports xboole_0
+  imports xboole_0
 begin
 
 func enumset1_def_1("{_, _, _}") where

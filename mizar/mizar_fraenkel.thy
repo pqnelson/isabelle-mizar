@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_fraenkel
-imports "../mml/tarski"
+  imports "../mml/tarski"
 begin
 
 text_raw \<open>*\DefineSnippet{fraenkel_a1}{\<close>

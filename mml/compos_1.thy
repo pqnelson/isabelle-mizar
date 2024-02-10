@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory compos_1
   imports compos_0 "../mizar/mizar_struct" "../mizar/mizar_string"
    funct_2

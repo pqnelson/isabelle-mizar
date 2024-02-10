@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory group_1
-imports algstr_0
+  imports algstr_0
 begin
 
 text_raw {*\DefineSnippet{group1def1}{*}

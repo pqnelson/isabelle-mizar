@@ -1,4 +1,8 @@
-theory mizar imports mizar_FOL begin
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
+theory mizar
+  imports mizar_FOL
+begin
 
 declare [[eta_contract = false]]
 

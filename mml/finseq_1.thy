@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory finseq_1
   imports ordinal1 funct_1
 

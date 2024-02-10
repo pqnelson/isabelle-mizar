@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_defs
-imports mizar_ty
+  imports mizar_ty
 begin
 
 text_raw \<open>\DefineSnippet{means_prefix}{\<close>

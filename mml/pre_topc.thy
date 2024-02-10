@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory pre_topc
-imports struct_0
+  imports struct_0
 begin
 
 abbreviation "TopStruct_fields \<equiv> (#carrier \<rightarrow> set';topology \<rightarrow> Subset-Family-of' the' carrier #)"

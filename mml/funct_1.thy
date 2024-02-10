@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory funct_1
-imports relset_1 "../mizar/mizar_fraenkel"
+  imports relset_1 "../mizar/mizar_fraenkel"
 begin
 
 reserve x,y,z,x1,x2,y1,y2 for object

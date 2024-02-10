@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory algstr_0
-imports struct_0
+  imports struct_0
 begin
 
 abbreviation "addMagma_fields \<equiv> (#carrier \<rightarrow> set';addF\<rightarrow> BinOp-of' the' carrier #)"

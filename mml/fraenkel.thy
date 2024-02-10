@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory fraenkel
-imports funct_2 "../mizar/mizar_fraenkel_2"
+  imports funct_2 "../mizar/mizar_fraenkel_2"
 begin
 
 theorem Fraenkel_sch_1:

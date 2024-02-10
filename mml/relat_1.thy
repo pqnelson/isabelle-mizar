@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory relat_1
-imports zfmisc_1 subset_1
+  imports zfmisc_1 subset_1
 begin
 
 reserve x for object

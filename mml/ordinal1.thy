@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory ordinal1
-imports zfmisc_1 subset_1
+  imports zfmisc_1 subset_1
 begin
 
 reserve u,v,x,x1,x2,y,y1,y2,z,p,a for object

@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory funcop_1
-imports funct_1
+  imports funct_1
 begin
 
 func funcop_1_def_2 (infix "\<comment>>" 90) where

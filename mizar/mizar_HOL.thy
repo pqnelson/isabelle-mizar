@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_HOL 
   imports "~~/src/HOL/Sledgehammer" "~~/src/HOL/Nitpick" "~~/src/HOL/Eisbach/Eisbach" 
 begin

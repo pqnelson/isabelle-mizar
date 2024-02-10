@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_string
-imports "../mml/xboole_0"
+  imports "../mml/xboole_0"
 begin
 
 definition Succ ::"Set \<Rightarrow> Set" ("Succ _" [90] 90) where

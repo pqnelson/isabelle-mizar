@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory rlvect_1
-imports algstr_0
+  imports algstr_0
 begin
 
 attr rlvect_1_def_2 ("Abelian")

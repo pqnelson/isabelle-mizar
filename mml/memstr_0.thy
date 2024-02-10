@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory memstr_0
-imports struct_0 ordinal1
+  imports struct_0 ordinal1
 begin
 
 

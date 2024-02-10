@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_FOL 
   imports FOL "~~/src/HOL/Eisbach/Eisbach_Old_Appl_Syntax"
 begin

@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory cat_1
-imports graph_1
+  imports graph_1
 begin
 
 theorem [ex]:

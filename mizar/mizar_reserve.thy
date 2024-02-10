@@ -1,3 +1,5 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_reserve
 imports mizar_ty mizar_defs
 keywords "reserve" :: thy_decl

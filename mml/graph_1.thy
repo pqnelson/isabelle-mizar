@@ -1,5 +1,7 @@
+\<^marker>\<open>creator "Cezary Kaliszyk"\<close>
+\<^marker>\<open>creator "Karol Pąk"\<close>
 theory graph_1
-imports struct_0
+  imports struct_0
 begin
   mdefinition MultiGraphStruct :: "Ty" ("MultiGraphStruct") where
   "struct MultiGraphStruct
