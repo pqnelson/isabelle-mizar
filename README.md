@@ -1,6 +1,6 @@
 This is the formalization accompanying the paper:
 
-  Cezary Kaliszyk and Karol Pąk
+- Cezary Kaliszyk and Karol Pąk
   "Semantics of Mizar as an Isabelle Object Logic"
   [doi:10.1007/s10817-018-9479-z](https://dx.doi.org/10.1007/s10817-018-9479-z)
 
@@ -10,6 +10,16 @@ work with Isabelle-2017).
 
 A list of encountered problems may be found in the
 [changes](./changes.md) file.
+
+The more complicated semantics as discussed in:
+
+- Cezary Kaliszyk and Karol Pąk
+  "Presentation and Manipulation of Mizar Properties in an Isabelle Object Logic"
+  https://alioth.uwb.edu.pl/~pakkarol/articles/CKKP-CICMMKM17.pdf
+
+is in the `mizar-cicm2017` subdirectory. It has more realistic attribute
+semantics. 
+
 
 # Annotated Table of Contents
 
