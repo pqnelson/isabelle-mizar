@@ -12,6 +12,10 @@ Bugs encountered due to upgrading Isabelle.
   This was removed by Isabelle2023, specifically in commit
   `cd4cdfa81fe1860bfd62a5374e5b3fc50ca13f37` (apparently replaced by
   `Thm.item_net`)
+  - **BUT** I have seen `Thm.full_rules` appear in 
+    `Generic_Data(...; val empty = Thm.full_rules; ...)`
+    I have also seen `Symtab.empty` used, and `Thm.item_net`, and I am
+    uncertain which to use.
 - `Parse.text` was removed by Isabelle2021, specifically in commit
   `b92cb7ae8c71385b1c7bb9524533e1f3c3846e2b` (apparently replaced by
   `Parse.embedded`)
@@ -24,7 +28,9 @@ Bugs encountered due to upgrading Isabelle.
   You instead need to use `\<comment>\<open>this is a comment\<close>`,
   which I've done in the formalization of Tarski, but I bet you need to
   fix a lot more places.
-  
+- Isabelle 2016 allowed `(* ... *)` comments in the inner syntax, but
+  that changed since then: they are no longer allowed and must be removed.
+
 # TODO List
 
 - Apparently, `Local_Theory.declaration` required a `pos` field, and I

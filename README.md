@@ -11,6 +11,8 @@ work with Isabelle-2017).
 A list of encountered problems may be found in the
 [changes](./changes.md) file.
 
+## Attribute semantics
+
 The more complicated semantics as discussed in:
 
 - Cezary Kaliszyk and Karol Pąk
@@ -18,8 +20,20 @@ The more complicated semantics as discussed in:
   https://alioth.uwb.edu.pl/~pakkarol/articles/CKKP-CICMMKM17.pdf
 
 is in the `mizar-cicm2017` subdirectory. It has more realistic attribute
-semantics. 
+semantics. This was last modified 30-Mar-2017 07:00 and was compatible with
+Isabelle 2016-1.
 
+## Structure semantics
+
+There is also the [code](./macis2017/) accompanying the paper:
+
+- Cezary Kaliszyk and Karol Pąk
+  "Isabelle Formalization of Set Theoretic Structures and Set Comprehensions"
+  http://cl-informatik.uibk.ac.at/cek/docs/17/ckkp-macis17.pdf
+
+was last modified 25-Aug-2017 03:20, works for Isabelle 2016-1.
+
+I have managed to patch it for Isabelle-2023.
 
 # Annotated Table of Contents
 
