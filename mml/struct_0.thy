@@ -620,5 +620,4 @@ proof(rule iffI3)
   qed mauto
 qed
 
-
 end

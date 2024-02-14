@@ -216,15 +216,19 @@ proof (intro ballI notI impI)
   then show False using A1 A4 tarski_def_1 by auto
 qed simp_all
 
-(* BUG: fails to prove "{{x,y},{x}} be object" *)
 text_raw \<open>\DefineSnippet{tarski-def5}{\<close>
 func tarski_def_5    ("[_ , _]") where
   mlet "x be object", "y be object"
   "func [x,y] \<rightarrow> object equals
      {{x, y} , {x}}"
 text_raw \<open>}%EndSnippet\<close>
-proof-
+proof
   show "{{x, y}, {x}} be object" by auto
+  show "\<exists>xa : object. xa = {{x , y} , {x}}" by simp
+  show "\<And>xa ya.
+       xa be object \<Longrightarrow>
+       ya be object \<Longrightarrow> xa = {{x , y} , {x}} \<Longrightarrow> ya = {{x , y} , {x}} \<Longrightarrow> xa = ya"
+    by auto
 qed
 
 theorem [ty_func]:

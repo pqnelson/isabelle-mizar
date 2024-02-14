@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory xboole_0
-imports tarski
+  imports tarski
 begin
 
 section "XBOOLE_0"
@@ -22,18 +22,16 @@ proof-
   then show "ex X be set st
     (for x being object holds x in X \<longleftrightarrow> x in A \<and> P(x))"
     using T ex by blast
-  qed
-
-
+qed
 
 (*mdefinition xboole_0_def_1   ("empty") where
   "attr empty for set means (\<lambda>it. \<not> (\<exists>x : object. x in it))":attr_property
 *)
 
-text_raw {*\DefineSnippet{xboole_0_def_1}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_1}{\<close>
 attr xboole_0_def_1    ("empty")
   "attr empty for set means (\<lambda>it. \<not> (\<exists>x : object. x in it))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 mtheorem xboole_0_cl_1[ex]:
    "cluster empty for set"
@@ -46,24 +44,28 @@ proof-
    thus "inhabited(empty \<bar> set)" using inhabited_def by auto
 qed
 
-text_raw {*\DefineSnippet{xboole_0_def_2}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_2}{\<close>
 func xboole_0_def_2    ("{}") where
   "func {} \<rightarrow> set equals
      the empty\<bar>set"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
-  show "(the empty \<bar>set) be set" using choice_ax[of "empty\<bar>set"] by auto
+  show "inhabited(set)" by auto
+  show "\<And>x y. x be set \<Longrightarrow>
+           y be set \<Longrightarrow> x = the empty \<bar> set \<Longrightarrow> y = the empty \<bar> set \<Longrightarrow> x = y"
+    by simp
+  show "\<exists>x : set. x = the empty \<bar> set" using choice_ax[of "empty\<bar>set"] by simp  
 qed
 
 lemma xboole_0_def_2d : "{} is empty"
   using choice_ax[of "empty\<bar>set"] xboole_0_def_2 by auto
 
-text_raw {*\DefineSnippet{xboole_0_def_3}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_3}{\<close>
 func xboole_0_def_3     (infixl "\<union>" 65) where
   mlet "X be set", "Y be set"
   "func X \<union> Y \<rightarrow> set means \<lambda>it.
      \<forall>x. x in it \<longleftrightarrow> x in X \<or> x in Y"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
       have "(union {X,Y}) be set \<and> (for x being object holds (x in union {X,Y} \<longleftrightarrow> x in X \<or> x in Y))"
         proof (intro conjI)
@@ -101,7 +103,7 @@ qed simp
 
 
 
-text_raw {*\DefineSnippet{xboole_0_def_3_commutativity}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_3_commutativity}{\<close>
 mtheorem xboole_0_def_3_commutativity:
   "commutativity set xboole_0_def_3"
 proof (intro ballI tarski_0_2a)
@@ -112,16 +114,16 @@ proof (intro ballI tarski_0_2a)
   fix x
   show "(x in x1 \<union> x2) \<longleftrightarrow> (x in x2 \<union> x1)" using xboole_0_def_3 by mauto
 qed mauto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{xboole_0_def_3_idempotence}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_3_idempotence}{\<close>
 theorem xboole_0_def_3_idempotence[rule_format,THEN bspec,simplified]:
   "idempotence set xboole_0_def_3"
 proof
   fix x assume [ty]: "x is set"
   show "x\<union>x=x" using xboole_0_def_3 by (intro tarski_th_2) mauto
 qed simp_all
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 mtheorem xboole_0_def_3_assoc: "X \<union> (Y \<union> Z) = (X \<union> Y) \<union> Z"
   using xboole_0_def_3 by (intro ballI tarski_0_2a) mauto
@@ -134,12 +136,12 @@ mlemma mlet "W be set", "V be set", "M be set"
   "X \<union> Y \<union> V \<union> Z \<union> W \<union> V \<union> M = M \<union> X \<union> Z \<union> Y \<union> W \<union> V"
   using xboole_0_def_3_ac by simp
 
-text_raw {*\DefineSnippet{xboole_0_def_4}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_4}{\<close>
 func xboole_0_def_4(infixl "\<inter>" 70) where
   mlet "X be set", "Y be set"
   "func X \<inter> Y \<rightarrow> set means \<lambda>it.
     \<forall>x. x in it \<longleftrightarrow> (x in X \<and> x in Y)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
   show "ex Z being set st for x being object holds (x in Z \<longleftrightarrow> (x in X \<and> x in Y))"
     using xboole_0_sch_1 by simp
@@ -185,12 +187,12 @@ proof(intro ballI)
    thus "X \<inter> X = X" using tarski_th_2[of "X \<inter> X" "X"] all_set by auto
 qed simp_all
 
-text_raw {*\DefineSnippet{xboole_0_def_5}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_5}{\<close>
 func xboole_0_def_5 (infixl "\\" 70) where
   mlet "X be set", "Y be set"
   "func X \\ Y \<rightarrow> set means \<lambda>it.
      \<forall>x. x in it \<longleftrightarrow> x in X \<and> \<not> x in Y"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
   show "ex Z being set st for x being object holds (x in Z \<longleftrightarrow> (x in X \<and> \<not> x in Y))"
     using xboole_0_sch_1 by auto
@@ -206,16 +208,18 @@ proof -
   }
   thus "A1 = A2" by (intro tarski_th_2) auto
 qed simp
-text_raw {*\DefineSnippet{xboole_0_def_6}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_6}{\<close>
 func xboole_0_def_6 (infixl "\\+\\" 65) where
   mlet "X be set", "Y be set"
   "func X \\+\\ Y \<rightarrow> set
      equals (X \\ Y) \<union> (Y \\ X)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
-  show "((X \\ Y) \<union> (Y \\ X)) be set" by simp
+  show "inhabited(set)" by auto
+  show "\<exists>x : set. x = X \\ Y \<union> Y \\ X" by auto
+  show "\<And>x y. x be set \<Longrightarrow> y be set \<Longrightarrow> x = X \\ Y \<union> Y \\ X \<Longrightarrow> y = X \\ Y \<union> Y \\ X \<Longrightarrow> x = y"
+    by simp
 qed
-
 
 mtheorem xboole_0_def_6_commutativity:
 "commutativity set xboole_0_def_6"
@@ -231,8 +235,7 @@ definition xboole_0_def_7 (infixl "misses" 60) where
   "X be set \<and> Y be set \<Longrightarrow> (X misses Y) \<longleftrightarrow> X \<inter> Y = {}"
 lemmas xboole_0_def_7a=xboole_0_def_7 [rule_format]
 
-
-text_raw {*\DefineSnippet{xboole_0_def_7_symmetry}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_7_symmetry}{\<close>
 mtheorem xboole_0_def_7_symmetry:
   "symmetry set xboole_0_def_7"
 proof(intro ballI)
@@ -240,7 +243,7 @@ proof(intro ballI)
   assume [ty]: "X be set" "Y be set"
   thus "X misses Y \<longrightarrow> Y misses X" using xboole_0_def_7a xboole_0_def_4_commutativity by auto
 qed simp_all
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 definition xboole_0_def_8 (infixl "c<" 50)
 where xboole_0_def_8: "X be set \<Longrightarrow> Y be set \<Longrightarrow> (X c< Y) \<longleftrightarrow> X c= Y \<and> X\<noteq>Y"
@@ -251,15 +254,15 @@ lemmas xboole_0_def_8a = xboole_0_def_8[THEN iffD1]
 lemmas xboole_0_def_8b = xboole_0_def_8[THEN iffD2]
 
 
-text_raw {*\DefineSnippet{xboole_0_def_8_irreflexivity}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_8_irreflexivity}{\<close>
 mtheorem xboole_0_def_8_irreflexivity:
   "irreflexive set xboole_0_def_8" using xboole_0_def_8a by auto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{xboole_0_def_8_asymmetry}{*}
+text_raw \<open>\DefineSnippet{xboole_0_def_8_asymmetry}{\<close>
 theorem xboole_0_def_8_asymmetry:
   "asymmetry set xboole_0_def_8"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro ballI)
   fix X Y
   assume [ty]: "X be set" "Y be set"
@@ -504,6 +507,5 @@ proof
   hence "x in Y" using A1 tarski_def_3 by auto
   thus "Y\<noteq>{}" using xb by auto    
 qed  
-
   
 end

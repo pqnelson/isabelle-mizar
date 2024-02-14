@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory binop_1
-  imports funct_2
+  imports tarski funct_2
 begin
 
 func binop_0_def_1 (" _ . \<lparr> _ , _ \<rparr>"[90,90,90]) where
@@ -9,7 +9,7 @@ func binop_0_def_1 (" _ . \<lparr> _ , _ \<rparr>"[90,90,90]) where
   "func f . \<lparr> a , b \<rparr> \<rightarrow> set equals f.[a,b]"
 proof -
   show "(f.[a,b]) be set" using all_set by simp
-qed
+qed mauto
 
 theorem binop_0_def_2:
  "let A be non empty \<bar> set \<and> B be non empty \<bar> set \<and> C be set \<and>
@@ -103,9 +103,9 @@ qed
 
 
 theorem funcop_1_1[ty_func]:
-  "a .\<comment>> c be Function-of {a} , {c}"
+  "a .--> c be Function-of {a} , {c}"
 proof-
-  let ?ac="a .\<comment>> c"
+  let ?ac="a .--> c"
   have A1: "[:{a},{c}:] = {[a,c]}" using zfmisc_1_th_28 by auto
   have A2: "?ac = [:{a},{c}:]" using funcop_1_def_9 funcop_1_def_2 by mauto
 
@@ -118,9 +118,9 @@ qed
 
 
 theorem funcop_1_2[ty_func]:
-  "[a,b] .\<comment>> c be Function-of [:{a},{b}:] , {c}"
+  "[a,b] .--> c be Function-of [:{a},{b}:] , {c}"
 proof-
-  let ?abc="[a,b] .\<comment>> c"
+  let ?abc="[a,b] .--> c"
   have A1: "[:{[a,b]},{c}:] = {[a,b,c]}" using zfmisc_1_th_28 by auto
   have A2: "?abc = [:{[a,b]},{c}:]" using funcop_1_def_9 funcop_1_def_2 by mauto
 

@@ -1,12 +1,11 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory xtuple_0
-imports xboole_0 enumset_1
+  imports xboole_0 enumset_1
 begin
 
 reserve x,y,z,y1,y2 for object
 reserve X,Y for set
-
 
 attr xtuple_0_def_1 ("pair")
   "attr pair for object means (\<lambda>X. ex x1,x2 be object st X=[x1,x2])"
@@ -72,12 +71,12 @@ qed
 lemma xtuple_0_th_1a: "[x1,x2] = [y1,y2] \<longleftrightarrow> x1 = y1 \<and> x2 = y2"
   using xtuple_0_th_1 by blast
 
-text_raw {*\DefineSnippet{permissive_def}{*}
+text_raw \<open>\DefineSnippet{permissive_def}{\<close>
 func xtuple_0_def_2("_ `1" [90] 95) where
   mlet "x be object"
   "assume x is pair func x `1 \<rightarrow> object means
      (\<lambda>it. for y1,y2 be object st x=[y1,y2] holds it = y1)"
-  text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
     assume [ty]: "x is pair"
     obtain x1 x2 where

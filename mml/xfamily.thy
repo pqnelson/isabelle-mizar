@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory xfamily
-imports xboole_0
+  imports xboole_0
 begin
 
 theorem xfamily_sch_3:
@@ -10,6 +10,7 @@ theorem xfamily_sch_3:
     "for x being set holds x in X2 \<longleftrightarrow> P(x)"
   shows "X1 = X2" using xboole_0_sch_3[OF assms(1) assms(2)] assms (3-4) tarski_0_1 by auto
 
+(* KP: If I did mtheorem, is the second one weaker? *)
 (* KP: Jak bym zrobił mtheorem, to to drugie jest słabsze? *)
 thm xboole_0_sch_3 xfamily_sch_3
 

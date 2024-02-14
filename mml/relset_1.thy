@@ -9,10 +9,10 @@ reserve X,Y for set
 
 section "relset_1"
 
-text_raw {*\DefineSnippet{relset1def1prefix}{*}
+text_raw \<open>\DefineSnippet{relset1def1prefix}{\<close>
 abbreviation relset_1_def_1 ("(Relation-of _,_)" 105)
 where "Relation-of X,Y \<equiv> Subset-of [:X,Y:]"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 mtheorem relset_1_lm_1:
   "for R being Relation-of X,Y holds R \<subseteq> [:X,Y:]"
@@ -24,11 +24,11 @@ proof (rule ballI)
   thus B1: "R \<subseteq> [:X,Y:]" using zfmisc_1_def_1[of "[:X,Y:]" R] by auto
 qed mauto
 
-text_raw {*\DefineSnippet{relset_1_cl_1}{*}
+text_raw \<open>\DefineSnippet{relset_1_cl_1}{\<close>
 theorem relset_1_cl_1[ty_cond_cluster]:
   "let X be set \<and> Y be set
    cluster \<rightarrow> Relation_like for Subset-of [:X,Y:]"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   assume [ty]:"X be set \<and> Y be set"
   fix IT

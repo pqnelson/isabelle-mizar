@@ -47,7 +47,6 @@ next
   thus "IT1 = IT2" using A1 A2 by (intro tarski_th_2) auto
 qed mauto
 
-
 reserve x1 for object
 
 mtheorem enumset1_th_29:

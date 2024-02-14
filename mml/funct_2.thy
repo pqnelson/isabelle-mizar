@@ -16,10 +16,10 @@ attr funct_2_def_1 ("_ , _ : quasi-total" [110,110] 110)
      (\<lambda> IT.(X = dom IT) if (Y \<noteq> {}) otherwise (IT = {}))"
 
 
-text_raw {*\DefineSnippet{expandable_modes}{*}
+text_raw \<open>\DefineSnippet{expandable_modes}{\<close>
 abbreviation funct_2_mode_1   ("Function-of _, _" [90,90] 190)
 where "Function-of X,Y \<equiv> (X,Y: quasi-total) \<bar> (PartFunc-of X,Y)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 mtheorem funct_2_th_2:
   "f be Function-of dom f, rng f"
@@ -28,13 +28,13 @@ proof-
   hence A1[ty]: "f be Relation-of dom f,rng f" using relset_1_th_4 by simp
   show "f be Function-of dom f, rng f"
   proof (cases "rng f={}")
-     assume "rng f \<noteq>{}"
-     thus "f be Function-of dom f, rng f" using A1 funct_2_def_1I by simp
-   next
-     assume A2: "rng f = {}"
-      hence "f={}" using relat_1_th_41[of f] by simp
-     hence "f be (dom f), (rng f):quasi-total" using A1 A2 funct_2_def_1I by mauto
-     thus "f be Function-of dom f, rng f" by auto
+    assume "rng f \<noteq>{}"
+    thus "f be Function-of dom f, rng f" using A1 funct_2_def_1I by simp
+  next
+    assume A2: "rng f = {}"
+    hence "f={}" using relat_1_th_41[of f] by simp
+    hence "f be (dom f), (rng f):quasi-total" using A1 A2 funct_2_def_1I by mauto
+    thus "f be Function-of dom f, rng f" by auto
   qed
 qed
 
@@ -47,27 +47,26 @@ proof
   show "f be Function-of dom f, Y"
   proof (cases "rng f={}")
     assume "rng f \<noteq>{}"
-     hence "Y \<noteq> {}" using xboole_1_empty[OF _ _ A0] by auto 
-     thus "f be Function-of dom f, Y" using A1 funct_2_def_1I[of "dom f" Y f] by simp
-   next
-     assume A2: "rng f = {}"
-      hence "f={}" using relat_1_th_41[of f] by simp
-     hence "f be (dom f), Y:quasi-total" using A1 A2 funct_2_def_1I by mauto
-     thus "f be Function-of dom f, Y" by auto
+    hence "Y \<noteq> {}" using xboole_1_empty[OF _ _ A0] by auto 
+    thus "f be Function-of dom f, Y" using A1 funct_2_def_1I[of "dom f" Y f] by simp
+  next
+    assume A2: "rng f = {}"
+    hence "f={}" using relat_1_th_41[of f] by simp
+    hence "f be (dom f), Y:quasi-total" using A1 A2 funct_2_def_1I by mauto
+    thus "f be Function-of dom f, Y" by auto
   qed
 qed  
 
-text_raw {*\DefineSnippet{funct_2_th_2}{*}
+text_raw \<open>\DefineSnippet{funct_2_th_2}{\<close>
 theorem "\<forall>x : object. \<not> x be Function-of dom x, rng x \<longrightarrow> \<not> x be Function"
   using funct_2_th_2 by mauto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-
-text_raw {*\DefineSnippet{funct_2_cl_ex}{*}
+text_raw \<open>\DefineSnippet{funct_2_cl_ex}{\<close>
 theorem [ex]:
   "X be set \<and> Y be set \<Longrightarrow>
      inhabited(X,Y: quasi-total \<bar> PartFunc-of X,Y)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   fix X Y
   assume[ty]: "X be set \<and> Y be set"
@@ -79,7 +78,7 @@ proof-
       have "dom {}={}" by (intro empty1) mauto
       then have "{} be Function-of X,Y" using A funct_2_def_1I T by mauto
       thus ?thesis using bexI inhabited_def by auto
-   next
+  next
     case K: False
       then obtain y where
          "y be object" and A1: "y in Y" using xboole_0_def_1 empty1[of Y] by auto
@@ -91,7 +90,7 @@ proof-
       hence "f be PartFunc-of X,Y" using relset_1_th_4 xboole_0_def_10 A3 by mty auto
       hence "f be Function-of X,Y" using funct_2_def_1I A3 K by auto
       thus ?thesis using bexI inhabited_def by auto
-    qed
+  qed
 qed
 
 mtheorem funct_2_th_4:
@@ -123,26 +122,26 @@ attr funct_2_def_3 ("_ -onto" [90]100)
 attr funct_2_def_4 ("_ -bijective" [90]100)
   "Y be set \<Longrightarrow> attr Y -bijective for Y-valued\<bar>Function means (\<lambda>IT. IT is Y-onto \<bar> one-to-one)"
 
-text_raw {*\DefineSnippet{funct_2_cl_11}{*}
+text_raw \<open>\DefineSnippet{funct_2_cl_11}{\<close>
 theorem [ty_cond_cluster]: 
   "Y be set \<Longrightarrow> F be Y-valued \<bar> Function \<Longrightarrow> 
        F be Y -bijective \<Longrightarrow> F be Y -onto \<bar> one-to-one"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
      using funct_2_def_4E by auto
 
-text_raw {*\DefineSnippet{funct_2_cl_12}{*}
+text_raw \<open>\DefineSnippet{funct_2_cl_12}{\<close>
 theorem [ty_cond_cluster]: 
   "Y be set \<Longrightarrow> F be Y-valued \<bar> Function \<Longrightarrow> 
        F be Y -onto \<bar> one-to-one \<Longrightarrow> F be Y -bijective"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   using funct_2_def_4I by auto
 
-text_raw {*\DefineSnippet{funct_2_def_5}{*}
+text_raw \<open>\DefineSnippet{funct_2_def_5}{\<close>
 theorem funct_2_def_5A[rule_format,ty_func]:
   "let C be non empty\<bar>set \<and> D be set \<and>
        f be (Function-of C,D) \<and> c be Element-of C
    redefine func f . c \<rightarrow> (Element-of D)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro impI)
   assume A0[ty]: "C be non empty\<bar>set \<and> (D be set) \<and> f be (Function-of C,D) \<and> c be Element-of C"
   show "(f . c)  be (Element-of D)"
@@ -162,14 +161,13 @@ proof(intro impI)
   qed
 qed
 
-
-text_raw {*\DefineSnippet{funct_2_def_7}{*}
+text_raw \<open>\DefineSnippet{funct_2_def_7}{\<close>
 theorem funct_2_def_7:
   "let A be set \<and> B be set \<and>
       f1 be Function-of A,B \<and> f2 be Function-of A,B
    redefine pred f1 = f2 means
       for a be Element-of A holds f1 . a = f2 . a"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   assume A0[ty]: "A be set \<and> B be set \<and> f1 be (Function-of A,B) \<and> f2 be (Function-of A,B)"
   show " f1 = f2 \<longleftrightarrow> (for a be Element-of A holds f1 . a = f2 . a)"
@@ -206,9 +204,7 @@ proof-
   qed
 qed
 
-
-
-text_raw {*\DefineSnippet{funct_2_th_50}{*}
+text_raw \<open>\DefineSnippet{funct_2_th_50}{\<close>
 mtheorem funct_2_th_50:
   "for y be object, X be non empty\<bar>set holds
      for f1,f2 be Function-of X,{y} holds f1=f2"
@@ -221,17 +217,17 @@ proof(intro ballI)
   fix f2 assume[ty]: "f2 be Function-of X,{y}"
   show "f1 = f2"
   proof (rule iffD2[OF funct_2_def_7[of X "{y}" f1 f2]],simp)
-text_raw {*}%EndSnippet*}
-   show "for a be Element-of X holds f1 . a = f2 . a"
-       proof
-         fix a assume A1[ty]: "a be Element-of X"
-         have A2: "a in X" using Element(1)[of X a]  ty by auto
-         have "{y}\<noteq>{}" using xb tarski_def_1[of y y] by auto
-         hence "f1 .a in {y}" "f2 .a in {y}"
-           using funct_2_th_5[of a "{y}" X] A2 by auto
-           thus "f1 .a = f2 .a" using tarski_def_1 by auto
-        qed simp
-      qed
+text_raw \<open>}%EndSnippet\<close>
+    show "for a be Element-of X holds f1 . a = f2 . a"
+    proof
+      fix a assume A1[ty]: "a be Element-of X"
+      have A2: "a in X" using Element(1)[of X a]  ty by auto
+      have "{y}\<noteq>{}" using xb tarski_def_1[of y y] by auto
+      hence "f1 .a in {y}" "f2 .a in {y}"
+        using funct_2_th_5[of a "{y}" X] A2 by auto
+      thus "f1 .a = f2 .a" using tarski_def_1 by auto
+    qed simp
+  qed
 qed simp_all
 
 theorem funct_2_lm_1:
@@ -239,78 +235,80 @@ theorem funct_2_lm_1:
           and "rng f c= dom g"
   shows "dom f = dom (g*`f)"
 proof (intro xboole_0_def_10a conjI)
-       show "dom f \<subseteq> dom (g*`f)"
-          proof (intro tarski_def_3b)
-            fix x
-            assume K: "x in dom f"
-            hence "f. x in dom g" using funct_1_def_3b[of f] tarski_def_3a[OF _ _ assms(2)] by mauto
-            thus "x in dom (g*`f)" using funct_1_th_11[of g f x] K by auto
-          qed mauto
-          show "dom (g*`f) \<subseteq> dom f"
-           proof (intro tarski_def_3b)
-            fix x
-            assume "x in dom (g*`f)"
-            thus "x in dom f" using funct_1_th_11[of g f x] by auto
-          qed mauto
-        qed mauto
+  show "dom f \<subseteq> dom (g*`f)"
+  proof (intro tarski_def_3b)
+    fix x
+    assume K: "x in dom f"
+    hence "f. x in dom g" using funct_1_def_3b[of f] tarski_def_3a[OF _ _ assms(2)] by mauto
+    thus "x in dom (g*`f)" using funct_1_th_11[of g f x] K by auto
+  qed mauto
+  show "dom (g*`f) \<subseteq> dom f"
+  proof (intro tarski_def_3b)
+    fix x
+    assume "x in dom (g*`f)"
+    thus "x in dom f" using funct_1_th_11[of g f x] by auto
+  qed mauto
+qed mauto
 
- theorem funct_2_lm_2:
+theorem funct_2_lm_2:
   assumes[ty]: "f be Function \<and> g be Function" and
           A1: "rng f c= dom g"
   shows "rng (g*`f) c= rng g"
- proof(intro tarski_def_3b)
-   fix y
-    assume "y in rng (g*`f)"
-    then obtain x where
-      C1: "x be object" "x in dom (g*`f)" "(g*`f). x = y" using funct_1_def_3 by mauto
-    have "x in dom f \<and> f. x in dom g" using funct_1_th_11[of g f x] C1 by auto
-    hence "g.(f. x) = (g*`f). x" "g.(f. x) in rng g" using funct_1_th_12[of g f x]
-      funct_1_def_3[of g] C1 by auto
-    thus "y in rng g" using C1 by simp
+proof(intro tarski_def_3b)
+  fix y
+  assume "y in rng (g*`f)"
+  then obtain x where
+  C1: "x be object" "x in dom (g*`f)" "(g*`f). x = y" using funct_1_def_3 by mauto
+  have "x in dom f \<and> f. x in dom g" using funct_1_th_11[of g f x] C1 by auto
+  hence "g.(f. x) = (g*`f). x" "g.(f. x) in rng g" using funct_1_th_12[of g f x]
+    funct_1_def_3[of g] C1 by auto
+  thus "y in rng g" using C1 by simp
 qed mauto
 
-text_raw {*\DefineSnippet{funct_2_def_11}{*}
+text_raw \<open>\DefineSnippet{funct_2_def_11}{\<close>
 func funct_2_def_11 ("_ '/*`[_, _] _" [10,0,0,10] 90) where
-   mlet "X be set", "Z be set", "Y be (non empty)\<bar>set",
-      "f be Function-of X,Y","p be (Z-valued) \<bar>Function"
-   "assume rng f c= dom p func p /*`[X, Z] f \<rightarrow>
+  mlet "X be set", "Z be set", "Y be (non empty)\<bar>set",
+    "f be Function-of X,Y","p be (Z-valued) \<bar>Function"
+  "assume rng f c= dom p func p /*`[X, Z] f \<rightarrow>
              Function-of X,Z equals p*`f"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
-   assume A1: "rng f c= dom p"
-    have A22: "rng p c= Z" using relat_1_def_19[THEN iffD1] by mauto
-    let ?y = "the (Element-of Y)"
-    have "Y \<noteq> {}" using xb1 ty xboole_0_def_1 empty2 by auto
-    hence B3: "dom f = X" using funct_2_def_1E by mauto
-    have A2: "dom f = dom (p*`f)" using funct_2_lm_1[of f p] A1 by auto
-        have A3: "rng (p*`f) c= Z"
-        proof(intro tarski_def_3b)
-             fix y
-             assume "y in rng (p*`f)"
-             then obtain x where
-               C1: "x be object" "x in dom (p*`f)" "(p*`f). x = y" using funct_1_def_3 by mty auto
-             have "x in dom f \<and> f. x in dom p" using funct_1_th_11[of p f x] C1 B3 by auto
-             hence "p.(f. x) = (p*`f). x" "p.(f. x) in rng p" using funct_1_th_12[of p f x] C1
-               funct_1_def_3 by auto
-             thus "y in Z" using tarski_def_3a[OF _ _ A22] C1 by mauto
-          qed mauto
-       hence T3: "p*`f be Relation-of X,Z" using A2 B3 relset_1_th_4[of Z X] xboole_0_def_10 by mty auto
-  show "p*`f be (Function-of X,Z)"
+  assume A1: "rng f c= dom p"
+  have A22: "rng p c= Z" using relat_1_def_19[THEN iffD1] by mauto
+  let ?y = "the (Element-of Y)"
+  have "Y \<noteq> {}" using xb1 ty xboole_0_def_1 empty2 by auto
+  hence B3: "dom f = X" using funct_2_def_1E by mauto
+  have A2: "dom f = dom (p*`f)" using funct_2_lm_1[of f p] A1 by auto
+  have A3: "rng (p*`f) c= Z"
+  proof(intro tarski_def_3b)
+    fix y
+    assume "y in rng (p*`f)"
+    then obtain x where
+    C1: "x be object" "x in dom (p*`f)" "(p*`f). x = y" using funct_1_def_3 by mty auto
+    have "x in dom f \<and> f. x in dom p" using funct_1_th_11[of p f x] C1 B3 by auto
+    hence "p.(f. x) = (p*`f). x" "p.(f. x) in rng p" using funct_1_th_12[of p f x] C1
+    funct_1_def_3 by auto
+    thus "y in Z" using tarski_def_3a[OF _ _ A22] C1 by mauto
+  qed mauto
+  hence T3: "p*`f be Relation-of X,Z" using A2 B3 relset_1_th_4[of Z X] xboole_0_def_10 by mty auto
+
+  have C1: "p*`f be (Function-of X,Z)"
   proof(cases "Z={}")
     case T: True
-      have "{} c= [:X,Z:]" using xb1 by (intro tarski_def_3b) mauto
-      hence A: "{} be PartFunc-of X,Z" using Subset_of_rule[of "{}" "[:X,Z:]"] T by mauto
-      have "dom {}={}" using empty1[of "dom {}"] by mty auto
-      hence A: "{} be Function-of X,Z" using A funct_2_def_1I[of X "{}" "{}"] T by mauto
-      have "rng (p*`f) ={}" using A3 T xboole_0_def_10[of "rng (p*`f)" "{}"] xb[simplified] tarski_def_3b[of "{}"] by mauto
-      hence "(p*`f) ={}" using relat_1_th_41[of "p*`f"]  by auto
-      thus "p*`f be (X,Z: quasi-total)\<bar> (PartFunc-of X,Z)" using A funct_2_def_1E[of "p*`f" X Z] T3 T by auto
+    have "{} c= [:X,Z:]" using xb1 by (intro tarski_def_3b) mauto
+    hence A: "{} be PartFunc-of X,Z" using Subset_of_rule[of "{}" "[:X,Z:]"] T by mauto
+    have "dom {}={}" using empty1[of "dom {}"] by mty auto
+    hence A: "{} be Function-of X,Z" using A funct_2_def_1I[of X "{}" "{}"] T by mauto
+    have "rng (p*`f) ={}" using A3 T xboole_0_def_10[of "rng (p*`f)" "{}"] xb[simplified] tarski_def_3b[of "{}"] by mauto
+    hence "(p*`f) ={}" using relat_1_th_41[of "p*`f"]  by auto
+    thus "p*`f be (X,Z: quasi-total)\<bar> (PartFunc-of X,Z)" using A funct_2_def_1E[of "p*`f" X Z] T3 T by auto
   next
-     case K: False
+    case K: False
     hence A4: "p*`f be Function_like \<bar> (Relation-of X,Z)" using T3 by mty auto
     hence "p*`f is (X,Z: quasi-total) \<or> (p*`f = {} \<and> Z={})" using funct_2_def_1[of X Z "p*`f"] A2 A3 K B3 by simp
     thus "p*`f be (X,Z: quasi-total) \<bar> (PartFunc-of X,Z)" using A4 K by auto
-   qed
+  qed
+  thus "proj2 f \<subseteq> proj1 p \<Longrightarrow> f * p be X , Z : quasi-total" by auto
 qed mauto
 
 theorem funct_2_def_10[rule_format,ty_func]:
@@ -372,12 +370,12 @@ next
   thus "A1 = A2" by (intro tarski_th_2) auto
 qed simp_all
   
-text_raw {*\DefineSnippet{funct_2_sch_4}{*}  
+text_raw \<open>\DefineSnippet{funct_2_sch_4}{\<close>  
 theorem funct_2_sch_4:
   assumes [ty]: "C be non empty\<bar>set"   "D be non empty\<bar>set"
     and T0: "\<forall>x:Element-of C. F(x) be Element-of D"
   shows "\<exists>f:Function-of C,D. \<forall>x:Element-of C. (f . x) = F(x)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   obtain f where
     [ty]:"f be  Function" and A1:"dom f = C \<and> (for x st x in C holds f .x = F(x))" 
@@ -411,10 +409,10 @@ proof-
   thus "Funcs(X,X) is non empty" using xboole_0_def_1 bexI by mty auto
 qed
 
-text_raw {*\DefineSnippet{Action}{*}
+text_raw \<open>\DefineSnippet{Action}{\<close>
 abbreviation funct_2_action ("Action-of _ , _") where
   "Action-of O, E \<equiv> Function-of O,Funcs(E,E)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem funct_2_cl_action[ex]:
   assumes [ty]: "O be set" "E be set"
@@ -482,20 +480,19 @@ qed
 reserve A,B for set
 
 mtheorem funcop_cl[ty_func]:
-  " y in B \<Longrightarrow> (A \<comment>> y) be (Function-of A,B)"
+  "y in B \<Longrightarrow> (A --> y) be (Function-of A,B)"
 proof-
   assume A0: "y in B"
   hence "{y} c= B" using tarski_def_1 tarski_def_3 by mauto
   hence "[:A, {y}:] c= [:A,B:]" using zfmisc_1_th_96 xboole_0_def_10[of A A] by mty auto
   hence W0:"[:A,{y}:] be Subset-of [:A,B:]" using Subset_of_rule by auto
   hence W1: "[:A,{y}:] be Relation-of A,B" by mauto
-  hence "(A \<comment>> y) be Relation-of A,B" using funcop_1_def_2 by auto
-  hence W2: "(A \<comment>> y) be PartFunc-of A,B" by auto
-  have "dom (A\<comment>> y) = A" using funcop_1_th_13 by auto
-  hence "(A\<comment>> y) is (A,B: quasi-total)" using funct_2_def_1 W2 A0 xb by auto
-  thus "(A \<comment>> y) be (Function-of A,B)" using W2 by mauto
+  hence "(A --> y) be Relation-of A,B" using funcop_1_def_2 by auto
+  hence W2: "(A --> y) be PartFunc-of A,B" by auto
+  have "dom (A --> y) = A" using funcop_1_th_13 by auto
+  hence "(A --> y) is (A,B: quasi-total)" using funct_2_def_1 W2 A0 xb by auto
+  thus "(A --> y) be (Function-of A,B)" using W2 by mauto
 qed
-
 
 func card_3_def_5 ("product _" [105] 105) where
   mlet "f be Function"
@@ -561,4 +558,5 @@ proof-
   hence "g in product f" using partfun_1_def_2E[of "proj1 f" g] card_3_def_5 by auto
   thus "product f is non empty" using xboole_0_def_1 by mauto
 qed
+
 end

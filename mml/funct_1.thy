@@ -7,12 +7,12 @@ begin
 reserve x,y,z,x1,x2,y1,y2 for object
 reserve X,Y,Z for set
 
-text_raw {*\DefineSnippet{funct_1def1}{*}
+text_raw \<open>\DefineSnippet{funct_1def1}{\<close>
 attr funct_1_def_1 ("Function'_like")
   "attr Function_like for set means
      (\<lambda>IT. for x,y1,y2 being object st
           [x,y1] in IT \<and> [x,y2] in IT holds y1 = y2)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem funct_1_cl_1[ty_cond_cluster]:
   "cluster empty \<rightarrow> Function_like for set" using xboole_0_def_1 funct_1_def_1 by auto
@@ -64,10 +64,10 @@ proof-
     qed mauto
 qed
 
-text_raw {*\DefineSnippet{Function}{*}
+text_raw \<open>\DefineSnippet{Function}{\<close>
 abbreviation
   "Function \<equiv> Function_like \<bar>Relation"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem funct_1_cl[ty_func_cluster]:
   "let X be set \<and> F be Function
@@ -87,12 +87,12 @@ proof-
 qed
 
 reserve f for Function
-text_raw {*\DefineSnippet{funct1def2}{*}
+text_raw \<open>\DefineSnippet{funct1def2}{\<close>
 func funct_1_def_2 (infix "." 110) where
   mlet "f be Function", "x be object"
   "func f . x \<rightarrow> object means
      \<lambda>it. ([x,it] in f if x in dom f otherwise it = {})"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
      {assume "x in dom(f)"
       then obtain y where
@@ -136,13 +136,13 @@ proof
   thus "(id X).x = x" using funct_1_th_1 by auto
 qed
 
-text_raw {*\DefineSnippet{redefine_func_rng}{*}
+text_raw \<open>\DefineSnippet{redefine_func_rng}{\<close>
 theorem funct_1_def_3:
   "let f be Function
    redefine func rng f \<rightarrow> set means
      (\<lambda> it. for y being object holds y in it iff
         (ex x being object st x in dom f \<and> y = f . x))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(rule redefine_func_means_property,simp)
   assume [ty]: "f be Function"
   show "(rng f) be set" by mauto
@@ -314,19 +314,19 @@ proof-
        qed simp
     qed
 
-text_raw {*\DefineSnippet{product}{*}
+text_raw \<open>\DefineSnippet{product}{\<close>
 abbreviation(input) funct_1_notation_1 ("_ *` _" [110,110] 110) where
   "f *` g \<equiv> g * f"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 abbreviation(input) funct_1_prod (infixl "\<circ>" 20) where
   "f \<circ> g \<equiv> f *` g"
 
 
-text_raw {*\DefineSnippet{product_is_func}{*}
+text_raw \<open>\DefineSnippet{product_is_func}{\<close>
 theorem [ty_func_cluster]:
   "f be Function \<and> g be Function \<Longrightarrow> (g \<circ> f) be Function_like"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   proof-
     assume T0[ty]: "f be Function \<and> g be Function"
     hence T1: "f be Relation \<and> g be Relation" by auto
@@ -409,9 +409,9 @@ proof
   thus "(f|X). x = f. x" using funct_1_th_47 by simp
 qed
 
-text_raw {*\DefineSnippet{fraenkel_test}{*}
+text_raw \<open>\DefineSnippet{fraenkel_test}{\<close>
 term "{f. x where x be Element-of dom f: x in X}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem [ex]:
   "cluster non empty for Function"
@@ -471,16 +471,16 @@ A1: "x in X"
   qed
 qed
 
-text_raw {*\DefineSnippet{funct_1_def_4}{*}
+text_raw \<open>\DefineSnippet{funct_1_def_4}{\<close>
 attr funct_1_def_4 ("one-to-one")
   "attr one-to-one for Function means (\<lambda>IT. for x1,x2 being object st x1 in dom IT \<and> x2 in dom IT holds x1 = x2)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
-text_raw {*\DefineSnippet{funct_1_contr_ex1}{*}
+text_raw \<open>\DefineSnippet{funct_1_contr_ex1}{\<close>
 theorem [ex]:
   "cluster one-to-one for set"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   unfolding inhabited_def
 proof
   let ?L = "{[{},{}]}"
@@ -496,9 +496,9 @@ proof
 qed
 
 
-text_raw {*\DefineSnippet{funct_1_contr_ex2a}{*}
+text_raw \<open>\DefineSnippet{funct_1_contr_ex2a}{\<close>
 theorem [ex]: "inhabited(set\<bar>one-to-one)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   unfolding inhabited_def
 proof
   let ?L = "{[{},{}]}"
@@ -514,9 +514,9 @@ proof
 qed
 
 
-text_raw {*\DefineSnippet{funct_1_contr_ex2b}{*}
+text_raw \<open>\DefineSnippet{funct_1_contr_ex2b}{\<close>
 theorem "\<forall>X : set\<bar>one-to-one. X be one-to-one\<bar>set"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   by simp
 
 attr funct_1_def_13 ("functional")
@@ -529,14 +529,14 @@ attr funct_1_def_14 ("_-compatible" [110] 110)
 attr funct_1_def_9 ("non-empty")
   "attr non-empty for Function means (\<lambda>f.  \<not> {} in rng f )"
 
-text_raw {*\DefineSnippet{funct1th110}{*}
+text_raw \<open>\DefineSnippet{funct1th110}{\<close>
 theorem funct_1_th_110:
   assumes [ty]:"B be non empty\<bar>functional\<bar>set"    "f be Function"
      and "f = union B"
   shows
      "dom f = union the set-of-all dom g where g be Element-of B"
      "rng f = union the set-of-all rng g where g be Element-of B"
-  text_raw {*}%EndSnippet*}
+  text_raw \<open>}%EndSnippet\<close>
 proof -
   let ?D = "the set-of-all dom g where g be Element-of B"
   let ?R = "the set-of-all rng g where g be Element-of B"
@@ -608,17 +608,16 @@ proof -
      qed
    qed
 
-text_raw {*\DefineSnippet{relat_1_contr}{*}
+text_raw \<open>\DefineSnippet{relat_1_contr}{\<close>
 theorem
    "for X be set st X be non (rng X)-valued holds
       \<not> X be Function"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(standard,standard,standard)
   fix X assume [ty]:"X is set" and A1:"X is non (rng X)-valued" and [ty]:"X is Function"
   have "X is (rng X)-valued" using relat_1_def_19 xboole_0_def_10 by mauto
   thus "False" using A1 by simp
 qed mauto
-
 
 theorem [ex]:
   "let X be set
@@ -631,6 +630,4 @@ proof
   thus "{} is X-valued \<bar> Function" using relat_1_def_19I by mauto
 qed
 
-
 end
-

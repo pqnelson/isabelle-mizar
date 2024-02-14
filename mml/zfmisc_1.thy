@@ -10,12 +10,12 @@ reserve X,Y,Z for set
 section "ZFMISC1"
 reserve X,Y,N,M for set
 
-text_raw {*\DefineSnippet{zfmisc_1_def_1}{*}
+text_raw \<open>\DefineSnippet{zfmisc_1_def_1}{\<close>
 func zfmisc_1_def_1   ("bool _" [110] 110) where
    mlet "X be set"
    "func (bool X) \<rightarrow> set means
      \<lambda>it. (\<forall>Y. Y in it \<longleftrightarrow> Y \<subseteq> X)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
        let ?IT="\<lambda>x. x c= X"
        obtain M where
@@ -49,11 +49,11 @@ proof-
        thus "x = y" using xfamily_sch_3[OF _ _  A3 A4] by auto
 qed simp_all
 
-text_raw {*\DefineSnippet{zfmisc_1_def_2}{*}
+text_raw \<open>\DefineSnippet{zfmisc_1_def_2}{\<close>
 func zfmisc_1_def_2 ("[:_ ,_:]") where
   mlet "X1 be set", "X2 be set"
   "func [: X1, X2 :] \<rightarrow> set means \<lambda>it. (\<forall>z.  z in it \<longleftrightarrow> (ex x, y st x in X1 \<and> y in X2 \<and> z = [x, y]))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
       let ?X1="\<lambda>it1. ex x,y st x in X1 \<and> y in X2 \<and> it1 = [x,y]"
      have AA: "(bool(bool(X1 \<union> X2))) be set" using zfmisc_1_def_1 by mauto
@@ -104,9 +104,12 @@ func zfmisc_1_def_3 ("[:_, _, _:]") where
   mlet "X1 be set", "X2 be set", "X3 be set"
   "func [: X1,X2,X3 :] \<rightarrow> set equals [:[:X1,X2:],X3:]"
 proof-
-  show "[:[:X1,X2:],X3:] be set" by simp
+  show "inhabited(set)" by simp
+  show "\<exists>x : set. x = [:[:X1 ,X2:] ,X3:]" by auto
+  show " \<And>x y. x be set \<Longrightarrow>
+           y be set \<Longrightarrow> x = [:[:X1 ,X2:] ,X3:] \<Longrightarrow> y = [:[:X1 ,X2:] ,X3:] \<Longrightarrow> x = y"
+    by auto
 qed
-
 
 abbreviation triple ("[ _ , _ , _]") where
   "[x,y,z] \<equiv> [[x,y],z]"
@@ -195,13 +198,13 @@ proof
     qed auto
   qed
 
-text_raw {*\DefineSnippet{zfmisc_1_th_112}{*}
+text_raw \<open>\DefineSnippet{zfmisc_1_th_112}{\<close>
 reserve X,Y,N,M for set
 mtheorem zfmisc_1_th_112:
   "\<exists>M. N in M \<and> (\<forall>X,Y. X in M \<and> Y \<subseteq> X \<longrightarrow> Y in M) \<and>
     (\<forall>X. X in M \<longrightarrow> bool X in M) \<and>
     (\<forall>X. X \<subseteq> M \<longrightarrow> X,M areequipotent \<or> X in M)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   obtain M where
     [ty]: "M is set" and
@@ -240,6 +243,5 @@ proof-
   show "\<forall>X : set. X \<subseteq> M \<longrightarrow> X,M areequipotent \<or> X in M" using A4 .
   qed mauto
 qed
-
 
 end

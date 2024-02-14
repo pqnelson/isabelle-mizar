@@ -229,11 +229,10 @@ next
           qed simp_all
 qed simp_all
 
-
-text_raw {*\DefineSnippet{relat_1_def_7_involutiveness}{*}
+text_raw \<open>\DefineSnippet{relat_1_def_7_involutiveness}{\<close>
 theorem relat_1_def_7_involutiveness:
     "involutiveness Relation relat_1_def_7"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof
   fix R
   assume [ty]: "R be Relation"
@@ -328,10 +327,10 @@ next
           qed simp_all
 qed simp
 
-text_raw {*\DefineSnippet{reduce_id_dom}{*}
+text_raw \<open>\DefineSnippet{reduce_id_dom}{\<close>
 theorem relat_1_id_dom[rule_format]:
     "let X be set reduce dom (id X) to X"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
   assume [ty]: "X be set"
   show "dom (id X) = X"
@@ -357,11 +356,11 @@ proof -
      qed simp_all
 qed
 
-text_raw {*\DefineSnippet{reduce_id_rng}{*}
+text_raw \<open>\DefineSnippet{reduce_id_rng}{\<close>
 
 theorem relat_1_id_rng[rule_format]:
   "let X be set reduce rng (id X) to X"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   assume [ty]: "X be set"
  show "rng (id X) = X"

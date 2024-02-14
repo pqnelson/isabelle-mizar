@@ -14,14 +14,12 @@ mtheorem partfun_cl_1[ex]:
     have "{} c= [:X,Y:]" using tarski_def_3b[of "{}"] xb by mauto
     thus "{} be (empty \<bar> Function_like) \<bar> (Relation-of X,Y)"
          using tarski_def_3 A1 zfmisc_1_def_1 Subset_of_rule by auto
-  qed
+qed
 
-text_raw {*\DefineSnippet{PartFuncprefix}{*}
+text_raw \<open>\DefineSnippet{PartFuncprefix}{\<close>
 abbreviation PartFunc_prefix ("( PartFunc-of _,_ )" 105)
   where " PartFunc-of X,Y \<equiv> Function_like\<bar> (Relation-of X,Y)"
-text_raw {*}%EndSnippet*}
-
-
+text_raw \<open>}%EndSnippet\<close>
 
 mtheorem patfun1_th_4:
   "for f be Function st f is Y-valued \<and> x in dom f holds f. x in Y"
@@ -34,12 +32,10 @@ A1: "f. x in rng f" using funct_1_def_3 A0 by auto
   thus "f. x in Y" using A1 tarski_def_3 by mauto
 qed mauto
 
-
-text_raw {*\DefineSnippet{partfun1def2a}{*}
+text_raw \<open>\DefineSnippet{partfun1def2a}{\<close>
 attr partfun_1_def_2 ("_ : total" [110] 110)
   "X be set \<Longrightarrow> attr X :total for X-defined \<bar> Relation means
       (\<lambda> IT. dom IT = X)"
-text_raw {*}%EndSnippet*}
-
+text_raw \<open>}%EndSnippet\<close>
 
 end

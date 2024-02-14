@@ -35,6 +35,10 @@ was last modified 25-Aug-2017 03:20, works for Isabelle 2016-1.
 
 I have managed to patch it for Isabelle-2023.
 
+# Bugs
+
+- [ ] [`funct_2_def_11`](./mml/funct_2.thy) needs its proof fixed
+
 # Annotated Table of Contents
 
 Just some notes to myself where things are located, because sometimes
