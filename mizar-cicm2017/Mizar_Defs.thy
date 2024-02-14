@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Mizar_Defs
-imports Mizar_Reserve
+  imports Mizar_Reserve
 begin
 
 (* In this file we will enter: *)

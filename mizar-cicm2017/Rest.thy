@@ -1,9 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Rest
-
-imports Partfun_1
-
+  imports Partfun_1
 begin
 
 reserve x,y,z,x1,x2,y1,y2 for object
@@ -15,11 +13,10 @@ definition quasi_total :: "Set \<Rightarrow> Set \<Rightarrow> Attr" ("_ , _ : q
    "attr X , Y :quasi-total means (\<lambda> IT. IT be (Relation-of X,Y) & 
                                           ((X = dom IT) if (Y <> {}) otherwise (IT={})))"
 
-   
-text_raw {*\DefineSnippet{expandable_modes}{*}
+text_raw \<open>\DefineSnippet{expandable_modes}{\<close>
 abbreviation funct_2_def_1 ("Function-of _ , _" 190)
 where "Function-of X,Y \<equiv> (X,Y: quasi-total) \<parallel> (PartFunc-of X,Y)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem "Function-of X,Y \<equiv>  (X,Y: quasi-total) \<parallel> (PartFunc-of X,Y)" by simp
 theorem "Function-of X,Y \<equiv>  (X,Y: quasi-total) \<parallel> ( Function_like \<parallel> (Relation-of X,Y))" by simp
@@ -141,22 +138,22 @@ definition bijective :: "Set \<Rightarrow> Attr" ("_ -bijective" [90]100) where 
 
 
   
-text_raw {*\DefineSnippet{funct_2_def_5_2}{*} 
+text_raw \<open>\DefineSnippet{funct_2_def_5_2}{\<close> 
 definition funct_2_def_5_2 (" _ , _ : _ . _" 190) where
   "func C, D : f . c \<rightarrow> (Element-of D) equals f . c"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{funct_2_def_5_1}{*} 
+text_raw \<open>\DefineSnippet{funct_2_def_5_1}{\<close> 
 definition funct_2_def_5_1 (" _ : _ . _" 190) where
    "func D : f . c \<rightarrow> (Element-of D) equals f . c"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   
-text_raw {*\DefineSnippet{funct_2_def_5}{*} 
+text_raw \<open>\DefineSnippet{funct_2_def_5}{\<close> 
 theorem funct_2_def_5:
   "let C be non empty\<parallel>set & D be set &
        f be (Function-of C,D) & c be Element-of C
    redefine func f . c \<rightarrow> (Element-of D)" 
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   assume A0: "C be non empty\<parallel>set & (D be set) & f be (Function-of C,D) & c be Element-of C"
   show "(f . c)  be  (Element-of D)"
@@ -194,13 +191,13 @@ next
 qed
   
 
-text_raw {*\DefineSnippet{funct_2_def_7}{*} 
+text_raw \<open>\DefineSnippet{funct_2_def_7}{\<close> 
 theorem funct_2_def_7:
   "let A be set & B be set &
       f1 be Function-of A,B & f2 be Function-of A,B
    redefine pred f1 = f2 means
       for a be Element-of A holds f1 . a = f2 . a"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(rule redefine_pred_means_property[of "A be set & B be set & f1 be (Function-of A,B) & f2 be (Function-of A,B)"])
   assume A0: "A be set & B be set & f1 be (Function-of A,B) & f2 be (Function-of A,B)"
   show " f1 = f2 iff (for a be  Element-of A holds f1 . a = f2 . a)"
@@ -246,7 +243,7 @@ where "f =funct_2_def_7[! A,B !] g \<equiv> f = g"
 *)  
 
 
-text_raw {*\DefineSnippet{funct_2_th_50}{*} 
+text_raw \<open>\DefineSnippet{funct_2_th_50}{\<close> 
 theorem funct_2_th_50:
   "for y be object, X be non empty \<parallel>set holds
      for f1,f2 be Function-of X,{y} holds f1=f2"
@@ -256,7 +253,7 @@ proof(intro ballI)
              "f1 be  Function-of X,{y}" "f2 be  Function-of X,{y}"
   show "f1 = f2" 
   proof (rule  iffD2[OF funct_2_def_7[of X "{y}" f1 f2]])
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
     show "X be set & {y} be set & f1 be  Function-of X,{y} & f2 be  Function-of X,{y}" using T0 by auto
     show "for a be Element-of X holds f1 . a = f2 . a"
        proof     
@@ -272,7 +269,7 @@ qed
   
 
 
-text_raw {*\DefineSnippet{funct_2_def_11}{*}
+text_raw \<open>\DefineSnippet{funct_2_def_11}{\<close>
 definition funct_2_def_11
   (" _ '/*`[_, _] _" [10,0,0,10] 90)
 where
@@ -280,7 +277,7 @@ where
    func p /*`[X, Z] f \<rightarrow>
              Function-of X,Z equals
       p*`f"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 schematic_goal funct_2_def_11:
   assumes "X be set & Z be set & Y be (non empty)\<parallel>set & f be Function-of X,Y & p be (Z-valued) \<parallel>Function"
@@ -342,22 +339,18 @@ next
   case existence
   show "ex F be Function-of X,Z st True" using funct_2_cl_ex all_set by simp  
 qed
-  
+
 (*binop_1*)
 
-  
-  
-  
-  
-text_raw {*\DefineSnippet{binop_0_def_1_prefix}{*}
+text_raw \<open>\DefineSnippet{binop_0_def_1_prefix}{\<close>
 definition binop_0_def_1_prefix (" _ . \<lparr> _ , _ \<rparr>"[90,90,90]) where
-  "(*let f be Function & a be object & b be object*) 
-   func f . \<lparr> a , b \<rparr> \<rightarrow> set equals 
+  (*let f be Function & a be object & b be object*) 
+  "func f . \<lparr> a , b \<rparr> \<rightarrow> set equals 
         f.[a,b]"
   
 schematic_goal binop_0_def_1:
   assumes "f be Function & a be object & b be object" shows "?X"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 proof (rule equals_property[OF binop_0_def_1_prefix_def])    
   show "(f.[a,b]) be set" using assms funct_1_def_2 by simp
@@ -426,4 +419,5 @@ proof (rule equals_property[OF binop_0_def_2_prefix_def])
       thus  "f.\<lparr>a,b\<rparr> be (Element-of A)" using Z by auto
     qed 
 qed
+
 end

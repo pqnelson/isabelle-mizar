@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Subset_1
-imports Zfmisc_1
+  imports Zfmisc_1
 begin
 
 theorem subset_1_cl_1:
@@ -53,7 +53,5 @@ proof (induct rule: equals_property[OF subset_0_def_4_def,of E A,case_names cohe
   have  "E\\A in bool E" using zfmisc_1_def_1 assms by auto
   thus "(E\\A) be Subset-of E" using Element_of_rule subset_1_def_2 by auto
 qed
-  
-  
-  
+
 end

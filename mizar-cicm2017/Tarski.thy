@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Tarski
-imports Mizar Mizar_Defs
+  imports Mizar Mizar_Defs
 begin
 
 (* HIDDEN *)
@@ -106,7 +106,6 @@ qed
 lemmas tarski_def_1a[simp] = tarski_def_1[THEN conjunct1,THEN conjunct1,simplified]
 lemmas tarski_def_1b[simp] = tarski_def_1[THEN conjunct1,THEN conjunct2,simplified,rule_format]
 lemmas tarski_def_1c = tarski_def_1[THEN conjunct2,rule_format,unfolded atomize_conjL[symmetric],simplified, rule_format]
-
 
 definition tarski_def_2("{ _ , _ }") where
 " func {y, z} \<rightarrow> set means \<lambda>it. (for x being object holds x in it iff (x = y or x = z))"
@@ -265,10 +264,6 @@ proof
   assume A1: "x be M"
   thus "x be M1" using coherence by simp
   show "newCondition (x)" using compatibility[of x,OF all_set] A1 by simp
-qed  
-  
+qed
   
 end
-
-
-

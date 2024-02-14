@@ -1,20 +1,18 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Funct_1
-imports Relset_1
+  imports Relset_1
 begin
 
 reserve x,y,z,x1,x2,y1,y2 for object
 reserve X,Y,Z for set
 
-  definition Function_like :: Attr where funct_1_def_1_prefix[THEN defattr_property] :
-          "attr Function_like means (\<lambda>IT. IT be set & (for x,y1,y2 being object st [x,y1] in IT & [x,y2] in IT holds y1 = y2))"
-          
-          
+definition Function_like :: Attr where funct_1_def_1_prefix[THEN defattr_property] :
+  "attr Function_like means (\<lambda>IT. IT be set & (for x,y1,y2 being object st [x,y1] in IT & [x,y2] in IT holds y1 = y2))"
+
 mtheorem funct_1_def_1:
   "X is Function_like iff
               (for x,y1,y2 being object st [x,y1] in X & [x,y2] in X holds y1 = y2)" using funct_1_def_1_prefix assms by (simp add:defattr_property)
-
 
 theorem funct_1_cl_1:
   "cluster empty \<rightarrow> Function_like for set" by (simp add: funct_1_def_1) 
@@ -290,12 +288,8 @@ proof
                                   A1(2) funct_1_th_1[of ?h y x,OF T0] by auto+
     thus "(g*`f). x = g.(f. x)" by auto
 qed
-  
-  
-  
+
 definition OneToOne :: Attr ("one-to-one") where funct_1_def_4[THEN defattr_property] :
   "attr one-to-one means (\<lambda>IT. IT be Function & (for x1,x2 being object st x1 in dom IT & x2 in dom IT holds x1 = x2))"
 
-
 end
-

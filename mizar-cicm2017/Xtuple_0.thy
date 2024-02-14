@@ -1,12 +1,11 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Xtuple_0
-imports Xboole_0 Enumset_1
+  imports Xboole_0 Enumset_1
 begin
 
 reserve x,y,z,y1,y2 for object
 reserve X,Y for set
-
 
 definition pair_like :: Attr ("pair")
    where xtuple_0_def_1a[THEN defattr_property,simp]:
@@ -176,8 +175,8 @@ proof
   thus  "y in union union X" using tarski_def_4 by auto 
 qed
 
-definition xtuple_0_def_12 ("proj1 _") where "(*let X be set*)
-  func proj1 X \<rightarrow> set means \<lambda>it. (for x holds x in it iff (ex y st [x,y] in X))"
+definition xtuple_0_def_12 ("proj1 _") where (*let X be set*)
+  "func proj1 X \<rightarrow> set means \<lambda>it. (for x holds x in it iff (ex y st [x,y] in X))"
 schematic_goal xtuple_0_def_12:
   assumes "X be set" shows "?X"
 proof (induct rule: means_property[OF xtuple_0_def_12_def, of X,case_names existence uniqueness])
@@ -269,6 +268,5 @@ mtheorem xtuple_0_th_8:
 
 mtheorem xtuple_th_23:
  "proj1 (X \<union> Y) = (proj1 X) \<union> (proj1 Y)" by auto
-
 
 end

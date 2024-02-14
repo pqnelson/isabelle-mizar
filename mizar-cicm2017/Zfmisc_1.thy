@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Zfmisc_1
-imports Xboole_0 Xfamily Xtuple_0
+  imports Xboole_0 Xfamily Xtuple_0
 begin
 
 reserve x,y,z,x1,x2,y1,y2 for object
@@ -141,7 +141,7 @@ proof (intro ballI)
                hence "ex x1,y1 st x1 in X & y1 in Y & [x,y]=[x1,y1]" using zfmisc_1_def_2 by auto
                then obtain x1 y1 where
                   "x1 be object "  "y1 be object " and A1: "x1 in X & y1 in Y & [x,y]=[x1,y1]" by auto
-               have "x=x1 & y=y1" using A1 xtuple_0_th_1 [of "x" "y"] by simp auto
+               have "x=x1 & y=y1" using A1 xtuple_0_th_1 [of "x" "y"] by simp
                thus "x in X & y in Y" using A1 by simp 
            qed
        show "x in X & y in Y implies [x,y] in [:X,Y:]" using zfmisc_1_def_2 by auto

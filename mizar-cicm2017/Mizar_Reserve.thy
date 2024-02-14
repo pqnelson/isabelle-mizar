@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Mizar_Reserve
-imports Mizar
+  imports Mizar
 keywords "reserve" :: thy_decl
      and "mtheorem" :: thy_goal
 begin

@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Xfamily
-imports Xboole_0
+  imports Xboole_0
 begin
 
 theorem xfamily_sch_3:

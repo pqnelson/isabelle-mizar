@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Xboole_0
-imports Tarski
+  imports Tarski
 begin
 
 (*XBOOLE_0*) 
@@ -49,8 +49,6 @@ schematic_goal xboole_0_def_2:
 proof (rule equals_property[OF xboole_0_def_2_prefix_def])
   show "(the empty \<parallel>set) be set" using the_property[of "empty\<parallel>set"] xboole_0_cl_1 by auto
 qed
-
-
 
 lemmas xboole_0_def_2a[simp] = xboole_0_def_2[THEN conjunct1]
 lemmas xboole_0_def_2b = xboole_0_def_2[THEN conjunct2]
@@ -164,9 +162,9 @@ qed
 lemmas [simp] = xboole_0_def_4_idempotence[rule_format,OF all_set]
 
 definition prefix_min (infixl "\\" 70) where
-"(*let X be set & Y be set*)
-    func X \\ Y \<rightarrow> set means \<lambda>it.
-    for x being object holds (x in it iff (x in X & not x in Y))"
+  (*let X be set & Y be set*)
+  "func X \\ Y \<rightarrow> set means \<lambda>it.
+   for x being object holds (x in it iff (x in X & not x in Y))"
 
 schematic_goal xboole_0_def_5:
   assumes "X be set & Y be set" shows "?X"
@@ -187,7 +185,6 @@ proof (rule means_property[OF prefix_min_def])
 qed
 
 lemmas xboole_0_def_5a[simp] = xboole_0_def_5[unfolded atomize_conjL[symmetric],THEN conjunct1,THEN conjunct1,OF all_set]
-
 
 lemmas xboole_0_def_5aa[simp] = xboole_0_def_5[unfolded atomize_conjL[symmetric],THEN conjunct1,THEN conjunct1,OF all_set,OF all_set]
 
@@ -213,14 +210,14 @@ lemmas [simp] = xboole_0_def_6_commutativity[rule_format,OF all_set,OF all_set]
 definition xboole_0_def_7 (infixl "misses" 60) where
   xboole_0_def_7: "X be set & Y be set \<Longrightarrow> (X misses Y) iff X \<inter> Y = {}"
 lemmas [simp] = xboole_0_def_7[simplified all_set, simplified]
-  
-  
+
 text_raw \<open>\DefineSnippet{xboole_0_def_6_symmetry}{\<close>
 theorem xboole_0_def_6_symmetry: 
   "symmetry set xboole_0_def_7" by auto
 text_raw \<open>}%EndSnippet\<close>
+
 definition xboole_0_def_8 (infixl "c<" 40)
-where xboole_0_def_8: "X be set \<Longrightarrow> Y be set \<Longrightarrow> (X c< Y) iff X c= Y & X<>Y"
+  where xboole_0_def_8: "X be set \<Longrightarrow> Y be set \<Longrightarrow> (X c< Y) iff X c= Y & X<>Y"
 
 syntax "Xboole_0.xboole_0_def_8" :: "Set \<Rightarrow> Set \<Rightarrow> o" (infixl "\<subset>" 40)
 
@@ -290,8 +287,6 @@ proof-
           qed
      qed
 qed
-
-
 
 definition meets_prefix ("_ meets _" 60)
 where xboole_0_antonym_meets: "let X be set & Y be set antonym X meets Y for X misses Y"
@@ -464,7 +459,6 @@ qed
 
 definition include_antyonym_prefix  ("_ c\\= _" 40)
 where xboole_0_antonym_2: "let X be set & Y be set antonym X c\\= Y for X c= Y"
-
 
 definition in_antyonym_prefix  ("_ nin _" 40)
 where xboole_0_antonym_3: "let x be object & X be set antonym x nin X for x in X"

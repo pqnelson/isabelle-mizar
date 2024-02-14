@@ -1,12 +1,11 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Relset_1
-imports Relat_1 Subset_1
+  imports Relat_1 Subset_1
 begin
 
 reserve x,y,z for object
 reserve X,Y for set
-
 
 (*relset_1*)
 

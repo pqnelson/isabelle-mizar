@@ -1,8 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Mizar
-imports FOL
-
+  imports FOL
 begin
 
 declare [[eta_contract = false]]

@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Relat_1
-imports Zfmisc_1 Subset_1
+  imports Zfmisc_1 Subset_1
 begin
 
 reserve x for object
@@ -527,7 +527,6 @@ proof-
   thus "(rng R) is non empty" using A1 A2 xtuple_0_def_13 xboole_0_def_1b by auto
 qed
 
- 
 mtheorem relat_1_th_41:
   "dom R = {} or rng R = {} implies R = {}"
 proof

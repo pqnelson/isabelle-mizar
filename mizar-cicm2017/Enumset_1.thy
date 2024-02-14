@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Enumset_1
-imports Tarski
+  imports Tarski
 begin
 
 reserve x1 for object

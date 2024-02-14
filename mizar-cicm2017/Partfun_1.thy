@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory Partfun_1
-imports Funct_1
+  imports Funct_1
 begin
 
 mtheorem partfun_cl_1:
