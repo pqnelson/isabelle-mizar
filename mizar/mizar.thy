@@ -21,8 +21,6 @@ theorem axiom:
         "Radix(x) \<and> assms(x) \<and> Cond(x) \<longrightarrow> DefTy(x)"
         "Radix(x) \<and> \<not>assms(x) \<longrightarrow> Ex(\<lambda>it. DefTy(x))" using assms by auto
 
-
-
 text_raw \<open>\DefineSnippet{mizar-consts1}{\<close>
 consts
   ty_membership :: "Set \<Rightarrow> Ty \<Rightarrow> o" (infix "be" 90)
@@ -202,15 +200,12 @@ definition SET("set") where
   "set\<equiv>object"
 text_raw \<open>}%EndSnippet\<close>
 
-
 (*define_ty(Radix, assms,Cond)  *)
-
 
 text_raw \<open>\DefineSnippet{set-axioms}{\<close>
 lemma hidden_mode: "x be set \<Longrightarrow> x be object" 
   using SET_def by auto
 text_raw \<open>}%EndSnippet\<close>
-
 
 text_raw \<open>\DefineSnippet{theProp}{\<close>
 abbreviation (input) theProp

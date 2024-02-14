@@ -76,7 +76,7 @@ proof-
     have "ex y be M st P(x) = P(y) \<and> Q(y)" using A I by auto
   thus "P(x) in {P(x) where x be M : Q(x)}" using Fraenkel_A1 A I
      by simp
- qed
+qed
 
 abbreviation the_set_of_all
 where "the_set_of_all (P, M) \<equiv> Fraenkel1(P, M, (\<lambda>x. True))"

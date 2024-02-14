@@ -340,6 +340,7 @@ val _ =
       (Attrib.thms >> (mty_method))
       "Mty")
 \<close>
+
 ML \<open>
 fun mby_method ths _ facts (ctxt, th) =
   let val ctxt = mty ths facts ctxt th

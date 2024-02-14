@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory tarski
-imports "../mizar/mizar_reserve"
+  imports "../mizar/mizar_reserve"
 begin
 
 section "TARSKI_0"
@@ -229,8 +229,7 @@ qed
 
 theorem [ty_func]:
   "x be object \<Longrightarrow> y be object \<Longrightarrow> [x,y] be set" using tarski_def_5 tarski_def_2_ty by mty auto  
-  
-  
+
 definition
   are_equipotent :: "Set \<Rightarrow> Set \<Rightarrow> o" ("_,_ areequipotent" [100,100])
 where
@@ -250,8 +249,7 @@ tarski_a_th_1:
      (for X st X in M ex Z st Z in M \<and> (for Y st Y c= X holds Y in Z)) \<and>
      (\<forall>X.  X c= M \<longrightarrow> X,M areequipotent \<or> X in M)"
 
-
- text_raw \<open>\DefineSnippet{redefine_func_mode_property}{\<close>
+text_raw \<open>\DefineSnippet{redefine_func_mode_property}{\<close>
 lemma redefine_func_mode_property:
 assumes lt: "lt" and
   coherence: "\<forall>x : M.  x be M1" and
@@ -266,11 +264,11 @@ proof
 qed
 
 (* :: "Ty \<Rightarrow> o" *)
-  
+
 text_raw \<open>\DefineSnippet{sethood_def}{\<close>
 definition "sethood(M) \<equiv> \<exists>X:set. \<forall>x:object. x be M \<longrightarrow> x in X"
 text_raw \<open>}%EndSnippet\<close>
-  
+
 text_raw \<open>\DefineSnippet{sethood}{\<close>
 theorem sethood:
   "sethood(M) \<longleftrightarrow> (\<exists>X:set. \<forall>x:object. x be M \<longleftrightarrow> x in X)"
@@ -291,11 +289,8 @@ proof(rule iffI3)
   assume "\<exists>X:set. \<forall>x:object. x be M \<longleftrightarrow> x in X"
   thus "sethood(M)" using sethood_def by auto    
 qed
-      
+
 abbreviation (input) setS :: "Set \<Rightarrow>Ty" ("set''")where
   "set' \<equiv> \<lambda>it. set"
 
 end
-
-
-

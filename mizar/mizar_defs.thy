@@ -55,13 +55,11 @@ abbreviation (input) cluster_prefix_functorial
 where "let lt cluster fun \<rightarrow> attrs
       \<equiv> (lt \<Longrightarrow> fun is attrs)"
 text_raw \<open>}%EndSnippet\<close>
-  
-
 
 text_raw \<open>\DefineSnippet{cluster_existence}{\<close>
 abbreviation (input) cluster_prefix_existential
    ("let _ cluster _ for _" [10,10,10] 10)
-where "let lt cluster attrs for ty
+   where "let lt cluster attrs for ty
       \<equiv> (lt \<Longrightarrow> inhabited(attrs \<bar> ty))"
 text_raw \<open>}%EndSnippet\<close>
 
@@ -79,14 +77,12 @@ where "let lt cluster fun \<rightarrow> attrs fors ty
       \<equiv> (lt \<Longrightarrow> fun be ty \<Longrightarrow> fun be attrs)"
 text_raw \<open>}%EndSnippet\<close>
   
- lemma cluster_prefix_functorial_for_property:
+lemma cluster_prefix_functorial_for_property:
 assumes coherence: "\<And> it. it be ty \<Longrightarrow>
              ((it = term) \<longrightarrow> it be attrs)"
 shows "let lt cluster term \<rightarrow> attrs fors ty"
   using coherence by auto  
-  
-  
-  
+
 abbreviation (input) cluster_prefix_attrs2 ("cluster _ \<rightarrow> _ for _" [10,10,10] 10)
 where "cluster attrs1 \<rightarrow> attrs2 for ty \<equiv> ( \<And>X. X be ty \<Longrightarrow>  X be attrs1 \<Longrightarrow> X be attrs2)"
 
@@ -114,7 +110,6 @@ text_raw \<open>\DefineSnippet{let_redefine_func_coherence_means}{\<close>
 abbreviation (input) let_redefine_func_coherence_means ("let _ redefine func _ \<rightarrow> _ " [10,10,10] 10)
 where "let lt redefine func df \<rightarrow> ty \<equiv> ( lt \<longrightarrow> df be ty)"
 text_raw \<open>}%EndSnippet\<close>
-
 
 text_raw \<open>\DefineSnippet{redefine_attr_means}{\<close>
 abbreviation (input) redefine_attr_means ("let _ redefine attr _ means _" [10,10,10] 10)
@@ -146,7 +141,6 @@ abbreviation (input) reduce_prefix
    ("reduce _ to _" [10,10] 10)
 where "reduce term to subterm \<equiv> (term = subterm)"
 
-
 abbreviation (input) prefix_asymmetry ("asymmetry _ _")
 where "asymmetry dom R \<equiv> for x1,x2 being dom holds \<not> (R(x1,x2) \<and> R(x2,x1))"
 
@@ -173,7 +167,6 @@ where "idempotence dom B \<equiv> for x being dom holds B(x,x) = x"
 
 abbreviation (input) prefix_commutativity ("commutativity _ _")
 where "commutativity dom B \<equiv> \<forall>x1:dom. \<forall>x2:dom. B(x1,x2) = B(x2,x1)"
-
 
 section "PROPERTY"
 
@@ -263,11 +256,7 @@ assumes compatibility: "A \<longleftrightarrow> newProp"
 shows "let lt redefine attr A means newProp" using compatibility lt by simp
 text_raw \<open>}%EndSnippet\<close>
 
-
-
-
 (*"assume as func def \<rightarrow> ty means cond*)
-
 
 text_raw \<open>\DefineSnippet{assume_means_property}{\<close>
 lemma assume_means_property:
@@ -304,11 +293,7 @@ shows
 proof-
   have assume_ex: "as \<Longrightarrow> ex x being ty st x=term" using assume_coherence mode_ex by auto
       show "df be ty \<and> (as \<longrightarrow> df = term)" using assume_means_property[OF df assume_ex,OF _ _ mode_ex] by auto
-    qed
-
-
-
-
+qed
 
 text_raw \<open>\DefineSnippet{assume_mode_property}{\<close>
 lemma assume_mode_property:
@@ -333,11 +318,8 @@ proof (cases "as")
      \<and> (x be ty \<and> as \<and> prop(x) \<longrightarrow> x be df)  \<and> inhabited(df)"
      using def_ty_property[OF df,of x]
           def_ty_property[OF df,of "the ty",THEN conjunct2] nr by blast
- qed
-
-
+qed
 
 lemmas [simp] = choice_ax
-
 
 end

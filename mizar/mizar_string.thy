@@ -31,7 +31,6 @@ lemma Succ_3: "x in Succ Y \<Longrightarrow> x \<noteq> Succ Y" using prefix_in_
 lemma Succ_4: "x in Succ Y \<Longrightarrow> Succ Y \<noteq> x" using prefix_in_irreflexive all_set by auto
 lemma Succ_5: "X in Succ X" using Succ tarski_def_1 xboole_0_def_3 all_set by auto
 
-
 lemmas string = Succ_1 Succ_2 Succ_3 Succ_4 Succ_5 tarski_def_1 xboole_0_def_3[OF all_set all_set]
 
 definition carrier:: "Set" ("carrier")

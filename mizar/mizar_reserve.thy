@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory mizar_reserve
-imports mizar_ty mizar_defs
+  imports mizar_ty mizar_defs
 keywords "reserve" :: thy_decl
      and "mtheorem" :: thy_goal and "mlemma" :: thy_goal
      and "mdefinition" :: thy_goal and "mlet"
@@ -12,6 +12,7 @@ ML \<open>
 fun dest_be (Const (@{const_name ty_membership}, _) $ l $ r) = (l, r)
   | dest_be x = raise TERM ("dest_be", [x])
 \<close>
+
 ML \<open>
 structure Miz_Reserve_Data = Theory_Data
 (
@@ -35,6 +36,7 @@ fun do_var (v as (n, _)) lthy =
       ((assm :: flat assms), Context.proof_map (ty_add_thm assm) lthy3)
     end
 \<close>
+
 ML \<open>
 fun reserve_cmd (vs, tm) lthy =
   let
@@ -56,6 +58,7 @@ val () =
     "reserve variable names with types"
     ((Parse.list1 Parse.embedded -- (Parse.$$$ "for" |-- Parse.term)) >> reserve_cmd);
 \<close>
+
 ML \<open>
 fun do_lt tm lthya =
    case dest_Trueprop tm of
@@ -119,6 +122,7 @@ fun setup_proof (((name, attr), lt), str) lthy =
     Proof.theorem NONE after_qed [[(prop, [])]] lthy4
   end;
 \<close>
+
 ML \<open>
 Outer_Syntax.local_theory_to_proof @{command_keyword mtheorem} "Mizar theorem"
   ((Parse_Spec.opt_thm_name ":" -- (Scan.option ((@{keyword "mlet"} || @{keyword "assumes"}) |-- Parse.list1 Parse.prop))
@@ -175,6 +179,7 @@ val parser = (Scan.option Parse_Spec.constdecl --
     (Parse.prop -- (@{keyword ":"} |-- Parse.thm))) >> mdefinition;
 Outer_Syntax.local_theory_to_proof @{command_keyword mdefinition} "Mizar constant" parser
 \<close>
+
 ML \<open>
 fun yxml_insert i s =
   case YXML.parse s of
