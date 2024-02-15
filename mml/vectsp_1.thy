@@ -1,7 +1,7 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory vectsp_1
-imports z2 rlvect_1 group_1
+  imports z2 rlvect_1 group_1
 begin
 
 mlemma Z2_cl_7[ty_func_cluster]:
@@ -10,7 +10,6 @@ proof(simp,intro conjI)
 (*  have [ty]: "Z be doubleLoopStr" by auto *)
   show "Z is add-associative"
   proof
-
     fix u v w assume T1[ty]: "u be Element-of-struct Z" "v be Element-of-struct Z"  "w be Element-of-struct Z"
     have A1: "u=One \<or> u = Zero" "v=One \<or> v = Zero" "w=One \<or> w = Zero" using Z2d(3) by simp_all
     show "u \<oplus>\<^sub>Z v \<oplus>\<^sub>Z w = u \<oplus>\<^sub>Z (v \<oplus>\<^sub>Z w)" using Z2d(6,7,8,9) A1 by auto
@@ -285,35 +284,34 @@ lemma [ex]:
 using inhabited_def exI[of _ Z]  by mty auto
 
 
- text_raw {*\DefineSnippet{vectsp1cl26}{*}
+ text_raw \<open>\DefineSnippet{vectsp1cl26}{\<close>
 theorem vectsp_1_cl_26:
  "cluster add-associative \<bar> right-zeroed \<bar> right-complementable \<bar>
           Abelian \<bar> commutative \<bar> associative \<bar> left-unital\<bar>
           right-unital \<bar> distributive \<bar> almost-left-invertible\<bar>
           non degenerated \<bar> well-unital \<bar> strict (doubleLoopStr)
      for non empty-struct \<bar> doubleLoopStr"
-  text_raw {*}%EndSnippet*}
+  text_raw \<open>}%EndSnippet\<close>
   unfolding inhabited_def
   by (rule exI[of _ Z]) mauto
 
-
-text_raw {*\DefineSnippet{Ring}{*}
+text_raw \<open>\DefineSnippet{Ring}{\<close>
 abbreviation
  "Ring \<equiv> Abelian \<bar> add-associative \<bar> right-zeroed \<bar>
           right-complementable \<bar> associative \<bar>
           well-unital \<bar> distributive \<bar>
           non empty-struct \<bar> doubleLoopStr"
-text_raw {*}%EndSnippet*}
-text_raw {*\DefineSnippet{SkewField}{*}
+text_raw \<open>}%EndSnippet\<close>
+text_raw \<open>\DefineSnippet{SkewField}{\<close>
 abbreviation
  "SkewField \<equiv> non degenerated \<bar>
                      almost-left-invertible \<bar> Ring"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{FIELD}{*}
+text_raw \<open>\DefineSnippet{FIELD}{\<close>
 abbreviation
   "Field \<equiv> commutative \<bar> SkewField"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem vectsp_1_Field_Test:
   "ex R be Field st True" using inhabited_def exI[of _ Z]  by mty auto
@@ -497,7 +495,7 @@ proof(intro ballI)
   finally show " x \<otimes>\<^sub>F (y \<ominus>\<^sub>F z) = x \<otimes>\<^sub>F y \<ominus>\<^sub>F x \<otimes>\<^sub>F z" by auto
 qed auto
 
-text_raw {*\DefineSnippet{vectsp1th12}{*}
+text_raw \<open>\DefineSnippet{vectsp1th12}{\<close>
 theorem vectsp_1_th_12[THEN bspec,THEN bspec,THEN bspec,rule_format]:
   "for F being add-associative \<bar> right-zeroed \<bar>
          right-complementable \<bar> associative \<bar> commutative \<bar>
@@ -505,7 +503,7 @@ theorem vectsp_1_th_12[THEN bspec,THEN bspec,THEN bspec,rule_format]:
          distributive \<bar> (non empty-struct \<bar> doubleLoopStr),
        x,y being Element-of-struct F holds
     x \<otimes>\<^sub>F y = 0\<^sub>F \<longleftrightarrow> x = 0\<^sub>F \<or> y = 0\<^sub>F"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro ballI)
   fix F x y
   assume T[ty]:"F be add-associative \<bar> right-zeroed \<bar>
@@ -528,11 +526,11 @@ proof(intro ballI)
 qed auto
 
 
-text_raw {*\DefineSnippet{vectsp1th12_ex}{*}
+text_raw \<open>\DefineSnippet{vectsp1th12_ex}{\<close>
 reserve F for Field
 reserve x,y for "Element-of-struct F"
 mtheorem "x \<otimes>\<^sub>F y = 0\<^sub>F \<longleftrightarrow> x = 0\<^sub>F \<or> y = 0\<^sub>F"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   have "x \<otimes>\<^sub>F y = 0\<^sub>F \<longrightarrow> x = 0\<^sub>F \<or> y = 0\<^sub>F"
     proof(rule impI,rule disjCI2)

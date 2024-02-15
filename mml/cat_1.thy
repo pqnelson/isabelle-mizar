@@ -60,13 +60,13 @@ abbreviation cat_1_mode_1_prefix ("Object-of _" [150] 150)
 abbreviation cat_1_mode_2_prefix ("Morphism-of _" [150] 150)
   where "Morphism-of X \<equiv> Element-of (the carrier` of X)"
 
-text_raw {*\DefineSnippet{cat_1_def_1}{*}
+text_raw \<open>\DefineSnippet{cat_1_def_1}{\<close>
 func cat_1_def_1 ("_ *\<^sub>_ _") where
   mlet "C be CatStr", "f be Morphism-of C", "g be Morphism-of C"
  "assume [g,f] in dom (the Comp of C)
   func f *\<^sub>C g \<rightarrow> Morphism-of C equals
     ( the Comp of C ). \<lparr> g , f \<rparr>"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   have A1: "( the Comp of C ). \<lparr> g , f \<rparr> = ( the Comp of C ). [g , f]" using binop_0_def_1 by auto
   assume "[g,f] in dom(the Comp of C)"
@@ -88,13 +88,13 @@ proof
   show "?X is non empty-struct\<bar> non void-struct \<bar>  CatStr" by auto
 qed
 
-text_raw {*\DefineSnippet{cat_1_def_4}{*}
+text_raw \<open>\DefineSnippet{cat_1_def_4}{\<close>
 func cat_1_def_4 ("Hom\<^bsub>_\<^esub>") where
   mlet "C be non empty-struct \<bar> non void-struct \<bar> CatStr",
           "a be Object-of C", "b be Object-of C"
  "func Hom\<^bsub>C\<^esub>(a,b) \<rightarrow> Subset-of the carrier` of C equals
     {f where f be Morphism-of C : dom\<^bsub>C\<^esub>f = a \<and> cod\<^bsub>C\<^esub>f = b}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   let ?X = "{f where f be Morphism-of C : dom\<^bsub>C\<^esub> f = a \<and> cod\<^bsub>C\<^esub> f = b}"
   have "?X \<subseteq>  the carrier` of C"
@@ -132,14 +132,14 @@ proof(rule iffI3)
   thus "f in Hom\<^bsub>C\<^esub>(a,b)" using cat_1_def_4 by simp
 qed
 
-text_raw {*\DefineSnippet{cat_1_def_5}{*}
+text_raw \<open>\DefineSnippet{cat_1_def_5}{\<close>
 mdefinition cat_1_def_5    ("Morphism-of") where
   mlet "C be non empty-struct \<bar> non void-struct \<bar> CatStr",
           "a be Object-of C", "b be Object-of C"
   "assume Hom\<^bsub>C\<^esub>(a,b) \<noteq> {}
   mode Morphism-of(a,b,C) \<rightarrow> Morphism-of C means
       (\<lambda>it. it in Hom\<^bsub>C\<^esub>(a,b))": assume_mode_property
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   assume "Hom\<^bsub>C\<^esub>(a,b) \<noteq> {}"
   hence "ex x be object st x in Hom\<^bsub>C\<^esub>(a,b)" using xboole_0_th_7 by auto
@@ -165,10 +165,10 @@ proof
   thus "f is Morphism-of (dom \<^bsub>C\<^esub> f,cod \<^bsub>C\<^esub> f,C)" using xb cat_1_def_5i F by mauto
 qed mauto
 
-text_raw {*\DefineSnippet{cat_1_th_5}{*}
+text_raw \<open>\DefineSnippet{cat_1_th_5}{\<close>
 mtheorem cat_1_th_5:
   "\<forall>f : Morphism-of (a,b,C). Hom\<^bsub>C\<^esub>(a,b) \<noteq> {} \<longrightarrow> dom\<^bsub>C\<^esub> f = a \<and> cod\<^bsub>C\<^esub> f = b"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(standard,standard)
   fix f
   assume [ty]:"f be Morphism-of (a,b,C)"
@@ -177,11 +177,11 @@ proof(standard,standard)
   thus "dom \<^bsub>C\<^esub> f = a \<and> cod \<^bsub>C\<^esub> f = b" using cat_1_th_1 by mauto
 qed mauto
 
-text_raw {*\DefineSnippet{cat_1_th_6}{*}
+text_raw \<open>\DefineSnippet{cat_1_th_6}{\<close>
 mtheorem cat_1_th_6:
   "for f being Morphism-of (a,b,C), h being Morphism-of (c,d,C) st
      Hom\<^bsub>C\<^esub>(a,b) \<noteq> {} \<and> Hom\<^bsub>C\<^esub>(c,d) \<noteq> {} \<and> f = h holds a = c \<and> b = d"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(standard,standard,standard)
   fix f h
   assume [ty]:"f be Morphism-of (a,b,C)" "h be Morphism-of (c,d,C)"
@@ -191,12 +191,12 @@ proof(standard,standard,standard)
 qed mauto
 
 
-text_raw {*\DefineSnippet{cat_1_def_6}{*}
+text_raw \<open>\DefineSnippet{cat_1_def_6}{\<close>
 attr cat_1_def_6 ("Category'_like")
 "attr Category_like for non empty-struct \<bar> non void-struct \<bar> CatStr means
       (\<lambda>C. for f,g being Morphism-of C
             holds [g,f] in dom (the Comp of C) \<longleftrightarrow> dom \<^bsub>C\<^esub> g = cod \<^bsub>C\<^esub> f)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 attr cat_1_def_7 ("transitive")
@@ -228,17 +228,17 @@ func cat_1_def_11("1Cat'(_,_')") where
   "func 1Cat(o,m) \<rightarrow> CatStr equals
    [# carrier \<mapsto>{o};
      carrier`\<mapsto> {m};
-     Source \<mapsto> (m .\<comment>> o);
-     Target \<mapsto> (m .\<comment>> o);
-     Comp \<mapsto> ([m,m].\<comment>>m) #]"
+     Source \<mapsto> (m .--> o);
+     Target \<mapsto> (m .--> o);
+     Comp \<mapsto> ([m,m].-->m) #]"
 proof-
-  have [ty]:"m .\<comment>> o be Function-of {m},{o}" by auto
-  have [ty]:"[m,m] .\<comment>> o be Function-of [:{m},{m}:],{o}" by mauto
+  have [ty]:"m .--> o be Function-of {m},{o}" by auto
+  have [ty]:"[m,m] .--> o be Function-of [:{m},{m}:],{o}" by mauto
   thus "[# carrier \<mapsto>{o};
      carrier`\<mapsto> {m};
-     Source \<mapsto> (m .\<comment>> o);
-     Target \<mapsto> (m .\<comment>> o);
-     Comp \<mapsto> ([m,m].\<comment>>m) #] be CatStr" by auto
+     Source \<mapsto> (m .--> o);
+     Target \<mapsto> (m .--> o);
+     Comp \<mapsto> ([m,m].-->m) #] be CatStr" by auto
 qed
 
 theorem cat_1_cl[ty_func_cluster,rule_format]:
@@ -247,9 +247,9 @@ theorem cat_1_cl[ty_func_cluster,rule_format]:
 proof-
   let ?C = " [# carrier \<mapsto>{o};
      carrier`\<mapsto> {m};
-     Source \<mapsto> (m .\<comment>> o);
-     Target \<mapsto> (m .\<comment>> o);
-     Comp \<mapsto> ([m,m].\<comment>>m) #]"
+     Source \<mapsto> (m .--> o);
+     Target \<mapsto> (m .--> o);
+     Comp \<mapsto> ([m,m].-->m) #]"
   have T1[ty]: "?C be CatStr" by mauto
   have T2: "the carrier of ?C = {o}"
      using the_selector_of_1[of ?C carrier "{o}"] Aggr by auto
@@ -346,7 +346,7 @@ proof
      show "[g,f] in dom the Comp of ?C \<longrightarrow> dom \<^bsub>?C\<^esub> g = cod \<^bsub>?C\<^esub> f"
        using struct_0_def_10[THEN iffD1,THEN bspec,THEN bspec,of _ "dom \<^bsub>?C\<^esub> g"] by mauto
      assume "dom \<^bsub>?C\<^esub> g = cod \<^bsub>?C\<^esub> f"
-     have "the Comp of 1Cat(o,m) = ([m,m].\<comment>>m)" using cat_1_def_11 the_selector_of_1[of ?C Comp "[m,m].\<comment>>m"]  Aggr by mauto
+     have "the Comp of 1Cat(o,m) = ([m,m].-->m)" using cat_1_def_11 the_selector_of_1[of ?C Comp "[m,m].-->m"]  Aggr by mauto
      hence
    A1: "dom the Comp of 1Cat(o,m) = {[m,m]}" using funcop_1_th_13 funcop_1_def_9 by mauto
      have "the carrier` of 1Cat(o,m) = {m}" using cat_1_def_11 the_selector_of_1[of ?C "carrier`" "{m}"]  Aggr by mauto
@@ -390,13 +390,13 @@ A1: "Hom\<^bsub>C\<^esub>(a,b)\<noteq>{}" and A2: "Hom\<^bsub>C\<^esub>(b,c)\<no
   thus "g *\<^sub>C f in Hom\<^bsub>C\<^esub>(a,c)" using A7 cat_1_th_1 by auto
 qed
 
-text_raw {*\DefineSnippet{cat_1_def_13}{*}
+text_raw \<open>\DefineSnippet{cat_1_def_13}{\<close>
 func cat_1_def_13   ("_ \<circ>\<^bsub>_,_,_,_\<^esub> _") where
   mlet "C be Category", "a be Object-of C", "b be Object-of C",
        "c be Object-of C", "f be Morphism-of (a,b,C)", "g be Morphism-of (b,c,C)"
   "assume Hom\<^bsub>C\<^esub>(a,b)\<noteq>{} \<and> Hom\<^bsub>C\<^esub>(b,c)\<noteq>{}
   func g \<circ>\<^bsub>C,a,b,c\<^esub> f \<rightarrow> Morphism-of(a,c,C) equals g *\<^sub>C f"
-  text_raw {*}%EndSnippet*}
+  text_raw \<open>}%EndSnippet\<close>
 proof-
   assume "Hom\<^bsub>C\<^esub>(a,b)\<noteq>{} \<and> Hom\<^bsub>C\<^esub>(b,c)\<noteq>{}"
   hence E: "g *\<^sub>C f in Hom\<^bsub>C\<^esub>(a,c)" using cat_1_th_19 by mauto
@@ -405,5 +405,3 @@ proof-
 qed mauto
 
 end
-
-

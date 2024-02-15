@@ -37,7 +37,9 @@ I have managed to patch it for Isabelle-2023.
 
 # Bugs
 
-- [ ] [`funct_2_def_11`](./mml/funct_2.thy) needs its proof fixed
+There were some minor bugs with defining functors by equality
+(`func foo -> type equals bar`), which I have fixed. So now everything
+works for Isabelle 2023.
 
 # Annotated Table of Contents
 

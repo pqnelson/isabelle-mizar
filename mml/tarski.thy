@@ -222,13 +222,8 @@ func tarski_def_5    ("[_ , _]") where
   "func [x,y] \<rightarrow> object equals
      {{x, y} , {x}}"
 text_raw \<open>}%EndSnippet\<close>
-proof
+proof-
   show "{{x, y}, {x}} be object" by auto
-  show "\<exists>xa : object. xa = {{x , y} , {x}}" by simp
-  show "\<And>xa ya.
-       xa be object \<Longrightarrow>
-       ya be object \<Longrightarrow> xa = {{x , y} , {x}} \<Longrightarrow> ya = {{x , y} , {x}} \<Longrightarrow> xa = ya"
-    by auto
 qed
 
 theorem [ty_func]:

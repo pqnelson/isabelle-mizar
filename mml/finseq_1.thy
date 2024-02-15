@@ -2,8 +2,8 @@
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory finseq_1
   imports ordinal1 funct_1
-
 begin
+
 func finseq_1_def_1 ("Seg _") where
   mlet "n be Nat"
   "func Seg n \<rightarrow> set equals

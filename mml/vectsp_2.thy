@@ -1,13 +1,12 @@
 \<^marker>\<open>creator "Cezary Kaliszyk"\<close>
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory vectsp_2
-imports vectsp_1
+  imports vectsp_1
 begin
 
 abbreviation RightModStr_fields_prefix ("RightModStr'_fields _" [110] 110) where
  "RightModStr_fields F \<equiv> (#carrier \<rightarrow> set'; addF\<rightarrow> BinOp-of' the' carrier;ZeroF \<rightarrow> Element-of' the' carrier;
                rmult \<rightarrow>  Function-of' [:' the' carrier,the carrier of F:], the' carrier #)"
-
 
 mdefinition RightModStr_over ("RightModStr-over _") where
   mlet "F be 1-sorted"

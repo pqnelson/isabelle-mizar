@@ -50,11 +50,7 @@ func xboole_0_def_2    ("{}") where
      the empty\<bar>set"
 text_raw \<open>}%EndSnippet\<close>
 proof -
-  show "inhabited(set)" by auto
-  show "\<And>x y. x be set \<Longrightarrow>
-           y be set \<Longrightarrow> x = the empty \<bar> set \<Longrightarrow> y = the empty \<bar> set \<Longrightarrow> x = y"
-    by simp
-  show "\<exists>x : set. x = the empty \<bar> set" using choice_ax[of "empty\<bar>set"] by simp  
+  show "(the empty \<bar> set) be set" using choice_ax[of "empty\<bar>set"] by simp
 qed
 
 lemma xboole_0_def_2d : "{} is empty"
@@ -67,30 +63,30 @@ func xboole_0_def_3     (infixl "\<union>" 65) where
      \<forall>x. x in it \<longleftrightarrow> x in X \<or> x in Y"
 text_raw \<open>}%EndSnippet\<close>
 proof -
-      have "(union {X,Y}) be set \<and> (for x being object holds (x in union {X,Y} \<longleftrightarrow> x in X \<or> x in Y))"
-        proof (intro conjI)
-          show "(union {X,Y}) be set" by mauto
-          show "for x being object holds (x in union {X,Y} \<longleftrightarrow> x in X \<or> x in Y)"
-            proof (intro ballI,rule iffI2)
-              fix x
-              assume Z1[ty]: "x be object"
-              have H: "{X,Y} be set" by mauto
-              show "x in union {X,Y} \<longrightarrow> x in X \<or> x in Y"
-                proof
-                  assume "x in union { X , Y }"
-                  hence "ex Z being set st x in Z \<and> Z in {X,Y}" using tarski_def_4[of "{X,Y}" x] by mauto
-                  thus "x in X \<or> x in Y" using tarski_def_2 by mty auto
-                qed
-                have "X in {X,Y}" "Y in {X,Y}" using tarski_def_2 by mty auto
-                 then show "(x in X \<or> x in Y) \<longrightarrow> x in union {X,Y}"
-                  unfolding tarski_def_4[of "{X,Y}" x,OF H] using ty ex by blast
-                qed simp
+  have "(union {X,Y}) be set \<and> (for x being object holds (x in union {X,Y} \<longleftrightarrow> x in X \<or> x in Y))"
+  proof (intro conjI)
+    show "(union {X,Y}) be set" by mauto
+    show "for x being object holds (x in union {X,Y} \<longleftrightarrow> x in X \<or> x in Y)"
+      proof (intro ballI,rule iffI2)
+        fix x
+        assume Z1[ty]: "x be object"
+        have H: "{X,Y} be set" by mauto
+        show "x in union {X,Y} \<longrightarrow> x in X \<or> x in Y"
+        proof
+          assume "x in union { X , Y }"
+          hence "ex Z being set st x in Z \<and> Z in {X,Y}" using tarski_def_4[of "{X,Y}" x] by mauto
+          thus "x in X \<or> x in Y" using tarski_def_2 by mty auto
         qed
-        thus "ex it be set st (\<forall>x.  x in it \<longleftrightarrow> x in X \<or> x in Y)" using ex by blast
+        have "X in {X,Y}" "Y in {X,Y}" using tarski_def_2 by mty auto
+        then show "(x in X \<or> x in Y) \<longrightarrow> x in union {X,Y}"
+        unfolding tarski_def_4[of "{X,Y}" x,OF H] using ty ex by blast
+      qed simp
+    qed
+    thus "ex it be set st (\<forall>x.  x in it \<longleftrightarrow> x in X \<or> x in Y)" using ex by blast
   next
-  fix A1 A2
-  assume A1:"A1 be set" "(for x being object holds (x in A1 \<longleftrightarrow> x in X \<or> x in Y))" and
-        A2: "A2 be set" "(for x being object holds (x in A2 \<longleftrightarrow> x in X \<or> x in Y))"
+    fix A1 A2
+    assume A1:"A1 be set" "(for x being object holds (x in A1 \<longleftrightarrow> x in X \<or> x in Y))" and
+           A2: "A2 be set" "(for x being object holds (x in A2 \<longleftrightarrow> x in X \<or> x in Y))"
     {
       fix x
       assume Z1[ty]: "x be object"
@@ -99,9 +95,6 @@ proof -
     }
     thus "A1 = A2" using tarski_th_2[OF A1(1) A2(1)] by auto
 qed simp
-
-
-
 
 text_raw \<open>\DefineSnippet{xboole_0_def_3_commutativity}{\<close>
 mtheorem xboole_0_def_3_commutativity:
@@ -131,6 +124,7 @@ mtheorem xboole_0_def_3_idem2[simp]: "X \<union> (X \<union> Z) = X \<union> Z"
   using xboole_0_def_3 by (intro ballI tarski_0_2a) mauto
 lemmas xboole_0_def_3_ac = xboole_0_def_3_assoc xboole_0_def_3_commutativity xboole_0_def_3_idempotence xboole_0_def_3_ty
 
+(* KP: Maybe it's nicer to do it later and not always break the definition of the union? *)
 (* KP: Może ładniej robić tak później a nie zawsze rozbijać definicją unii? *)
 mlemma mlet "W be set", "V be set", "M be set"
   "X \<union> Y \<union> V \<union> Z \<union> W \<union> V \<union> M = M \<union> X \<union> Z \<union> Y \<union> W \<union> V"
@@ -158,7 +152,6 @@ next
   thus "A1 = A2" using tarski_th_2 by mauto
 qed simp_all
 notation xboole_0_def_4(infixl "\<inter>" 70)
-
 
 mtheorem xboole_0_def_4_commutativity:
   "commutativity set xboole_0_def_4"
@@ -215,10 +208,7 @@ func xboole_0_def_6 (infixl "\\+\\" 65) where
      equals (X \\ Y) \<union> (Y \\ X)"
 text_raw \<open>}%EndSnippet\<close>
 proof -
-  show "inhabited(set)" by auto
-  show "\<exists>x : set. x = X \\ Y \<union> Y \\ X" by auto
-  show "\<And>x y. x be set \<Longrightarrow> y be set \<Longrightarrow> x = X \\ Y \<union> Y \\ X \<Longrightarrow> y = X \\ Y \<union> Y \\ X \<Longrightarrow> x = y"
-    by simp
+  show "(X \\ Y \<union> Y \\ X) be set" by auto
 qed
 
 mtheorem xboole_0_def_6_commutativity:
@@ -253,7 +243,6 @@ syntax "xboole_0.xboole_0_def_8" :: "Set \<Rightarrow> Set \<Rightarrow> o" (inf
 lemmas xboole_0_def_8a = xboole_0_def_8[THEN iffD1]
 lemmas xboole_0_def_8b = xboole_0_def_8[THEN iffD2]
 
-
 text_raw \<open>\DefineSnippet{xboole_0_def_8_irreflexivity}{\<close>
 mtheorem xboole_0_def_8_irreflexivity:
   "irreflexive set xboole_0_def_8" using xboole_0_def_8a by auto
@@ -267,31 +256,30 @@ proof(intro ballI)
   fix X Y
   assume [ty]: "X be set" "Y be set"
   have "X c< Y \<Longrightarrow> \<not> Y c< X"
-    proof-
-  assume A1:"X c<Y"
-  show "not (Y c<X)"
-   proof
-    assume A2: "Y c< X"
-     {
+  proof-
+    assume A1:"X c<Y"
+    show "not (Y c<X)"
+    proof
+      assume A2: "Y c< X"
+      {
         fix x
         assume [ty]:"x be object"
         have A3:"x in X \<longrightarrow> x in Y" by (mby tarski_def_3a A1 xboole_0_def_8a) auto
         have "x in Y \<longrightarrow> x in X" by (mby tarski_def_3a xboole_0_def_8a A2) auto
         hence "x in X \<longleftrightarrow> x in Y" using A3 by auto
-     }
-    hence "X = Y" by (intro tarski_th_2) auto
-    thus "False" using A1 xboole_0_def_8 by auto
+      }
+      hence "X = Y" by (intro tarski_th_2) auto
+      thus "False" using A1 xboole_0_def_8 by auto
+    qed
   qed
-qed
   thus "not (X c< Y \<and> Y c< X)" by iprover
 qed simp_all
 
 definition
   xboole_0_def_9 ("_ , _ are c= comparable"[50,50] 40)
 where
-  xboole_0_def_9:
-"let X be set \<and> Y be set
- pred X,Y are c= comparable means (X c= Y \<or> Y c= X)"
+  xboole_0_def_9: "let X be set \<and> Y be set
+                   pred X,Y are c= comparable means (X c= Y \<or> Y c= X)"
 
 theorem xboole_0_def_9_symmetry[THEN bspec,THEN bspec,rule_format,simplified]:
   "symmetry set xboole_0_def_9" using xboole_0_def_9 by auto
@@ -302,21 +290,21 @@ theorem xboole_0_def_10[rule_format]:
 proof (erule conjE)
   assume [ty]: "X be set" "Y be set"
   show "X = Y \<longleftrightarrow> (X c= Y \<and> Y c= X)"
-     proof(rule iffI2)
-        show "X = Y \<longrightarrow> (X c= Y \<and> Y c= X)" using tarski_def_3b by auto
-        show "(X c= Y \<and> Y c= X) \<longrightarrow> X=Y"
-          proof
-            assume A1:"X c= Y \<and> Y c= X"
-              {
-                 fix x
-                 assume [ty]:"x be object"
-                 have A2:"x in X \<longrightarrow> x in Y" using tarski_def_3a[of X Y] A1 by auto
-                 have "x in Y \<longrightarrow> x in X" using tarski_def_3a[of Y X] A1 by auto
-                 hence "x in X \<longleftrightarrow> x in Y" using A2 by auto
-              }
-            thus "X=Y" by (intro tarski_th_2) auto
-          qed
-     qed
+  proof(rule iffI2)
+    show "X = Y \<longrightarrow> (X c= Y \<and> Y c= X)" using tarski_def_3b by auto
+    show "(X c= Y \<and> Y c= X) \<longrightarrow> X=Y"
+    proof
+      assume A1:"X c= Y \<and> Y c= X"
+      {
+        fix x
+        assume [ty]:"x be object"
+        have A2:"x in X \<longrightarrow> x in Y" using tarski_def_3a[of X Y] A1 by auto
+        have "x in Y \<longrightarrow> x in X" using tarski_def_3a[of Y X] A1 by auto
+        hence "x in X \<longleftrightarrow> x in Y" using A2 by auto
+      }
+      thus "X=Y" by (intro tarski_th_2) auto
+    qed
+  qed
 qed
 
 lemmas xboole_0_def_10a=xboole_0_def_10[THEN iffD2,rule_format]

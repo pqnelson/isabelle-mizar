@@ -15,7 +15,6 @@ attr funct_2_def_1 ("_ , _ : quasi-total" [110,110] 110)
    attr X , Y :quasi-total for Relation-of X,Y means
      (\<lambda> IT.(X = dom IT) if (Y \<noteq> {}) otherwise (IT = {}))"
 
-
 text_raw \<open>\DefineSnippet{expandable_modes}{\<close>
 abbreviation funct_2_mode_1   ("Function-of _, _" [90,90] 190)
 where "Function-of X,Y \<equiv> (X,Y: quasi-total) \<bar> (PartFunc-of X,Y)"
@@ -272,6 +271,8 @@ func funct_2_def_11 ("_ '/*`[_, _] _" [10,0,0,10] 90) where
   "assume rng f c= dom p func p /*`[X, Z] f \<rightarrow>
              Function-of X,Z equals p*`f"
 text_raw \<open>}%EndSnippet\<close>
+  oops
+(*
 proof -
   assume A1: "rng f c= dom p"
   have A22: "rng p c= Z" using relat_1_def_19[THEN iffD1] by mauto
@@ -308,8 +309,8 @@ proof -
     hence "p*`f is (X,Z: quasi-total) \<or> (p*`f = {} \<and> Z={})" using funct_2_def_1[of X Z "p*`f"] A2 A3 K B3 by simp
     thus "p*`f be (X,Z: quasi-total) \<bar> (PartFunc-of X,Z)" using A4 K by auto
   qed
-  thus "proj2 f \<subseteq> proj1 p \<Longrightarrow> f * p be X , Z : quasi-total" by auto
-qed mauto
+  (* thus "proj2 f \<subseteq> proj1 p \<Longrightarrow> f * p be X , Z : quasi-total" by auto *)
+qed **)
 
 theorem funct_2_def_10[rule_format,ty_func]:
   "let X be set

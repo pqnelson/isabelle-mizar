@@ -68,7 +68,7 @@ theorem Fraenkel_sch_4:
   "{F(u1,v1) where u1 be Element-of A, v1 be Element-of B : P(u1,v1) } =
     {F(u2,v2) where u2 be Element-of A, v2 be Element-of B : Q(u2,v2) }"
 proof(intro xboole_0_def_10a)
-   let ?A = "{F(u1,v1) where u1 be Element-of A, v1 be Element-of B : P(u1,v1) }"
+  let ?A = "{F(u1,v1) where u1 be Element-of A, v1 be Element-of B : P(u1,v1) }"
   let ?B = "{F(u2,v2) where u2 be Element-of A, v2 be Element-of B : Q(u2,v2) }"
   have A2: "for u being Element-of A, v be Element-of B holds P(u,v) \<longrightarrow> Q(u,v)" using A1 by auto
   show "?A \<subseteq> ?B" using Fraenkel_sch_2[OF _ _ _ A2] T0 by auto
@@ -88,27 +88,27 @@ proof(intro xboole_0_def_10a)
   let ?X = "{F(v1) where v1 be Element-of B : P(v1) }"
   let ?Y = "{G(v2) where v2 be Element-of B : P(v2) }"
   show "?X \<subseteq> ?Y"
-    proof(intro tarski_def_3b)
-      fix x
-      assume B1: "x in ?X"
-      obtain v1 where
-       T1: "v1 be Element-of B" and
-       A3: "x = F(v1)" and
-       A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
-      have "x = G(v1)" using A1 A3 T1 by auto
-      thus "x in ?Y" using Fraenkel_A1_in A4 T1 by auto
-    qed mauto
+  proof(intro tarski_def_3b)
+    fix x
+    assume B1: "x in ?X"
+    obtain v1 where
+    T1: "v1 be Element-of B" and
+    A3: "x = F(v1)" and
+    A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
+    have "x = G(v1)" using A1 A3 T1 by auto
+    thus "x in ?Y" using Fraenkel_A1_in A4 T1 by auto
+  qed mauto
   show "?Y \<subseteq> ?X"
-    proof(intro tarski_def_3b)
-      fix x
-      assume B1: "x in ?Y"
-      obtain v1 where
-       T1: "v1 be Element-of B" and
-       A3: "x = G(v1)" and
-       A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
-      have "x = F(v1)" using A1 A3 T1 by auto
-      thus "x in ?X" using Fraenkel_A1_in A4 T1 by auto
-   qed mauto
+  proof(intro tarski_def_3b)
+    fix x
+    assume B1: "x in ?Y"
+    obtain v1 where
+    T1: "v1 be Element-of B" and
+    A3: "x = G(v1)" and
+    A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
+    have "x = F(v1)" using A1 A3 T1 by auto
+    thus "x in ?X" using Fraenkel_A1_in A4 T1 by auto
+  qed mauto
 qed mauto
 
 theorem Fraenkel_sch_6:
@@ -123,27 +123,27 @@ proof(intro xboole_0_def_10a)
   let ?X = "{F(v1) where v1 be Element-of B : P(v1) }"
   let ?Y = "{G(v2) where v2 be Element-of B : P(v2) }"
   show "?X \<subseteq> ?Y"
-    proof(intro tarski_def_3b)
-      fix x
-      assume B1: "x in ?X"
-      obtain v1 where
-       T1: "v1 be Element-of B" and
-       A3: "x = F(v1)" and
-       A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
-      have "x = G(v1)" using A1 A3 A4 T1 by auto
-      thus "x in ?Y" using Fraenkel_A1_in A4 T1 by auto
-    qed mauto
+  proof(intro tarski_def_3b)
+    fix x
+    assume B1: "x in ?X"
+    obtain v1 where
+      T1: "v1 be Element-of B" and
+      A3: "x = F(v1)" and
+      A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
+    have "x = G(v1)" using A1 A3 A4 T1 by auto
+    thus "x in ?Y" using Fraenkel_A1_in A4 T1 by auto
+  qed mauto
   show "?Y \<subseteq> ?X"
-    proof(intro tarski_def_3b)
-      fix x
-      assume B1: "x in ?Y"
-      obtain v1 where
-       T1: "v1 be Element-of B" and
-       A3: "x = G(v1)" and
-       A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
-      have "x = F(v1)" using A1 A3 A4 T1 by auto
-      thus "x in ?X" using Fraenkel_A1_in A4 T1 by auto
-   qed mauto
+  proof(intro tarski_def_3b)
+    fix x
+    assume B1: "x in ?Y"
+    obtain v1 where
+    T1: "v1 be Element-of B" and
+    A3: "x = G(v1)" and
+    A4: "P(v1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
+    have "x = F(v1)" using A1 A3 A4 T1 by auto
+    thus "x in ?X" using Fraenkel_A1_in A4 T1 by auto
+  qed mauto
 qed mauto
 
 theorem Fraenkel_sch_7:
@@ -157,7 +157,7 @@ theorem Fraenkel_sch_7:
 proof(intro xboole_0_def_10a)
   let ?X = "{F(u1,v1) where u1 be Element-of A, v1 be Element-of B : P(u1,v1) }"
   let ?Y = "{G(u2,v2) where u2 be Element-of A, v2 be Element-of B : P(u2,v2) }"
- show "?X \<subseteq> ?Y"
+  show "?X \<subseteq> ?Y"
   proof(intro tarski_def_3b)
       fix x
       assume B1: "x in ?X"
@@ -309,19 +309,19 @@ proof(unfold xboole_0_def_10[OF all_set all_set],rule conjI)
       A3: "Q(st1)" using Fraenkel_A1_ex[OF _ _ B1] by auto
     have "ex s1 be Element-of A,t1 be Element-of B st st1 = F(s1,t1) \<and> P(s1,t1)" using Fraenkel_A2_ex[OF _ _ _ _ A2] by auto
     thus "x in ?Y" using A1 A3 Fraenkel_A2_in by auto
-   qed mauto
+  qed mauto
   show "?Y \<subseteq> ?X"
-    proof(intro tarski_def_3b)
-      fix x
-      assume B1: "x in ?Y"
-      obtain s2 t2 where
-       A4:"s2 be Element-of A" "t2 be Element-of B" "x=F(s2,t2)" and
-       A5:"P(s2,t2)" and
-       A6:"Q(F(s2,t2))" using Fraenkel_A2_ex[OF _ _ _ _ B1] by auto
-      have T2:"F(s2,t2) be Element-of C" using T0 by auto
-      have "F(s2,t2) in ?T" using A4 A5 Fraenkel_A2_in by auto
-      thus "x in ?X" using T2 A6 A4 Fraenkel_A1_in[OF _  T2, of "\<lambda>st1. st1 in ?T \<and> Q(st1)"] by auto
-    qed mauto
- qed mauto
+  proof(intro tarski_def_3b)
+    fix x
+    assume B1: "x in ?Y"
+    obtain s2 t2 where
+      A4:"s2 be Element-of A" "t2 be Element-of B" "x=F(s2,t2)" and
+      A5:"P(s2,t2)" and
+      A6:"Q(F(s2,t2))" using Fraenkel_A2_ex[OF _ _ _ _ B1] by auto
+    have T2:"F(s2,t2) be Element-of C" using T0 by auto
+    have "F(s2,t2) in ?T" using A4 A5 Fraenkel_A2_in by auto
+    thus "x in ?X" using T2 A6 A4 Fraenkel_A1_in[OF _  T2, of "\<lambda>st1. st1 in ?T \<and> Q(st1)"] by auto
+  qed mauto
+qed mauto
 
 end

@@ -3,7 +3,8 @@
 theory graph_1
   imports struct_0
 begin
-  mdefinition MultiGraphStruct :: "Ty" ("MultiGraphStruct") where
+  
+mdefinition MultiGraphStruct :: "Ty" ("MultiGraphStruct") where
   "struct MultiGraphStruct
       (#carrier \<rightarrow> set';
         carrier` \<rightarrow> set';
@@ -13,8 +14,11 @@ begin
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
 
 lemmas MultiGraphStructA = MultiGraphStruct(1)
+
 lemmas [ex] = MultiGraphStruct(2,3)
+
 lemmas MultiGraphStructD = MultiGraphStruct(4)
+
 lemmas [ty_func] = MultiGraphStruct(5)
 
 theorem MultiGraphStruct_inheritance[ty_parent]:
@@ -50,7 +54,6 @@ abbreviation graph_1_mode_1_prefix ("Vertex-of _" [150] 150)
 abbreviation graph_1_mode_2_prefix ("Edge-of _" [150] 150)
   where "Edge-of X \<equiv> Element-of (the carrier` of X)"
 
-
 func graph_1_def_1 ("dom \<^bsub>_\<^esub> _" [999,105] 105) where
  mlet "C be MultiGraphStruct", "f be Edge-of C"
  "func dom\<^bsub>C\<^esub> f \<rightarrow> Vertex-of C means
@@ -83,11 +86,11 @@ proof-
     qed
 qed mauto
 
-text_raw {*\DefineSnippet{redefine_func_equals}{*}
+text_raw \<open>\DefineSnippet{redefine_func_equals}{\<close>
 abbreviation (input) redefine_func_equals ("let _ redefine func _ \<rightarrow> _ equals _" [10,10,10,10] 10)
   where "let lt redefine func F \<rightarrow> M equals term \<equiv>
    ( lt \<longrightarrow> ( F be M \<and> F = term))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem graph_1_def_3[simplified,rule_format]:
   "let C be non void-struct \<bar> non empty-struct \<bar> MultiGraphStruct \<and> f be Edge-of C

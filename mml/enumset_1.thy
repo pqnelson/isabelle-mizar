@@ -11,7 +11,7 @@ proof
   auto[1]
   have "for x being object holds x in {x1,x2}\<union>{x3} \<longleftrightarrow> (x = x1 \<or> x = x2 \<or> x = x3)"
     using tarski_def_1 tarski_def_2 xboole_0_def_3[of "{x1, x2}" "{x3}"] by mauto
-    thus "ex X be set st for x being object holds x in X \<longleftrightarrow> (x = x1 \<or> x = x2 \<or> x = x3)" using bexI[of _ _ "{x1,x2}\<union>{x3}"] by mauto
+  thus "ex X be set st for x being object holds x in X \<longleftrightarrow> (x = x1 \<or> x = x2 \<or> x = x3)" using bexI[of _ _ "{x1,x2}\<union>{x3}"] by mauto
 next
   fix IT1 IT2
   assume [ty]: "IT1 be set" and A1: "for x being object holds (x in IT1 \<longleftrightarrow> (x = x1 \<or> x = x2 \<or> x = x3))"

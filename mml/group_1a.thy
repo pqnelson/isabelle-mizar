@@ -4,9 +4,7 @@ theory group_1a
   imports algstr_0 pre_topc
 begin
 
-
 abbreviation "TopaddGrStr_fields\<equiv>(#carrier \<rightarrow> set'; addF\<rightarrow> BinOp-of' the' carrier;topology \<rightarrow> Subset-Family-of' the' carrier #)"
-
 
 mdefinition
   "struct TopaddGrStr TopaddGrStr_fields"

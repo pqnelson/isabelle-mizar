@@ -198,16 +198,21 @@ thm assume_means_property
 thm equals_property
 thm means_property
 (* Alex annotation: I believe this code related to defining functors, as discussed on page 573
-(section 6.2). There is unhappiness in matching the equality literal, however, and I am
-currently having difficulty appeasing Isabelle. *)
+(section 6.2). It turns out that @{term eq} corresponds to @{IFOL.eq}, and I'm not sure
+if there's an idiomatic way to have polymorphic matching --- that is to say, could
+we have `val eq = @{term "IFOL.eq"}` and have it match a constant term 
+`@{term "(IFOL.eq :: Set \<Rightarrow> Set \<Rightarrow> o)"}`. Right now I am "overfitting" and  using
+the coincidence that we're always using equality on Sets. *)
 ML \<open>
-val eq = @{term"equal"} (* @{term "op ="} \<^term>\<open>op =\<close>  *)
-            (*Tp =   lhs t dt *)
+val eq = @{term "(IFOL.eq :: Set \<Rightarrow> Set \<Rightarrow> o)"}; 
 (* Alex annotation: @{term is_as_eq} refers to "is assume_equals", meaning the functor
 is defined with an assumption AND set equal to some term. *)
+
+tracing (@{make_string} eq);
+
 fun is_as_eq (_ $ (_ $ _ $ (_ $ (_ $ _ $ C $ D)))) =
-  (tracing (@{make_string} C);
-  tracing (@{make_string} D);
+  (tracing ("C = "^(@{make_string} C));
+  tracing ("D = "^(@{make_string} D));
   let
     val assum =
       case C of
@@ -215,9 +220,12 @@ fun is_as_eq (_ $ (_ $ _ $ (_ $ (_ $ _ $ C $ D)))) =
       | _ => true;
     val eq =
       case D of
-        Abs (_, _, (c1 $ Bound 0 $ _)) => if c1 = eq then true else false
+        Abs (_, _, (c1 $ Bound 0 $ _)) => (tracing ("c1 = "^(@{make_string} c1));
+              if c1 = eq then true else false)
       | _ => false
-  in (assum, eq) end)
+  in
+  (tracing ("assum = "^(Bool.toString assum)^", eq = "^(Bool.toString eq)));
+ (assum, eq) end)
   | is_as_eq _ = raise Fail "invalid func definition";
 
 fun note_suffix fname sffx thm lthy =

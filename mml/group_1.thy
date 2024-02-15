@@ -4,15 +4,15 @@ theory group_1
   imports algstr_0
 begin
 
-text_raw {*\DefineSnippet{group1def1}{*}
+text_raw \<open>\DefineSnippet{group1def1}{\<close>
 attr group_1_def_1 ("unital")
   "attr unital for multMagma means (\<lambda>S.
      ex e being Element-of-struct S st
        for h being Element-of-struct S holds
          h \<otimes>\<^sub>S e = h \<and>  e \<otimes>\<^sub>S h = h)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{group1def2}{*}
+text_raw \<open>\DefineSnippet{group1def2}{\<close>
 attr group_1_def_2 ("Group-like")
    "attr Group-like for multMagma means
       (\<lambda>S.
@@ -21,15 +21,15 @@ attr group_1_def_2 ("Group-like")
               h \<otimes>\<^sub>S e = h \<and> e \<otimes>\<^sub>S h = h \<and>
               (ex g being Element-of-struct S st
                  h \<otimes>\<^sub>S g = e \<and> g \<otimes>\<^sub>S h = e ) ))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{group1def3}{*}
+text_raw \<open>\DefineSnippet{group1def3}{\<close>
 attr group_1_def_3 ("associative")
    "attr associative for multMagma means
       (\<lambda> S.
             (for x,y,z being (Element-of-struct S) holds
                   x \<otimes>\<^sub>S y \<otimes>\<^sub>S z =  x \<otimes>\<^sub>S ( y \<otimes>\<^sub>S z)))"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 lemma group_1_lm_1:
@@ -66,10 +66,10 @@ proof
          using group_1_lm_1 by mty auto
 qed
 
-text_raw {*\DefineSnippet{group1cl1}{*}
+text_raw \<open>\DefineSnippet{group1cl1}{\<close>
 theorem group_1_cl_1[ty_cond_cluster]:
   "cluster Group-like \<rightarrow> unital for multMagma"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   fix G
   assume A1[ty]: "G be multMagma"
@@ -84,10 +84,10 @@ proof-
   thus "G is unital" using group_1_def_1 T1 A1 by auto
 qed
 
-text_raw {*\DefineSnippet{groupmode}{*}
+text_raw \<open>\DefineSnippet{groupmode}{\<close>
 abbreviation Group where
    "Group \<equiv> Group-like \<bar> associative \<bar> non empty-struct \<bar> multMagma"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem [ex]: "inhabited(Group)"
 proof
@@ -96,14 +96,14 @@ proof
 qed
 
 
-text_raw {*\DefineSnippet{group1def4}{*}
+text_raw \<open>\DefineSnippet{group1def4}{\<close>
 
 func group_1_def_4 ("1'.\<^sub>_" [1000] 99) where
   mlet "G be unital \<bar> multMagma"
    "func 1.\<^sub>G \<rightarrow> Element-of-struct G means \<lambda>it.
       for h being Element-of-struct G holds
          h \<otimes>\<^sub>G it = h \<and> it \<otimes>\<^sub>G h = h"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
   show "ex it being Element-of-struct G st
          for h being Element-of-struct G holds h \<otimes>\<^sub>G it = h \<and>  it \<otimes>\<^sub>G h = h" using group_1_def_1 by mauto
@@ -122,11 +122,11 @@ reserve G for Group
 reserve f,g,h for "Element-of-struct G"
 
 
-text_raw {*\DefineSnippet{group1def5}{*}
+text_raw \<open>\DefineSnippet{group1def5}{\<close>
 func group_1_def_5 ("_\<^sup>-\<^sup>1\<^sub>_" [105, 105] 105) where
   "func h\<^sup>-\<^sup>1\<^sub>G \<rightarrow> Element-of-struct G means \<lambda>it.
       h \<otimes>\<^sub>G it = 1.\<^sub>G \<and> it \<otimes>\<^sub>G h = 1.\<^sub>G"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   obtain e where
      [ty]:"e be Element-of-struct G" and
@@ -156,21 +156,21 @@ A2: "h \<otimes>\<^sub>G g = e \<and> g \<otimes>\<^sub>G h = e"
    also have "... = x2" using group_1_def_4 A3 by simp
    finally show "x1 = x2" by simp
  qed auto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{group1def5involutiveness}{*}
+text_raw \<open>\DefineSnippet{group1def5involutiveness}{\<close>
 mtheorem group_1_def_5_involutiveness:
   "(h\<^sup>-\<^sup>1\<^sub>G)\<^sup>-\<^sup>1\<^sub>G = h"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   have "(h\<^sup>-\<^sup>1\<^sub>G)   \<otimes>\<^sub>G h = 1.\<^sub>G \<and>  h \<otimes>\<^sub>G (h\<^sup>-\<^sup>1\<^sub>G) = 1.\<^sub>G" using group_1_def_5 by auto
   thus "(h\<^sup>-\<^sup>1\<^sub>G)\<^sup>-\<^sup>1\<^sub>G = h" using group_1_def_5_uniq[of G "h\<^sup>-\<^sup>1\<^sub>G" h] by mty auto
 qed
 
-text_raw {*\DefineSnippet{group1th5}{*}
+text_raw \<open>\DefineSnippet{group1th5}{\<close>
 mtheorem group_1_th_5:
   "h \<otimes>\<^sub>G g = 1.\<^sub>G \<and> g \<otimes>\<^sub>G h = 1.\<^sub>G \<longrightarrow> g = h\<^sup>-\<^sup>1\<^sub>G"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   using group_1_def_5_uniq[of G h g] by auto
 
 mtheorem group_1_th_6:
@@ -198,25 +198,25 @@ proof
    qed
 qed
 
-text_raw {*\DefineSnippet{group1th7}{*}
+text_raw \<open>\DefineSnippet{group1th7}{\<close>
 mtheorem group_1_th_7:
   "h \<otimes>\<^sub>G g = h \<or> g \<otimes>\<^sub>G h = h \<longrightarrow> g = 1.\<^sub>G"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof -
   have "h \<otimes>\<^sub>G 1.\<^sub>G = h \<and> 1.\<^sub>G \<otimes>\<^sub>G h = h" using group_1_def_4[of G] by mauto
   thus "h \<otimes>\<^sub>G g = h \<or> g \<otimes>\<^sub>G h = h \<longrightarrow> g = 1.\<^sub>G" using group_1_th_6[of G "1.\<^sub>G" g h] by mauto
   qed
 
-text_raw {*\DefineSnippet{group1th8}{*}
+text_raw \<open>\DefineSnippet{group1th8}{\<close>
 mtheorem group_1_th_8:
   "(1.\<^sub>G) \<^sup>-\<^sup>1\<^sub>G = 1.\<^sub>G"
 proof -
   have "(1.\<^sub>G) \<^sup>-\<^sup>1\<^sub>G \<otimes>\<^sub>G 1.\<^sub>G = 1.\<^sub>G" using group_1_def_5 by simp
   thus "(1.\<^sub>G) \<^sup>-\<^sup>1\<^sub>G = 1.\<^sub>G" using group_1_def_4 by simp
 qed
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{group1th9}{*}
+text_raw \<open>\DefineSnippet{group1th9}{\<close>
 mtheorem group_1_th_9:
   "h \<^sup>-\<^sup>1\<^sub>G = g \<^sup>-\<^sup>1\<^sub>G \<longrightarrow> h = g"
 proof
@@ -225,18 +225,18 @@ proof
   have "g \<otimes>\<^sub>G g \<^sup>-\<^sup>1\<^sub>G = 1.\<^sub>G" using group_1_def_5 by simp
   thus "h = g" using A1 group_1_th_6[of G h g "g \<^sup>-\<^sup>1\<^sub>G"]  by mauto
 qed
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{group1th10}{*}
+text_raw \<open>\DefineSnippet{group1th10}{\<close>
 mtheorem group_1_th_10:
    "h\<^sup>-\<^sup>1\<^sub>G = 1.\<^sub>G \<longrightarrow> h = 1.\<^sub>G"
 proof-
   have "(1.\<^sub>G) \<^sup>-\<^sup>1\<^sub>G = 1.\<^sub>G" using group_1_th_8 by mauto
   thus ?thesis using group_1_th_9[of G "1.\<^sub>G"] by mauto
 qed
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{group1th11}{*}
+text_raw \<open>\DefineSnippet{group1th11}{\<close>
 mtheorem group_1_th_11:
   "h \<otimes>\<^sub>G g = 1.\<^sub>G \<longrightarrow> h = g \<^sup>-\<^sup>1\<^sub>G \<and> g = h \<^sup>-\<^sup>1\<^sub>G"
 proof
@@ -247,7 +247,7 @@ proof
     group_1_th_6[of G "h\<^sup>-\<^sup>1\<^sub>G" g h]
     group_1_th_6[of G h "g\<^sup>-\<^sup>1\<^sub>G" g] A1 by mauto
 qed
-text_raw {*}%EndSnippet*} 
+text_raw \<open>}%EndSnippet\<close> 
   
 mtheorem group_1_th_12:
   "h \<otimes>\<^sub>G f = g \<longleftrightarrow> f = (h\<^sup>-\<^sup>1\<^sub>G)   \<otimes>\<^sub>G g"
@@ -263,7 +263,7 @@ proof(rule iffI3)
   finally show "h \<otimes>\<^sub>G f = g" by simp
 qed
 
-text_raw {*\DefineSnippet{group1th16}{*}
+text_raw \<open>\DefineSnippet{group1th16}{\<close>
 reserve G for Group
 reserve h,g for "Element-of-struct G"
 
@@ -285,16 +285,16 @@ proof-
     using group_1_th_11[of _ "h \<otimes>\<^sub>G g",
     THEN conjunct1] by mauto
 qed
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 attr group_1_def_12 ("commutative")
    "attr commutative for multMagma means (\<lambda> S. (for x,y being Element-of-struct S holds
                                          x \<otimes>\<^sub>S y = y \<otimes>\<^sub>S x))"
-text_raw {*\DefineSnippet{group_1_cl}{*}
+text_raw \<open>\DefineSnippet{group_1_cl}{\<close>
 theorem group_1_cl[ex]:
   "cluster strict(multMagma) \<bar> commutative for Group"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof
   let ?T ="Trivial-multMagma"
   have [ty]: "?T be multMagma" by mauto
@@ -308,4 +308,3 @@ proof
 qed
 
 end
-

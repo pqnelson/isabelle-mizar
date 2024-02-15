@@ -104,11 +104,7 @@ func zfmisc_1_def_3 ("[:_, _, _:]") where
   mlet "X1 be set", "X2 be set", "X3 be set"
   "func [: X1,X2,X3 :] \<rightarrow> set equals [:[:X1,X2:],X3:]"
 proof-
-  show "inhabited(set)" by simp
-  show "\<exists>x : set. x = [:[:X1 ,X2:] ,X3:]" by auto
-  show " \<And>x y. x be set \<Longrightarrow>
-           y be set \<Longrightarrow> x = [:[:X1 ,X2:] ,X3:] \<Longrightarrow> y = [:[:X1 ,X2:] ,X3:] \<Longrightarrow> x = y"
-    by auto
+  show "[:[:X1 ,X2:] ,X3:] be set" by auto
 qed
 
 abbreviation triple ("[ _ , _ , _]") where

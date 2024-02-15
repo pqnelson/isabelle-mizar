@@ -58,44 +58,44 @@ theorem struct_0_cl_4[ty_func_cluster]:
   "let S be (non empty-struct \<bar> 1-sorted)
    cluster (the carrier of S) \<rightarrow> non empty" using struct_0_def_1[of S] by auto
 
-
 abbreviation struct_of_mode_1_prefix ("Element-of-struct _" [150] 150)
   where "Element-of-struct X \<equiv> Element-of (the carrier of X)"
+
 abbreviation struct_of_mode_2_prefix ("Subset-of-struct _" [150] 150)
   where "Subset-of-struct X \<equiv> Subset-of (the carrier of X)"
+
 abbreviation struct_of_mode_3_prefix ("Subset-Family-of-struct _" [150] 150)
   where "Subset-Family-of-struct X \<equiv> Subset-Family-of (the carrier of X)"
 
-
 abbreviation struct_of_mode_4_prefix ("Function-of-1struct _ , _ " [150] 150)
   where "Function-of-1struct X,Y \<equiv> Function-of (the carrier of X), Y"
+
 abbreviation struct_of_mode_5_prefix ("Function-of-2struct _ , _ " [150] 150)
   where "Function-of-2struct X,Y \<equiv> Function-of X, (the carrier of Y)"
 
 abbreviation struct_of_mode_6_prefix ("Function-of-struct _ , _ " [150] 150)
   where "Function-of-struct X,Y \<equiv> Function-of (the carrier of X), (the carrier of Y)"
 
-text_raw {*\DefineSnippet{struct0def2prefix}{*}
+text_raw \<open>\DefineSnippet{struct0def2prefix}{\<close>
 func struct_0_def_2 ( "{}s _ " 90) where
   mlet "T be 1-sorted"
   "func ({}s T) \<rightarrow> Subset-of-struct T equals {}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   show "op0 be (Subset-of-struct T)" using Subset_of_rule xb tarski_def_3
      one_sortedA field by auto
 qed
 
-text_raw {*\DefineSnippet{struct0def3}{*}
+text_raw \<open>\DefineSnippet{struct0def3}{\<close>
 func struct_0_def_3 ( "[#] _ " 90) where
   mlet "T be 1-sorted"
   "func ([#] T) \<rightarrow> Subset-of-struct T equals
     the carrier of T"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   show "(the carrier of T) be (Subset-of-struct T)" using Subset_of_rule xb tarski_def_3
      one_sortedA[of T] field by auto
 qed
-
 
 theorem struct_0_cl_5[ty_func_cluster]:
   "let T be 1-sorted
@@ -117,7 +117,6 @@ proof
   fix S assume[ty]: "S be (non empty-struct) \<bar>1-sorted"
   show "([#]S) be (non empty) \<bar> (Subset-of-struct S)" using struct_0_cl_7 by mauto
 qed
-
 
 func struct_0_def_4( "id-struct _" [90] 90) where
   mlet "S be 1-sorted"
@@ -147,8 +146,11 @@ mdefinition ZeroStr_d ("ZeroStr") where
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
 
 lemmas ZeroStrA = ZeroStr_d(1)
+
 lemmas [ex] = ZeroStr_d(2,3)
+
 lemmas ZeroStrD = ZeroStr_d(4)
+
 lemmas [ty_func] = ZeroStr_d(5)
 
 theorem ZeroStr_inheritance[ty_parent]:
@@ -156,9 +158,6 @@ theorem ZeroStr_inheritance[ty_parent]:
 
 theorem [ty_func]:
   "X be ZeroStr \<Longrightarrow> (the ZeroF of X) be Element-of-struct X" using field ZeroStrA by auto
-
-
-
 
 theorem struct_0_cl_9[ex]:
   "cluster strict (ZeroStr) \<bar> non empty-struct for ZeroStr"
@@ -180,7 +179,6 @@ proof(intro exI,simp,intro conjI)
         thus "\<not> ?X is empty-struct" using C1 struct_0_def_1 ZeroStr_inheritance S3 by auto
       qed
 
-
 abbreviation "OneStr_fields \<equiv> (# carrier \<rightarrow> set' ; OneF \<rightarrow> Element-of' the' carrier#)"
 
 mdefinition OneStr_d ("OneStr") where
@@ -190,7 +188,6 @@ mdefinition OneStr_d ("OneStr") where
   :well_defined_property[of _ _ "{carrier}\<union>{OneF}"]
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
 
-
 (*struct_well_defined
 proof(rule Fields_add_argM1[OF one_sorted(5)])
     fix X1 assume "X1 be one_sorted_fields\<bar>Struct"
@@ -198,7 +195,6 @@ proof(rule Fields_add_argM1[OF one_sorted(5)])
     thus "inhabited(Element-of-struct X1)" by auto
   qed (simp_all add:string)
 *)
-
 
 lemmas OneStrA = OneStr_d(1)
 lemmas [ex] = OneStr_d(2,3)
@@ -218,8 +214,6 @@ mdefinition ZeroOneStr_d ("ZeroOneStr") where
   :well_defined_property[of _ _ "{carrier}\<union>{ZeroF}\<union>{OneF}"]
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
 
-
-
 (*:struct_well_defined
 proof(rule Fields_add_argM1[OF ZeroStr_d(5)])
   fix X1 assume "X1 be ZeroStr_fields\<bar>Struct"
@@ -235,37 +229,34 @@ lemmas [ty_func] = ZeroOneStr_d(5)
 theorem ZeroOneStr_inheritance[ty_parent]:
   "X be ZeroOneStr \<Longrightarrow> X be ZeroStr \<and> X be OneStr" using ZeroOneStrA ZeroStrA OneStrA by simp
 
-text_raw {*\DefineSnippet{struct0def6}{*}
+text_raw \<open>\DefineSnippet{struct0def6}{\<close>
 func struct_0_def_6 ( "0\<^sub>_" [1000] 99) where
 mlet "S be ZeroStr"
   "func 0\<^sub>S \<rightarrow> Element-of-struct S equals
      the ZeroF of S"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   show "(the ZeroF of S) be Element-of (the carrier of S)"
        by simp
 qed
 
-
-text_raw {*\DefineSnippet{struct0def7}{*}
+text_raw \<open>\DefineSnippet{struct0def7}{\<close>
 func struct_0_def_7 ("1\<^sub>_" [1000] 99) where
   mlet "S be OneStr"
   "func 1\<^sub>S \<rightarrow> Element-of-struct S equals
      the OneF of S"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   show "(the OneF of S) be Element-of (the carrier of S)" by auto
 qed
 
-
-
 attr struct_0_def_8 ("degenerated")
-   "attr degenerated for ZeroOneStr means (\<lambda> S. 0\<^sub>S = 1\<^sub>S)"
+  "attr degenerated for ZeroOneStr means (\<lambda> S. 0\<^sub>S = 1\<^sub>S)"
 
 lemma struct_0_def_8c: "X is ZeroOneStr \<Longrightarrow> 0\<^sub>X \<noteq> 1\<^sub>X \<Longrightarrow> \<not> X is degenerated" using struct_0_def_8 by auto
 
 attr struct_0_def_9 ("trivial-struct")
-   "attr trivial-struct for 1-sorted means (\<lambda> S. the carrier of S is trivial)"
+  "attr trivial-struct for 1-sorted means (\<lambda> S. the carrier of S is trivial)"
 
 theorem struct_0_def_10:
   "let S be 1-sorted
@@ -350,11 +341,11 @@ proof(intro exI)
       qed
 
 
-text_raw {*\DefineSnippet{struct_0_cl_12}{*}
+text_raw \<open>\DefineSnippet{struct_0_cl_12}{\<close>
 theorem struct_0_cl_12[ty_func_cluster]:
   "let S be non degenerated \<bar> ZeroOneStr
    cluster 1\<^sub>S \<rightarrow> non zero \<^sub>S"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   assume A1[ty]: "S be non degenerated \<bar> ZeroOneStr"
   hence "1\<^sub>S \<noteq> 0\<^sub>S" "S be ZeroStr" using struct_0_def_8[of S] by auto
@@ -369,10 +360,10 @@ abbreviation struct_of_mode_12_prefix ("UnOp-of-struct _ " 60)
   where "UnOp-of-struct X \<equiv> BinOp-of (the carrier of X)"
 
 (* :: "(Set\<Rightarrow>Set)\<Rightarrow>Set\<Rightarrow>Mode"*)
-text_raw {*\DefineSnippet{BinOfP}{*}
+text_raw \<open>\DefineSnippet{BinOfP}{\<close>
 abbreviation(input) BinOp_of ("BinOp-of'' _") where
   "BinOp-of' X \<equiv> \<lambda>it. BinOp-of X(it)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 abbreviation(input) Subset_Falmily_of :: "(Set \<Rightarrow> Set) \<Rightarrow> (Set \<Rightarrow> Ty)" ("Subset-Family-of'' _") where
   "Subset-Family-of' X \<equiv> \<lambda>it. Subset-Family-of X(it)"
@@ -403,12 +394,12 @@ proof (intro impI)
 qed
 
 
-text_raw {*\DefineSnippet{struct_0_redef_2}{*}
+text_raw \<open>\DefineSnippet{struct_0_redef_2}{\<close>
 theorem struct_0_redef_2[ty_func]:
   "let S be non empty-struct\<bar>1-sorted \<and>
        x be Element-of-struct S \<and> y be Element-of-struct S
    redefine func {x,y} \<rightarrow> Subset-of-struct S"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof (intro impI)
   assume [ty]:"S is non empty-struct \<bar> 1-sorted \<and> x is Element-of-struct S \<and> y is Element-of-struct S"
   have "the carrier of S is non empty" using struct_0_def_1 by auto
@@ -440,7 +431,6 @@ proof-
   thus "(([#]S) \\ {0\<^sub>S}) be Subset-of-struct S" using A1 Subset_trans[OF _ A1] by auto
 qed
 
-
 mdefinition two_sorted_d ("2-sorted") where
   "struct 2-sorted (#
       carrier \<rightarrow> set' ;
@@ -466,11 +456,11 @@ theorem struct_0_cl_x[ty_func_cluster]:
   "let S be (non void-struct \<bar> 2-sorted)
    cluster (the carrier` of S) \<rightarrow> non empty" using struct_0_def_13[of S] by auto
 
-text_raw {*\DefineSnippet{struct_contrE}{*}
+text_raw \<open>\DefineSnippet{struct_contrE}{\<close>
 mdefinition I_one_sorted :: "Ty"  ("Inhabited'_1-sorted") where
   "struct Inhabited_1-sorted (# carrier \<rightarrow>  (\<lambda>S. non empty\<bar>set) #)"
   :well_defined_property[of _ _ "{carrier}"]
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
 
 lemmas Ione_sortedA = I_one_sorted(1)
@@ -481,11 +471,11 @@ lemmas [ty_func] = I_one_sorted(5)[rule_format]
 lemma [ty_func]:"S be Inhabited_1-sorted \<Longrightarrow> the carrier of S be non empty\<bar> set" using field Ione_sortedA by auto
 lemma [ty_parent]:"S be Inhabited_1-sorted \<Longrightarrow> S be Struct" using Ione_sortedA by auto
 
-text_raw {*\DefineSnippet{struct_contr1a}{*}
+text_raw \<open>\DefineSnippet{struct_contr1a}{\<close>
 theorem
   "X be Inhabited_1-sorted \<Longrightarrow> X be 1-sorted"
   "X be non empty-struct\<bar>1-sorted \<Longrightarrow> X be Inhabited_1-sorted"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   assume [ty]: "X be Inhabited_1-sorted"
   hence "X is (carrier \<rightarrow>  (\<lambda>S. non empty\<bar>set))" using Ione_sortedA[of X] by auto+
@@ -501,11 +491,11 @@ next
 qed
 
 
-text_raw {*\DefineSnippet{struct_contr1b}{*}
+text_raw \<open>\DefineSnippet{struct_contr1b}{\<close>
 definition
   "struct Test (# testA \<rightarrow> (\<lambda>T. Element-of the testB of T);
                      testB \<rightarrow> (\<lambda>T. Element-of the testA of T) #)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 schematic_goal Test:
    shows ?X
@@ -528,38 +518,38 @@ proof (induct rule: struct_scheme[OF Test_def,of "{testA}\<union>{testB}",case_n
     qed
   case monotone
     show "\<forall>\<^sub>L X1. X1 be (#?A;?B#)\<bar>Struct \<longrightarrow> ?AB \<subseteq> dom X1"
-      proof(standard,standard)
-         fix X1
-         assume [ty]:"X1 be (#?A;?B#)\<bar>Struct"
-         hence A1: "testA in dom X1" "testB in dom X1" using field by auto
-         have [ty]: "X1 be Function" using Struct_def by mauto
-         show "?AB \<subseteq> dom X1"
-         proof(intro tarski_def_3b)
-           fix x assume "x in {testA} \<union> {testB}"
-           hence "x=testA \<or> x=testB" using tarski_def_1 xboole_0_def_3 by mauto
-           thus "x in dom X1" using A1 by mauto
-         qed mauto
-      qed
+    proof(standard,standard)
+      fix X1
+      assume [ty]:"X1 be (#?A;?B#)\<bar>Struct"
+      hence A1: "testA in dom X1" "testB in dom X1" using field by auto
+      have [ty]: "X1 be Function" using Struct_def by mauto
+      show "?AB \<subseteq> dom X1"
+      proof(intro tarski_def_3b)
+        fix x assume "x in {testA} \<union> {testB}"
+        hence "x=testA \<or> x=testB" using tarski_def_1 xboole_0_def_3 by mauto
+        thus "x in dom X1" using A1 by mauto
+      qed mauto
+    qed
   case restriction
-  show "\<forall>\<^sub>L X1. X1 be (#?A;?B#)\<bar>Struct \<longrightarrow> X1|?AB is (#?A;?B#)"
-      proof(standard,standard)
-        fix X1
-        assume A1[ty]: "X1 be (#?A;?B#)\<bar>Struct"
-        have G1: "testA in ?AB" "testB in ?AB" using tarski_def_1 xboole_0_def_3 all_set by auto
-        have "testA in dom X1" "testB in dom X1" using A1 field[of X1 testA "\<lambda>T . Element-of the testB of T"]
+    show "\<forall>\<^sub>L X1. X1 be (#?A;?B#)\<bar>Struct \<longrightarrow> X1|?AB is (#?A;?B#)"
+    proof(standard,standard)
+      fix X1
+      assume A1[ty]: "X1 be (#?A;?B#)\<bar>Struct"
+      have G1: "testA in ?AB" "testB in ?AB" using tarski_def_1 xboole_0_def_3 all_set by auto
+      have "testA in dom X1" "testB in dom X1" using A1 field[of X1 testA "\<lambda>T . Element-of the testB of T"]
                                         field[of X1 testB "\<lambda>T . Element-of the testA of T"] by auto
-        hence "the' testA(X1) = the' testA(X1|?AB)"
-              "the' testB(X1) = the' testB(X1|?AB)" using the_selector_of_restriction[of X1 _ ?AB] G1 by mauto
-        thus "(X1 | ?AB) is (#?A;?B#)" using A1 G1 fields_restriction by simp
-     qed
+      hence "the' testA(X1) = the' testA(X1|?AB)"
+            "the' testB(X1) = the' testB(X1|?AB)" using the_selector_of_restriction[of X1 _ ?AB] G1 by mauto
+      thus "(X1 | ?AB) is (#?A;?B#)" using A1 G1 fields_restriction by simp
+    qed
 qed
 
 lemmas [ex] = Test[THEN conjunct2,THEN conjunct1]
 
 
-text_raw {*\DefineSnippet{struct_contr3}{*}
+text_raw \<open>\DefineSnippet{struct_contr3}{\<close>
 theorem "\<forall>T:Test. the testA of T = {} \<and> the testB of T = {}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(standard,standard)
   fix T
   assume A1:"T be Test"

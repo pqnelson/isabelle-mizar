@@ -5,8 +5,6 @@ theory compos_1
    funct_2
 begin
 
-
-
 mdefinition COM_Struct :: "Ty"  ("COM-Struct") where
   "struct COM-Struct (# InstructionsF \<rightarrow> (\<lambda>_ . Instructions) #)"
   :well_defined_property[of _ _ "{InstructionsF}"]
@@ -58,4 +56,3 @@ proof-
 qed
 
 end
-

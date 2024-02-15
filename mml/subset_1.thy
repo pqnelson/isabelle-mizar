@@ -153,13 +153,9 @@ func subset_0_def_4("'(_,_')`") where
      E \\ A"
 text_raw \<open>}%EndSnippet\<close>
 proof-
-  show "inhabited(Subset-of E)" by auto
-  show "\<And>x y. x be Subset-of E \<Longrightarrow> y be Subset-of E \<Longrightarrow> x = E \\ A \<Longrightarrow> y = E \\ A \<Longrightarrow> x = y"
-    by auto
   have "E\\A c= E" using xboole_0_def_5 tarski_def_3 by auto
   hence "E\\A in bool E" using zfmisc_1_def_1 by auto
-  hence "(E\\A) be Subset-of E" using Element(6) by auto
-  thus "\<exists>x : Subset-of E. x = E \\ A" by auto
+  thus "(E\\A) be Subset-of E" using Element(6) by auto
 qed
 
 lemma Subset_trans:
@@ -178,8 +174,7 @@ func subset_1_def_8 ("In '(_ , _')") where
      x"
 proof-
   assume "x in X"
-  hence "x be Element-of X" using Element_of_rule3 all_set by auto
-  thus "\<exists>xa : Element-of X. xa = x" by auto
+  thus "x be Element-of X" using Element_of_rule3 all_set by auto
 qed mauto
 
 abbreviation Subset_Family_prefix ("( Subset-Family-of _ )" 105)

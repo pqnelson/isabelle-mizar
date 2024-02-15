@@ -2,24 +2,23 @@
 \<^marker>\<open>creator "Karol Pąk"\<close>
 theory compos_0
   imports finseq_1
-
 begin
-
-
 
 attr compos_0_def_1 ("standard-ins")
   "attr standard-ins for set means (\<lambda>S. ex X be non empty\<bar>set st S c= [:NAT, NAT*,X*:])"
 
 definition InsCode ("InsCode _")
 where compos_0_synonym_1: "let x be object synonym InsCode x for x`1`1"
+
 definition JumpPart ("JumpPart _")
 where compos_0_synonym_2: "let x be object synonym JumpPart x for x`1`2"
+
 definition AddressPart ("AddressPart _")
 where compos_0_synonym_3: "let x be object synonym AddressPart x for x`2"
 
-text_raw {*\DefineSnippet{instruction}{*}
+text_raw \<open>\DefineSnippet{instruction}{\<close>
 term "[InsCode i, JumpPart i, AddressPart i]"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 theorem compos_0_cl_1[ty_func]:
   "let S be non empty \<bar>standard-ins\<bar>set \<and>
@@ -64,7 +63,6 @@ func compos_0_def_2 ("InsCodes _") where
   "func InsCodes S \<rightarrow> set equals
      proj1 (proj1 S)" by mauto
 
-
 abbreviation compos_0_mode_1 ("InsType-of _") where
   "InsType-of S \<equiv> Element-of InsCodes S"
 
@@ -90,13 +88,13 @@ proof
   thus "InsCode I be InsType-of S" using A4 by auto
 qed
 
-text_raw {*\DefineSnippet{compos_0_def_3}{*}
+text_raw \<open>\DefineSnippet{compos_0_def_3}{\<close>
 func compos_0_def_3 ("JumpParts _ , _") where
   mlet "S be non empty \<bar>standard-ins \<bar>set",
            "T be InsType-of S"
   "func JumpParts I , T \<rightarrow> set equals
      {JumpPart i where i be Element-of I: InsCode i = T }"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   by mauto
 
 func compos_0_def_4 ("AddressParts _ , _") where
@@ -106,25 +104,24 @@ func compos_0_def_4 ("AddressParts _ , _") where
      { AddressPart I where I be Element-of S: InsCode I = T }"
 by mauto
 
-text_raw {*\DefineSnippet{compos_0_def_5}{*}
+text_raw \<open>\DefineSnippet{compos_0_def_5}{\<close>
 attr compos_0_def_5 ("homogeneous")
   "attr homogeneous for non empty\<bar>standard-ins\<bar>set means (\<lambda>I.
       for i,j be Element-of I st InsCode i = InsCode j holds
          dom JumpPart i = dom JumpPart j)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-  text_raw {*\DefineSnippet{compos_0_def_7}{*}
+text_raw \<open>\DefineSnippet{compos_0_def_7}{\<close>
 attr compos_0_def_7 ("J|A-independent")
   "attr J|A-independent for non empty\<bar>standard-ins\<bar>set means (\<lambda>I.
      for n be Nat, f1,f2 be NAT-valued \<bar>Function, p be object
         st dom f1 = dom f2 \<and> [n,f1,p] in I holds [n,f2,p] in I)"
-  text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-
-text_raw {*\DefineSnippet{compos_0_def_10}{*}
+text_raw \<open>\DefineSnippet{compos_0_def_10}{\<close>
 attr compos_0_def_10 ("with'_halt")
   "attr with_halt for set means (\<lambda>S. [{},{},{}] in S)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 func compos_0_def_11 ("halt _") where
   mlet "S be with_halt \<bar>set"
@@ -143,11 +140,10 @@ proof-
   thus "X is non empty" using xboole_0_def_1 all_set by auto
 qed
 
-
-text_raw {*\DefineSnippet{Instructions}{*}
+text_raw \<open>\DefineSnippet{Instructions}{\<close>
 abbreviation
   "Instructions \<equiv> J|A-independent\<bar>homogeneous\<bar>with_halt\<bar>standard-ins\<bar>set"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 theorem Instructions_non_empty:
   "X be Instructions \<Longrightarrow> X is non empty"
 proof-
@@ -213,6 +209,4 @@ proof
   show "{[{},{},{}]} be Instructions" using Instructions_ex by simp
 qed
 
-
 end
-

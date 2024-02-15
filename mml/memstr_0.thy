@@ -4,7 +4,6 @@ theory memstr_0
   imports struct_0 ordinal1
 begin
 
-
 abbreviation MemStruct_fields_prefix ("Mem-Struct'_fields _")
   where "Mem-Struct_fields N \<equiv> (#
    carrier \<rightarrow> (\<lambda>S. set);
@@ -12,7 +11,7 @@ abbreviation MemStruct_fields_prefix ("Mem-Struct'_fields _")
    Object-Kind \<rightarrow> (\<lambda>S. Function-of the carrier of S, N) ;
    ValuesF \<rightarrow>  (\<lambda>S. ManySortedSet-of N) #)"
 
-text_raw {*\DefineSnippet{MemStruct}{*}
+text_raw \<open>\DefineSnippet{MemStruct}{\<close>
 mdefinition MemStruct_over ("Mem-Struct-over _") where
   assumes "N be set"
 "struct Mem-Struct-over N (#
@@ -21,7 +20,7 @@ mdefinition MemStruct_over ("Mem-Struct-over _") where
    Object-Kind \<rightarrow> (\<lambda>S. Function-of the carrier of S, N);
    ValuesF \<rightarrow> (\<lambda>S. ManySortedSet-of N)
 #)" : well_defined_property[of _ _ "{carrier}\<union>{ZeroF}\<union>{Object-Kind}\<union>{ValuesF}"]
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
 
 lemmas MemStruct_overA = MemStruct_over(1)
@@ -65,10 +64,10 @@ proof-
      pboole_def_1_th_1[of "the carrier of S" ] by auto
 qed
 
-text_raw {*\DefineSnippet{memstr_0_mode_1}{*}
+text_raw \<open>\DefineSnippet{memstr_0_mode_1}{\<close>
 abbreviation memstr_0_mode_1 ("PartState-of _" 190) where
   "PartState-of M \<equiv> the carrier of M-defined \<bar> the_Values_of M-compatible \<bar> Function"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 
@@ -148,11 +147,11 @@ proof-
 qed
 
 
-text_raw {*\DefineSnippet{memstr_0_mode_2}{*}
+text_raw \<open>\DefineSnippet{memstr_0_mode_2}{\<close>
 abbreviation memstr_0_mode_2 ("State-of _" 190)
   where "State-of M \<equiv>
          (the carrier of M):total \<bar> (the carrier of M)-defined \<bar> the_Values_of M-compatible \<bar> Function"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 abbreviation memstr_0_mode_3 ("Object-of _" 190)
 where "Object-of S \<equiv> Element-of-struct S"
@@ -290,13 +289,13 @@ proof(intro ballI)
   thus "{IC \<^sub>S}  misses dom DataPart \<^sub>S p" using xboole_0_antonym_meets all_set by auto
 qed mauto
 
-text_raw {*\DefineSnippet{memstr_0_th_6}{*}
+text_raw \<open>\DefineSnippet{memstr_0_th_6}{\<close>
 theorem memstr_0_th_6:
   "for N be with_zero\<bar>set holds
       for S be Mem-Struct-over N holds
          for p be PartState-of S holds
     p is S:data-only \<longleftrightarrow> dom p c= Data-Locations \<^sub>S"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro ballI,rule iffI3)
   fix N S p
   assume T0[ty]: "N be with_zero\<bar>set"

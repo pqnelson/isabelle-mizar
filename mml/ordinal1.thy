@@ -176,8 +176,6 @@ proof (intro ballI notI impI)
   then show False using A1 A4 enumset1_def_1 by mauto
 qed simp_all
 
-
-
 mtheorem ordinal1_th_9:
   "a in A \<longrightarrow> a is Ordinal"
 proof
@@ -212,10 +210,10 @@ A7: "a is epsilon-transitive" using ordinal1_def_2I[of a] all_set by auto
   thus "a is Ordinal" using A7 ordinal1_def_4I by auto
 qed
 
-text_raw {*\DefineSnippet{ordinal1_th_10}{*}
+text_raw \<open>\DefineSnippet{ordinal1_th_10}{\<close>
 mtheorem ordinal1_th_10:
   "\<not>A in B \<and> A \<noteq> B \<longrightarrow> B in A"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(auto)
   assume
 A1: "not A in B" and
@@ -530,11 +528,11 @@ proof (standard,standard)
   thus "A is limit_ordinal" using ordinal1_def_6I by mauto
 qed mauto
 
-text_raw {*\DefineSnippet{ordinal1_th_24A}{*}
+text_raw \<open>\DefineSnippet{ordinal1_th_24A}{\<close>
 mtheorem ordinal1_th_24A:
   "\<forall>A : Ordinal. 
      A is limit_ordinal \<longleftrightarrow> (for C be set st C in A holds succ C in A)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(standard, rule iffI3)
   fix A assume [ty]:"A is Ordinal"
   show "A is limit_ordinal \<longrightarrow> (for C be set st C in A holds succ C in A)"
@@ -594,10 +592,10 @@ proof -
     by (intro xboole_0_sch_2[of _ _ "\<lambda>xa. xa in X \<and> xa is Ordinal"]) mauto
 qed mauto
 
-text_raw {*\DefineSnippet{ordinal1_th_32}{*}
+text_raw \<open>\DefineSnippet{ordinal1_th_32}{\<close>
 mtheorem ordinal1_th_32:
   "\<forall>D : Ordinal.  ex A be Ordinal st D in A \<and> A is limit_ordinal"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 proof
   fix D
@@ -752,14 +750,14 @@ proof
   show "{{}} is with_zero\<bar>set" using ordinal1_def_16 tarski_def_1 by mauto
 qed
 
-text_raw {*\DefineSnippet{ordinal2_sch_1}{*}
+text_raw \<open>\DefineSnippet{ordinal2_sch_1}{\<close>
 theorem ordinal2_sch_1:
   assumes A1: "P({})"
       and A2: "\<forall>A:Ordinal. P(A) \<longrightarrow> P(succ A)"
       and A3: "\<forall>A:Ordinal. A \<noteq> {} \<and> A be limit_ordinal \<and>
                  (\<forall>B:Ordinal. B in A \<longrightarrow> P(B)) \<longrightarrow> P(A)"
   shows "\<forall>A:Ordinal.  P(A)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
 have A4: "for A st for B st B in A holds P(B) holds P(A)"
   proof(standard,standard)
@@ -789,13 +787,13 @@ have A4: "for A st for B st B in A holds P(B) holds P(A)"
 qed
 
 
-text_raw {*\DefineSnippet{OmegaInd}{*}
+text_raw \<open>\DefineSnippet{OmegaInd}{\<close>
 theorem ordinal_2_sch_19:
   assumes [ty]: "a be Nat"
     and A1: "P({})"
     and A2: "\<forall>n : Nat. P(n) \<longrightarrow> P(succ n)"
   shows "P(a)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   have [ty]:"a is set" using all_set by auto
   let ?P= "\<lambda>x . x is natural \<longrightarrow> P(x)"

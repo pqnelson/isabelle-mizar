@@ -4,7 +4,6 @@ theory extpro_1
   imports compos_1 memstr_0 funcop_1
 begin
 
-
 mdefinition AMI_Struct_over ("AMI-Struct-over _") where
   mlet "N be set"
   "struct AMI-Struct-over N(# carrier \<rightarrow> (\<lambda>S. set);
@@ -62,25 +61,25 @@ proof-
 qed
 
 theorem extpro_1_lm_1:
-  "N be with_zero\<bar> set\<Longrightarrow>[#carrier\<mapsto>{{}};ZeroF\<mapsto>{};InstructionsF\<mapsto>{[{},{},{}]}; Object-Kind\<mapsto>{{}} \<comment>> {};
-   ValuesF\<mapsto>N \<comment>> NAT;Execution\<mapsto> ({[{},{},{}]} \<comment>> id (product( (N \<comment>> NAT) *` ({{}} \<comment>> {}))))#]
+  "N be with_zero\<bar> set\<Longrightarrow>[#carrier\<mapsto>{{}};ZeroF\<mapsto>{};InstructionsF\<mapsto>{[{},{},{}]}; Object-Kind\<mapsto>{{}} --> {};
+   ValuesF\<mapsto>N --> NAT;Execution\<mapsto> ({[{},{},{}]} --> id (product( (N --> NAT) *` ({{}} --> {}))))#]
 is strict(AMI-Struct-over N)"
 proof-
   assume [ty]:"N is with_zero\<bar> set"
   let ?h = "[{},{},{}]"
-  let ?IT = "[#carrier\<mapsto>{{}};ZeroF\<mapsto>{};InstructionsF\<mapsto>{?h}; Object-Kind\<mapsto>{{}} \<comment>> {};
-   ValuesF\<mapsto>N \<comment>> NAT;Execution\<mapsto> ({?h} \<comment>> id (product( (N \<comment>> NAT) *` ({{}} \<comment>> {}))))#]"
+  let ?IT = "[#carrier\<mapsto>{{}};ZeroF\<mapsto>{};InstructionsF\<mapsto>{?h}; Object-Kind\<mapsto>{{}} --> {};
+   ValuesF\<mapsto>N --> NAT;Execution\<mapsto> ({?h} --> id (product( (N --> NAT) *` ({{}} --> {}))))#]"
   have [ty]:"{{}} is set" by mauto
   have [ty]:"{} is Element-of {{}}" using tarski_def_1 by mauto
   have [ty]:"{?h} is Instructions" using Instructions_ex by auto
 
   have B1:"{} in N" using ordinal1_def_16E by auto
-  hence [ty]: "({{}} \<comment>> {}) is Function-of {{}}, N" using funcop_cl by mty auto
+  hence [ty]: "({{}} --> {}) is Function-of {{}}, N" using funcop_cl by mty auto
 
-  have "dom (N \<comment>> NAT) = N" "(N \<comment>> NAT) be Function" using funcop_1_th_13 all_set funcop_1_cl_1 by auto
-  hence [ty]:"(N \<comment>> NAT) be ManySortedSet-of N" using pboole_def_1_th_1 by auto
-  let ?E = "product( (N \<comment>> NAT) *` ({{}}\<comment>> {}))"
-  have [ty]:"({?h} \<comment>> id (?E)) be (Action-of {?h}, ?E)"
+  have "dom (N --> NAT) = N" "(N --> NAT) be Function" using funcop_1_th_13 all_set funcop_1_cl_1 by auto
+  hence [ty]:"(N --> NAT) be ManySortedSet-of N" using pboole_def_1_th_1 by auto
+  let ?E = "product( (N --> NAT) *` ({{}}--> {}))"
+  have [ty]:"({?h} --> id (?E)) be (Action-of {?h}, ?E)"
    proof-
      have E:"id (?E) be Function" using funct_1_cl_4 relat_1_def_8 by mty auto
      have E1: "dom id (?E) = ?E"
@@ -109,18 +108,18 @@ func extpro_1_def_1 ("Trivial-AMI _") where
       the carrier of it = {{}} \<and>
         the ZeroF of it = {} \<and>
 the InstructionsF of it = {[{},{},{}]} \<and>
-  the Object-Kind of it = {{}} \<comment>> {}  \<and>
-      the ValuesF of it = N \<comment>> NAT \<and>
-    the Execution of it = {[{},{},{}]} \<comment>> id (product( N \<comment>> NAT \<circ> {{}} \<comment>> {})))"
+  the Object-Kind of it = {{}} --> {}  \<and>
+      the ValuesF of it = N --> NAT \<and>
+    the Execution of it = {[{},{},{}]} --> id (product( N --> NAT \<circ> {{}} --> {})))"
 proof-
   let ?h = "[{},{},{}]"
-  let ?IT = "[#carrier\<mapsto>{{}};ZeroF\<mapsto>{};InstructionsF\<mapsto>{?h}; Object-Kind\<mapsto>{{}} \<comment>> {};
-   ValuesF\<mapsto>N \<comment>> NAT;Execution\<mapsto> ({?h} \<comment>> id (product( (N \<comment>> NAT) *` ({{}} \<comment>> {}))))#]"
+  let ?IT = "[#carrier\<mapsto>{{}};ZeroF\<mapsto>{};InstructionsF\<mapsto>{?h}; Object-Kind\<mapsto>{{}} --> {};
+   ValuesF\<mapsto>N --> NAT;Execution\<mapsto> ({?h} --> id (product( (N --> NAT) *` ({{}} --> {}))))#]"
   let ?T = "\<lambda>it .the carrier of it = {{}} \<and> (the ZeroF of it) = {} \<and>
      (the InstructionsF of it) = {?h} \<and>
-     (the Object-Kind of it) = ({{}}\<comment>> {})  \<and>
-     (the ValuesF of it) = (N \<comment>> NAT) \<and>
-     (the Execution of it) = ({?h} \<comment>> id (product( (N \<comment>> NAT) *` ({{}}\<comment>> {}))))"
+     (the Object-Kind of it) = ({{}}--> {})  \<and>
+     (the ValuesF of it) = (N --> NAT) \<and>
+     (the Execution of it) = ({?h} --> id (product( (N --> NAT) *` ({{}}--> {}))))"
   have A1[ty]:"?IT is strict(AMI-Struct-over N)" using extpro_1_lm_1 by mauto
   have [ty]:"?IT is AMI-Struct-over N" using strict by mauto
   have A2: "?T(?IT)"
@@ -132,9 +131,9 @@ next
       let ?h = "[{},{},{}]"
   let ?T = "\<lambda>it .the carrier of it = {{}} \<and> (the ZeroF of it) = {} \<and>
      (the InstructionsF of it) = {?h} \<and>
-     (the Object-Kind of it) = ({{}}\<comment>> {})  \<and>
-     (the ValuesF of it) = (N \<comment>> NAT) \<and>
-     (the Execution of it) = ({?h} \<comment>> id (product( (N \<comment>> NAT) *` ({{}}\<comment>> {}))))"
+     (the Object-Kind of it) = ({{}}--> {})  \<and>
+     (the ValuesF of it) = (N --> NAT) \<and>
+     (the Execution of it) = ({?h} --> id (product( (N --> NAT) *` ({{}}--> {}))))"
   fix it1 it2 assume
     [ty]: "it1 be strict (AMI-Struct-over N)"
     "it2 be strict (AMI-Struct-over N)"
@@ -165,8 +164,8 @@ proof
   let ?T = "Trivial-AMI N"
   let ?VT =  "the_Values_of ?T"
   show T1[ty]: "?T be Mem-Struct-over N" using extpro_1_def_1 by mauto
-  have A0: "the ValuesF of ?T = N \<comment>> NAT"
-       "(the Object-Kind of ?T) = ({{}}\<comment>> {})" using A1 extpro_1_def_1 by auto
+  have A0: "the ValuesF of ?T = N --> NAT"
+       "(the Object-Kind of ?T) = ({{}}--> {})" using A1 extpro_1_def_1 by auto
   have V[ty]: "the ValuesF of ?T be ManySortedSet-of N" by mauto
   have V1: "the ValuesF of ?T be Function" by mauto
   have O[ty]: "the Object-Kind of ?T be Function-of the carrier of ?T, N" by mauto
@@ -195,7 +194,7 @@ proof
   thus "?VT is non-empty" using funct_1_def_9I T2 by mauto
 qed mauto
 
-text_raw {*\DefineSnippet{extpro_1_def_2}{*}
+text_raw \<open>\DefineSnippet{extpro_1_def_2}{\<close>
  func extpro_1_def_2( "Exec \<^sub>_'(_ ,  _')" 190) where
  mlet "N be with_zero\<bar>set",
            "S be N:with_non-empty_values \<bar> AMI-Struct-over N",
@@ -203,7 +202,7 @@ text_raw {*\DefineSnippet{extpro_1_def_2}{*}
            "s be State-of S"
   "func Exec \<^sub>S(I,s) \<rightarrow> State-of S equals
     ((the Execution of S).I).s "
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   let ?E = "the Execution of S"
   let ?EI = "?E.I"
@@ -261,28 +260,28 @@ proof-
   thus "?EIs be State-of S" using W1 eis ei by auto
 qed
 
-text_raw {*\DefineSnippet{extpro_1_def_3}{*}
+text_raw \<open>\DefineSnippet{extpro_1_def_3}{\<close>
 attr extpro_1_def_3("halting _, _")
    "N be with_zero\<bar>set \<Longrightarrow>
            S be N:with_non-empty_values \<bar> AMI-Struct-over N \<Longrightarrow>
   attr halting S,N for Instruction-of S means (\<lambda>I.
        for s be State-of S holds Exec \<^sub>S(I,s) = s)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{extpro_1_def_4}{*}
+text_raw \<open>\DefineSnippet{extpro_1_def_4}{\<close>
 attr extpro_1_def_4 ("halting'_on _")
    "N be with_zero\<bar>set \<Longrightarrow>
     attr halting_on N for N:with_non-empty_values \<bar> AMI-Struct-over N means (\<lambda>S.
       halt \<^sub>S is halting S,N)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{extpro_1_cl}{*}
+text_raw \<open>\DefineSnippet{extpro_1_cl}{\<close>
 mtheorem extpro_1_cl:
   "for N be with_zero\<bar>set,
        I be Instruction-of Trivial-AMI N,
        s be State-of Trivial-AMI N holds
     Exec \<^sub>Trivial-AMI N(I,s) = s"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro ballI)
   fix N I s
   let ?T = "Trivial-AMI N"
@@ -296,16 +295,16 @@ proof(intro ballI)
 
   have A2: "?T be N:with_non-empty_values \<bar> AMI-Struct-over N" using extpro_1_cl_1 extpro_1_def_1 A1(1) by auto
   have E: "Exec \<^sub>?T(I,s) = ((the Execution of ?T).I).s" using extpro_1_def_2[OF A1(1) A2] by auto
-  hence R: "the Execution of ?T = op2 \<comment>> id (product( (N \<comment>> NAT) *` ({{}}\<comment>> {})))"
+  hence R: "the Execution of ?T = op2 --> id (product( (N --> NAT) *` ({{}}--> {})))"
     using extpro_1_def_1 by auto
   have "I be Element-of {[{},{},{}]}" using extpro_1_def_1[OF A1] A1 A by auto
   hence A5: "I in {[{},{},{}]}" using Element_of by mty auto
-  hence A3: "(the Execution of ?T).I = id (product( (N \<comment>> NAT) *` ({{}}\<comment>> {})))"
+  hence A3: "(the Execution of ?T).I = id (product( (N --> NAT) *` ({{}}--> {})))"
     using funcop_1_th_7 R by mauto
    have U[ty]: "the_Values_of ?T be ManySortedSet-of the carrier of ?T" by mty auto
-  have "the ValuesF of ?T = (N\<comment>> NAT)"
-       "(the Object-Kind of ?T) = ({{}}\<comment>> {})" using extpro_1_def_1[OF A1(1)] A1 by auto
-  hence A4: "(N \<comment>> NAT) *` ({{}}\<comment>> {}) = the_Values_of ?T"
+  have "the ValuesF of ?T = (N--> NAT)"
+       "(the Object-Kind of ?T) = ({{}}--> {})" using extpro_1_def_1[OF A1(1)] A1 by auto
+  hence A4: "(N --> NAT) *` ({{}}--> {}) = the_Values_of ?T"
         "the_Values_of ?T be non-empty"
     using memstr_0_def_2[of N ?T] memstr_0_def_3E[of N ?T] A1 A2 by mauto
   have D: "dom s = the carrier of ?T \<and> dom the_Values_of ?T=the carrier of ?T"
@@ -318,11 +317,11 @@ proof(intro ballI)
   thus "Exec \<^sub>?T(I,s) = s" using A5 A4 A3 E funct_1_th_18 by mauto
 qed mauto
 
-text_raw {*\DefineSnippet{extpro_1_cl_2}{*}
+text_raw \<open>\DefineSnippet{extpro_1_cl_2}{\<close>
 theorem extpro_1_cl_2:
   "let N be with_zero\<bar>set
    cluster Trivial-AMI N \<rightarrow> halting_on N"
-  text_raw {*}%EndSnippet*}
+  text_raw \<open>}%EndSnippet\<close>
 proof(standard,mauto)
   fix N
   let ?T = "Trivial-AMI N"
@@ -345,11 +344,11 @@ qed
 notation
   compos_1_def_10 ("halt\<^bsub>_\<^esub>")
 
-text_raw {*\DefineSnippet{extpro_1}{*}
+text_raw \<open>\DefineSnippet{extpro_1}{\<close>
 theorem extpro_1:
   assumes [ty]: "N be with_zero \<bar> set"
   shows "halt\<^bsub>Trivial-AMI N\<^esub> be halting Trivial-AMI N, N"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(standard,mauto)
   let ?T = "Trivial-AMI N"
  show I: "inhabited(State-of ?T)" using memstr_0_cl_ex by mauto

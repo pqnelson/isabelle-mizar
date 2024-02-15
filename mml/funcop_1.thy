@@ -8,7 +8,7 @@ func funcop_1_def_2 (infix "-->" 90) where
   mlet "X be set", "y be object"
   "func X --> y \<rightarrow> set equals [:X,{y}:]"
 proof -
-  show " inhabited(set)" by auto
+  show "[:X ,{y}:] be set" by auto
 qed mauto
 
 mtheorem funcop_1_cl_1[ty_func_cluster]:

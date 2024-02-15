@@ -68,13 +68,13 @@ proof-
   thus "?X is non trivial-struct" using struct_0_def_9[of ?X] by auto
 qed
 
-text_raw {*\DefineSnippet{algstr0def1}{*}
+text_raw \<open>\DefineSnippet{algstr0def1}{\<close>
 func algstr_0_def_1 ("_ \<oplus>\<^sub>_ _" [66,1000,67] 66) where
   mlet "M be addMagma", "x be Element-of-struct M",
        "y be Element-of-struct M"
   "func x \<oplus>\<^sub>M y \<rightarrow> Element-of-struct M equals
      (the addF of M) . \<lparr> x , y \<rparr>"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   let ?A = "the carrier of M"
    have A1: "(the addF of M) be BinOp-of ?A" "?A be set" using ty by auto
@@ -227,29 +227,29 @@ lemmas addLoopStrD = addLoopStr_d(4)
 lemmas addLoopStrR = addLoopStr_d(5)
 
 
-text_raw {*\DefineSnippet{addLoopStrEx1}{*}
+text_raw \<open>\DefineSnippet{addLoopStrEx1}{\<close>
 term "{[carrier, the set]} \<union>
       {[addF, the BinOp-of (the set)]} \<union>
       {[ZeroF, the Element-of (the set)]}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 
 
-text_raw {*\DefineSnippet{addLoopStrEx2}{*}
+text_raw \<open>\DefineSnippet{addLoopStrEx2}{\<close>
 term "[#carrier \<mapsto> (the set);
       addF\<mapsto> the BinOp-of (the set);
       ZeroF\<mapsto> the Element-of (the set)#]"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
-text_raw {*\DefineSnippet{addLoopStrInheritance}{*}
+text_raw \<open>\DefineSnippet{addLoopStrInheritance}{\<close>
 theorem addLoopStr_inheritance[ty_cond_cluster]:
   assumes "X be addLoopStr"
   shows "X be addMagma \<and> X be ZeroStr"
     using addLoopStrA addMagmaA ZeroStrA assms
     by simp
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
 
@@ -334,36 +334,36 @@ attr algstr_0_def_10 ("left-complementable\<^sub>_" [200] 200)
 attr algstr_0_def_11 ("right-complementable\<^sub>_" [200] 200)
    "M be addLoopStr \<Longrightarrow> attr right-complementable\<^sub>M for Element-of-struct M means (\<lambda> x.
                                        (ex y be Element-of-struct M st x \<oplus>\<^sub>M y =0\<^sub>M))"
-text_raw {*\DefineSnippet{algstr_0_def_12}{*}
+text_raw \<open>\DefineSnippet{algstr_0_def_12}{\<close>
 attr algstr_0_def_12 ("add-complementable\<^sub>_" [200] 200)
    " M be addLoopStr\<Longrightarrow>attr add-complementable\<^sub>M for Element-of-struct M means (\<lambda> x.
                                        x is right-complementable\<^sub>M \<bar> left-complementable\<^sub>M)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
-text_raw {*\DefineSnippet{algstr_0_cl_19}{*}
+text_raw \<open>\DefineSnippet{algstr_0_cl_19}{\<close>
 theorem algstr_0_cl_19[ty_cond_cluster]:
   "let M be addLoopStr
    cluster right-complementable\<^sub>M \<bar> left-complementable\<^sub>M \<rightarrow> add-complementable\<^sub>M for Element-of-struct M"
   using algstr_0_def_12I by auto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
-text_raw {*\DefineSnippet{algstr_0_cl_20}{*}
+text_raw \<open>\DefineSnippet{algstr_0_cl_20}{\<close>
 theorem algstr_0_cl_20[ty_cond_cluster]:
   "let M be addLoopStr
    cluster add-complementable\<^sub>M \<rightarrow> right-complementable\<^sub>M \<bar> left-complementable\<^sub>M for Element-of-struct M"
     using algstr_0_def_12E by auto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{algstr0def13}{*}
+text_raw \<open>\DefineSnippet{algstr0def13}{\<close>
 func algstr_0_def_13 ("\<ominus>\<^sub>_ _" [1000, 86] 87) where
  mlet "M be addLoopStr",
           "x be Element-of-struct M"
   "assume x is left-complementable\<^sub>M \<bar> right-add-cancelable\<^sub>M
    func \<ominus>\<^sub>M x \<rightarrow> Element-of-struct M means
      (\<lambda>it. it \<oplus>\<^sub>M x = 0\<^sub>M)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
       assume [ty]:"x is left-complementable\<^sub>M \<bar>right-add-cancelable\<^sub>M"
       thus "ex y be Element-of-struct M st y \<oplus>\<^sub>M x= 0\<^sub>M" using algstr_0_def_10 by mauto
@@ -502,14 +502,14 @@ section "Multiplicative structures"
 
 abbreviation "multMagma_fields \<equiv> (#carrier \<rightarrow> set';multF\<rightarrow> BinOp-of' the' carrier #)"
 
-text_raw {*\DefineSnippet{multMagma}{*}
+text_raw \<open>\DefineSnippet{multMagma}{\<close>
 mdefinition multMagma_d ("multMagma") where
   "struct multMagma (#
   carrier \<rightarrow> set';
   multF\<rightarrow> BinOp-of' the' carrier #)"
   :well_defined_property[of _ _ "{carrier}\<union>{multF}"]
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 (*  :struct_well_defined
 proof(rule Fields_add_argM1[OF one_sorted(5)],simp add:string,simp add:string)
    fix X1 assume "X1 be one_sorted_fields\<bar>Struct"
@@ -573,13 +573,13 @@ proof-
   show "?X is non trivial-struct" using struct_0_def_9[of ?X] T2(1) by auto
 qed
 
-text_raw {*\DefineSnippet{algstr0def18}{*}
+text_raw \<open>\DefineSnippet{algstr0def18}{\<close>
 func algstr_0_def_18 ("_ \<otimes>\<^sub>_ _" [96, 1000, 97] 96) where
 mlet "M be multMagma "," x be Element-of-struct M","
          y be Element-of-struct M"
   "func x \<otimes>\<^sub>M y \<rightarrow> Element-of-struct M equals
      (the multF of M) . \<lparr> x , y \<rparr>"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
    let ?A = "the carrier of M"
    have A1: "(the multF of M) be BinOp-of ?A" "?A be set" using multMagmaA field one_sortedA by auto
@@ -854,14 +854,14 @@ theorem algstr_0_cl_48[ty_cond_cluster]:
    cluster mult-invertible\<^sub>M \<rightarrow> right-invertible\<^sub>M \<bar> left-invertible\<^sub>M for Element-of-struct M"
   using algstr_0_def_29 by auto
 
-text_raw {*\DefineSnippet{algstr0def30}{*}
+text_raw \<open>\DefineSnippet{algstr0def30}{\<close>
 func algstr_0_def_30 ("'/\<^sub>_ _" [1000, 99] 98) where
   mlet "M be multLoopStr",
           "x be Element-of-struct M"
   "assume x is left-invertible\<^sub>M \<bar> right-mult-cancelable\<^sub>M
    func /\<^sub>M x \<rightarrow> Element-of-struct M means
      (\<lambda>it. it \<otimes>\<^sub>M x = 1\<^sub>M)"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
      assume[ty]: "x is left-invertible\<^sub>M \<bar>right-mult-cancelable\<^sub>M"
      show "ex y be Element-of-struct M st y \<otimes>\<^sub>M x= 1\<^sub>M" using algstr_0_def_27[THEN iffD1] by mauto
@@ -1161,15 +1161,15 @@ abbreviation "doubleLoopStr_fields \<equiv>
    multF \<rightarrow> (\<lambda>S. BinOp-of the carrier of S);
    OneF \<rightarrow> (\<lambda>S. Element-of the carrier of S) #)"
 
-text_raw {*\DefineSnippet{doubleLoopStr_ex}{*}
+text_raw \<open>\DefineSnippet{doubleLoopStr_ex}{\<close>
 term "{[carrier, the set]} \<union>
       {[addF, the BinOp-of (the set)]} \<union>
       {[ZeroF, the Element-of (the set)]} \<union>
       {[multF, the BinOp-of (the set)]} \<union>
       {[OneF, the Element-of (the set)]}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{doubleLoopStr}{*}
+text_raw \<open>\DefineSnippet{doubleLoopStr}{\<close>
 mdefinition doubleLoopStr_d("doubleLoopStr") where
 "struct doubleLoopStr (#
    carrier \<rightarrow> (\<lambda>S. set);
@@ -1178,7 +1178,7 @@ mdefinition doubleLoopStr_d("doubleLoopStr") where
    multF \<rightarrow> (\<lambda>S. BinOp-of the carrier of S);
    OneF \<rightarrow> (\<lambda>S. Element-of the carrier of S)
 #)" : well_defined_property[of _ _ "{carrier}\<union>{addF}\<union>{ZeroF}\<union>{multF}\<union>{OneF}"]
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
   by (auto intro!: Fields_add_3_arg_Mode First_0_arg_Mode dest!:field_E simp add:string)
 
 lemmas doubleLoopStrA = doubleLoopStr_d(1)
@@ -1186,38 +1186,38 @@ lemmas [ex] = doubleLoopStr_d(2,3)
 lemmas doubleLoopStrD = doubleLoopStr_d(4)
 lemmas doubleLoopStrR = doubleLoopStr_d(5)
 
-text_raw {*\DefineSnippet{doubleLoopStr_strict}{*}
+text_raw \<open>\DefineSnippet{doubleLoopStr_strict}{\<close>
 term "strict (doubleLoopStr) \<bar> doubleLoopStr"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{doubleLoopStr_inheritance}{*}
+text_raw \<open>\DefineSnippet{doubleLoopStr_inheritance}{\<close>
 theorem doubleLoopStr_inheritance[ty_parent]:
   assumes "X be doubleLoopStr"
   shows "X be multLoopStr_0 \<and> X be addLoopStr"
 using assms doubleLoopStrA addLoopStrA multLoopStr_0A by auto
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
 
-text_raw {*\DefineSnippet{doubleLoopStr_dom}{*}
+text_raw \<open>\DefineSnippet{doubleLoopStr_dom}{\<close>
 lemma "domain_of doubleLoopStr =
      {carrier} \<union> {addF} \<union> {ZeroF} \<union> {multF} \<union> {OneF}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 using doubleLoopStr_d(4) by simp
 
 
-text_raw {*\DefineSnippet{doubleLoopStr_agg_e}{*}
+text_raw \<open>\DefineSnippet{doubleLoopStr_agg_e}{\<close>
 theorem
   "[#carrier\<mapsto>X;addF\<mapsto>A;ZeroF\<mapsto>Z;multF\<mapsto>M;OneF\<mapsto>E#] =
     {[carrier,X]}\<union>{[addF,A]}\<union>{[ZeroF,Z]}\<union>{[multF,M]}\<union>{[OneF,E]}" using aggr_def sel_t_def by simp
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 
-text_raw {*\DefineSnippet{doubleLoopStr_agg}{*}
+text_raw \<open>\DefineSnippet{doubleLoopStr_agg}{\<close>
 lemma doubleLoopStr_AG[ty_func]:
   assumes "X be set"   "A be BinOp-of X"   "Z be Element-of X"
    "M be BinOp-of X"   "E be Element-of X"
   shows
    "[#carrier\<mapsto>X; addF\<mapsto>A; ZeroF\<mapsto>Z; multF\<mapsto>M; OneF\<mapsto>E#] be doubleLoopStr"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 using assms proof-
   assume A1[ty]: "X be set" "A be BinOp-of X" "M be BinOp-of X" "E be Element-of X" "Z be Element-of X"
   let ?A= "[#carrier\<mapsto>X;addF\<mapsto>A;ZeroF\<mapsto>Z;multF\<mapsto>M;OneF\<mapsto>E#]"

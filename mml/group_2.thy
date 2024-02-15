@@ -7,12 +7,12 @@ begin
 reserve x for object
 reserve G for Group
 
-text_raw {*\DefineSnippet{group2def1}{*}
+text_raw \<open>\DefineSnippet{group2def1}{\<close>
 func group_2_def_1 (infix "\<hungarumlaut>\<^sup>-\<^sup>1 \<^sub>" 150) where
 mlet "A be Subset-of-struct G"
  "func A\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G \<rightarrow> Subset-of-struct G equals
      {g\<^sup>-\<^sup>1\<^sub>G where g be Element-of-struct G : g in A}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   let ?F = "{g\<^sup>-\<^sup>1\<^sub>G where g be Element-of-struct G:g in A}"
   have "?F \<subseteq> the carrier of G"
@@ -86,12 +86,12 @@ proof-
   thus ?thesis using group_2_th_2 by mauto
 qed
 
-text_raw {*\DefineSnippet{group_2_th_3}{*}
+text_raw \<open>\DefineSnippet{group_2_th_3}{\<close>
 theorem group_2_th_3:
   assumes [ty]: "G be Group"
           "g be Element-of-struct G"
    shows "{g}\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G = {g\<^sup>-\<^sup>1\<^sub>G}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro xboole_0_def_10a conjI)
   show "{g}\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G \<subseteq> { g\<^sup>-\<^sup>1\<^sub>G}"
   proof(intro tarski_def_3b)
@@ -111,12 +111,12 @@ proof(intro xboole_0_def_10a conjI)
   qed mauto
 qed mauto
 
-text_raw {*\DefineSnippet{group_2_th_4}{*}
+text_raw \<open>\DefineSnippet{group_2_th_4}{\<close>
 theorem group_2_th_4:
   assumes [ty]:"G be Group"
      "h be Element-of-struct G" "g be Element-of-struct G"
   shows "{h, g}\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G = {h\<^sup>-\<^sup>1\<^sub>G, g\<^sup>-\<^sup>1\<^sub>G}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(intro xboole_0_def_10a)
  show "{h, g}\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G \<subseteq> {h\<^sup>-\<^sup>1\<^sub>G, g\<^sup>-\<^sup>1\<^sub>G}"
   proof(intro tarski_def_3b)
@@ -137,13 +137,13 @@ proof(intro xboole_0_def_10a)
   qed mauto
 qed mauto
 
-text_raw {*\DefineSnippet{group2def2}{*}
+text_raw \<open>\DefineSnippet{group2def2}{\<close>
 func group_2_def_2("_  \<Otimes>\<^sub>_ _" [66, 1000, 67] 66) where
   mlet "G be Group", "A be Subset-of-struct G","B be Subset-of-struct G"
   "func A \<Otimes>\<^sub>G B \<rightarrow> Subset-of-struct G equals
      {a \<otimes>\<^sub>G b where a be Element-of-struct G,
                      b be Element-of-struct G : a in A \<and> b in B}"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof-
   let ?F = " {a \<otimes>\<^sub>G b where a be Element-of-struct G, b be Element-of-struct G :a in A \<and> b in B}"
   have "?F \<subseteq> the carrier of G"
@@ -189,12 +189,12 @@ proof-
   thus ?thesis using group_2_th_8[of G A B] by mauto
 qed
 
-text_raw {*\DefineSnippet{group_2_th_11}{*}
+text_raw \<open>\DefineSnippet{group_2_th_11}{\<close>
 theorem group_2_th_11:
   assumes[ty]: "G be Group"
           "A be Subset-of-struct G" "B be Subset-of-struct G"
   shows "(A \<Otimes>\<^sub>G B) \<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G = B\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G \<Otimes>\<^sub>G A\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G"
-text_raw {*}%EndSnippet*}
+text_raw \<open>}%EndSnippet\<close>
 proof(unfold xboole_0_def_10[OF all_set all_set],rule conjI)
   show "(A \<Otimes>\<^sub>G B) \<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G \<subseteq> B\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G \<Otimes>\<^sub>G A\<hungarumlaut>\<^sup>-\<^sup>1\<^sub>G"
   proof(intro tarski_def_3b)
@@ -234,11 +234,11 @@ reserve A,B,C for "Subset-of-struct G"
 reserve a,b,g,g1,g2,h,h1,h2 for "Element-of-struct G"
 
 (* KP: To twierdzenie ma inny numer w mojej wersji? I jest dla non-empty multMagma? *)
-text_raw {*\DefineSnippet{group_2_th_19}{*}
+text_raw \<open>\DefineSnippet{group_2_th_19}{\<close>
 mtheorem group_2_th_19:
   "{g1,g2} \<Otimes>\<^sub>G {h1,h2} =
      {g1 \<otimes>\<^sub>G h1,g1 \<otimes>\<^sub>G h2 ,g2 \<otimes>\<^sub>G h1 ,g2 \<otimes>\<^sub>G h2 }"
-  text_raw {*}%EndSnippet*}
+  text_raw \<open>}%EndSnippet\<close>
 proof(intro xboole_0_def_10a)
   show "{g1,g2}  \<Otimes>\<^sub>G {h1,h2} \<subseteq> {g1 \<otimes>\<^sub>G h1,g1 \<otimes>\<^sub>G h2 ,g2 \<otimes>\<^sub>G h1 ,g2 \<otimes>\<^sub>G h2 }"
   proof(intro tarski_def_3b)

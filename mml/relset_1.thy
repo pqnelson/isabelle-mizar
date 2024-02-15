@@ -56,33 +56,33 @@ proof -
   assume A2[ty]: "IT be Relation-of X,Y"
   have B1: "IT \<subseteq> [:X,Y:]" using relset_1_lm_1 A2 by mauto
   show "IT is (X-defined) \<bar> (Y-valued)"
-    proof (unfold ty_intersection, intro conjI)
-       show "IT is (X-defined)"
-          proof (intro relat_1_def_18I,simp,simp)
-            show "dom IT \<subseteq> X"
-              proof(intro tarski_def_3b)
-                fix x
-                assume "x in dom IT"
-                then obtain y where
-                  "y be object" and A3: "[x,y] in IT" using xtuple_0_def_12 by auto
-                hence "[x,y] in [:X,Y:]" using A3 B1 tarski_def_3 by auto
-                thus "x in X" using A2 zfmisc_1_th_87 by simp
-              qed mauto
-          qed mauto
-       show "IT is (Y-valued)"
-          proof (intro relat_1_def_19I,simp,simp)
-            show "rng IT \<subseteq> Y"
-              proof(intro tarski_def_3b)
-                fix x
-                assume "x in rng IT"
-                then obtain y where
-                  "y be object"  "[y,x] in IT" using xtuple_0_def_13 by auto
-                hence "[y,x] in [:X,Y:]" using A2 B1 tarski_def_3 by auto
-                thus "x in Y" using A2 zfmisc_1_th_87 by simp
-              qed mauto
-          qed mauto
-     qed
-   qed
+  proof (unfold ty_intersection, intro conjI)
+    show "IT is (X-defined)"
+    proof (intro relat_1_def_18I,simp,simp)
+      show "dom IT \<subseteq> X"
+      proof(intro tarski_def_3b)
+        fix x
+        assume "x in dom IT"
+        then obtain y where
+         "y be object" and A3: "[x,y] in IT" using xtuple_0_def_12 by auto
+        hence "[x,y] in [:X,Y:]" using A3 B1 tarski_def_3 by auto
+        thus "x in X" using A2 zfmisc_1_th_87 by simp
+      qed mauto
+    qed mauto
+    show "IT is (Y-valued)"
+    proof (intro relat_1_def_19I,simp,simp)
+      show "rng IT \<subseteq> Y"
+      proof(intro tarski_def_3b)
+        fix x
+        assume "x in rng IT"
+        then obtain y where
+          "y be object"  "[y,x] in IT" using xtuple_0_def_13 by auto
+        hence "[y,x] in [:X,Y:]" using A2 B1 tarski_def_3 by auto
+        thus "x in Y" using A2 zfmisc_1_th_87 by simp
+      qed mauto
+    qed mauto
+  qed
+qed
 
 mtheorem relset_1_th_4:
   "for R being Relation st dom R \<subseteq> X \<and> rng R \<subseteq> Y holds R be Relation-of X,Y"
